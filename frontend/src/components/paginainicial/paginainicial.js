@@ -1,6 +1,5 @@
 import React from 'react'
 import './paginainicial.css';
-import 'fontsource-roboto';
 import { Grid, CssBaseline, Button, Avatar } from '@material-ui/core';
 
 import logoTop from '../../assets/LogoBranco.png'
@@ -16,7 +15,7 @@ export default function paginainicial() {
                 </Grid>
 
                 <Grid className="header-msg">
-                    <h1 className="text-Slogan">Encontre o melhor destino para sua aventura</h1>
+                    <h1 className="text-Slogan">ENCONTRE O MELHOR DESTINO PARA SUA AVENTURA</h1>
                     <Button size="large" variant="contained">Explore novas aventuras</Button>
                 </Grid>
                 
