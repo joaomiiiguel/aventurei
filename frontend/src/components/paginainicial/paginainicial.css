@@ -1,0 +1,11 @@
+.container-pg{
+    height: 100vh;
+    background-image: url("../../assets/capaInicio.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: bottom;
+}
+.header-top{
+    background-color: white;
+    height: 10%;
+}
