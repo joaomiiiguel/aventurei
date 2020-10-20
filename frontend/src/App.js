@@ -6,7 +6,6 @@ function App() {
   return (
     <div>
       <Paginainicial/>
-      <h1> Miguel</h1>
     </div>
   );
 }

@@ -1,11 +1,49 @@
+*{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
 .container-pg{
     height: 100vh;
     background-image: url("../../assets/capaInicio.jpg");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     background-position: bottom;
 }
-.header-top{
-    background-color: white;
-    height: 10%;
+.container-top{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.header-menu{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    margin-top: 20px;
+}
+.header-msg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 100vh;
+}
+.logoImg{
+    width: 100px;
+    cursor: pointer;
+    margin-left: 50px;
+}
+.beColaborador-top{
+    cursor: pointer;
+    margin-right: 50px;
+    font-weight: 500;
+}
+.text-Slogan{
+    margin-bottom: 50px;
+    align-content: center;
+    text-align: center;
 }
