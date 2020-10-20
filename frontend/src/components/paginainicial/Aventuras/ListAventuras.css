@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container-ListAdv{
+    height: 100vh;
+    background-color: white;
+    
+}
+
+.buscaAventura{
+    color: white;
+    height: 15vh;
+    background-color: #0F5045;
+    padding: 50px 20px;
+}
+.Advsearch{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    color: #0F5045;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.TextSearch{
+    margin-left: 20px;
+    color: #0F5045;
+}
+.searchIcon{
+    margin-right: 20px;
+    cursor: pointer;
+}
+.FilterLocalWeb{
+    background: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.FilterLocalMobile{
+    background-color: royalblue;
+    padding: 5px 15px;
+    border-radius: 5px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    visibility: hidden;
+}
+.TitleFilter{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
