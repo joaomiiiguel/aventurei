@@ -11,7 +11,7 @@
 
 .buscaAventura{
     color: white;
-    height: 15vh;
+    height: auto;
     background-color: #0F5045;
     padding: 50px 20px;
 }
@@ -38,13 +38,17 @@
 .FilterLocalWeb{
     background: rgba(255, 255, 255, 0.5);
     margin-top: 5px;
-    padding: 5px 15px;
+    padding: 5px 10px;
     border-radius: 5px;
     list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     cursor: pointer;
+}
+.FilterLocalWeb > a:hover{
+    color: #0F5045;
+    font-weight: 700;
 }
 .FilterLocalMobile{
     background-color: royalblue;
@@ -60,4 +64,21 @@
     display: flex;
     flex-direction: row;
     margin-top: 20px;
+}
+.MenuList{
+    width: 100%;
+}
+.listaAventura{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+.cardAdventure{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    background-color: #CCC;
+    width: 31%;
+    border-radius: 5px;
 }
