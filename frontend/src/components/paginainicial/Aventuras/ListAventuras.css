@@ -79,6 +79,12 @@
     flex-direction: column;
     margin-top: 10px;
     background-color: #CCC;
-    width: 31%;
-    border-radius: 5px;
+    width: 23%;
+    height: 450px;
+    align-items: center;
+    border-radius: 20px;
+    background-image: url('../../../assets/cachoeira-do-roncador.jpg') ;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+
 }
