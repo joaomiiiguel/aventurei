@@ -1,6 +1,6 @@
 import React from 'react';
 import './ListAventuras.css';
-import { List, Menu, FormControl, TextField, InputBase, ListItem, ListItemText, MenuItem } from '@material-ui/core';
+import { InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
@@ -46,7 +46,7 @@ export default function ListAventuras(props) {
             id: 4,
             title: "Cachoeira do Altar",
             image: "../assets/cachoeira-do-roncador.jpg",
-            entrada: "Gratuita",
+            entrada: "R$45",
             cidade: "Bananeiras",
             estado: "PB",
             like: true
@@ -70,7 +70,6 @@ export default function ListAventuras(props) {
                     <h4>{aventurasApi.cidade}-{aventurasApi.estado}</h4>
                 </div>
             </div>
-
         </div>
     );
 
@@ -104,9 +103,8 @@ export default function ListAventuras(props) {
                             <SearchIcon />
                         </div>
                     </div>
-                    <div className="formBotton">
-                        <select>
-                            
+                    <div className="formBottom">
+                        <select className="custom-select" >
                             {estados.map((option, index) => (
                                 <option
                                     key={option}
@@ -116,7 +114,7 @@ export default function ListAventuras(props) {
                                     {option}
                                 </option>
                             ))}
-                       </select>
+                        </select>
                     </div>
 
                 </div>
