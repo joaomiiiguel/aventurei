@@ -17,7 +17,8 @@
 }
 .header-menu{
     height: 15vh;
-    width: 100%;
+    width: 80%;
+    padding: 0 10%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -29,6 +30,7 @@
     align-items: center;
     color: white;
     height: 85vh;
+    
 }
 .logoImg{
     width: 80px;
@@ -45,6 +47,6 @@
     
     justify-content: center;
     text-align: center;
-    font-size: 18pt;
+    font-size: 25pt;
     margin: 25vh 10px 10vh 10px;
 }

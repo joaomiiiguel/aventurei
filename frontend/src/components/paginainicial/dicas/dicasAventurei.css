@@ -1,0 +1,14 @@
+.containerDicas{
+    display: flex;
+    align-items: center;
+    padding: 50px 10%;
+    width: 80%;
+    border-top: 1px solid #CFCFCF;
+}
+.titulo{
+    font-size: 18pt;
+    color: black;
+}
+.dicasCards{
+    
+}

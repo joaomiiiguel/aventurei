@@ -3,6 +3,7 @@ import './paginainicial.css';
 import { Button } from '@material-ui/core';
 
 import ListAventuras from '../paginainicial/Aventuras/ListAventuras.js'
+import DicasAventurei from '../paginainicial/dicas/dicasAventurei.js'
 import logoTop from '../../assets/LogoBranco.png'
 
 export default function paginainicial() {
@@ -23,6 +24,8 @@ export default function paginainicial() {
             </div>
 
             <ListAventuras />
+
+            <DicasAventurei />
         </div>
     )
 }

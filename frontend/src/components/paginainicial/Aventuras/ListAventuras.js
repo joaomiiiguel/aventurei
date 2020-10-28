@@ -51,6 +51,41 @@ export default function ListAventuras(props) {
             estado: "PB",
             like: true
         },
+        {
+            id: 1,
+            title: "Cachoeira do Roncador",
+            entrada: "Gratuita",
+            cidade: "Bananeiras",
+            estado: "PB",
+            like: true
+        },
+        {
+            id: 2,
+            title: "Cachoeira do Pinga",
+            image: "../../../assets/cachoeira-do-roncador.jpg",
+            entrada: "R$30",
+            cidade: "Bananeiras",
+            estado: "PB",
+            like: true
+        },
+        {
+            id: 3,
+            title: "Cachoeira do Altar",
+            image: "../assets/cachoeira-do-roncador.jpg",
+            entrada: "Gratuita",
+            cidade: "Bananeiras",
+            estado: "PB",
+            like: true
+        },
+        {
+            id: 4,
+            title: "Cachoeira do Altar",
+            image: "../assets/cachoeira-do-roncador.jpg",
+            entrada: "R$45",
+            cidade: "Bananeiras",
+            estado: "PB",
+            like: true
+        },
     ]
 
     const ListaCards = aventurasApi.map((aventurasApi) =>
@@ -91,7 +126,7 @@ export default function ListAventuras(props) {
         <div className="container-ListAdv" >
 
             <div className="buscaAventura">
-                <h3>EXPLORE NOVAS AVENTURAS</h3>
+                <p className="tituloBranco">EXPLORE <b>NOVAS AVENTURAS</b></p>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <div className="Advsearch">
                         <InputBase
