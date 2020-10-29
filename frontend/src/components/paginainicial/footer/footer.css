@@ -1,0 +1,14 @@
+.footerContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #F2F2F2;
+    height: 10vh;
+    padding: 50px 10%;
+}
+.footerContainer > p{
+    color: #8D8D8D;
+    font-size: 10pt;
+    font-weight: bold;
+    cursor: pointer;
+}

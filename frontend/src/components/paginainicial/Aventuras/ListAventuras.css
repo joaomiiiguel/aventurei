@@ -13,6 +13,9 @@
     height: auto;
     background-color: #0F5045;
     padding: 50px 10%;
+    background-image: url('../../../assets/topographic.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
     
 }
 
@@ -105,11 +108,11 @@
 .cardAdventure {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    
     margin-bottom: 20px;
     min-width: 23%;
     height: 50vh;
-    max-height: 40vh;
+    width: 20%;
     border-radius: 20px;
     background-image: url('../../../assets/cachoeira-do-roncador.jpg');
     background-repeat: no-repeat;

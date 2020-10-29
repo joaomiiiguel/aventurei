@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 
 import ListAventuras from '../paginainicial/Aventuras/ListAventuras.js'
 import DicasAventurei from '../paginainicial/dicas/dicasAventurei.js'
+import Footer from '../paginainicial/footer/footer.js'
 import logoTop from '../../assets/LogoBranco.png'
 
 export default function paginainicial() {
@@ -26,6 +27,7 @@ export default function paginainicial() {
             <ListAventuras />
 
             <DicasAventurei />
+            <Footer />
         </div>
     )
 }
