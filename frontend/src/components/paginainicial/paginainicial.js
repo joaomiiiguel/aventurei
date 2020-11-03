@@ -1,6 +1,7 @@
 import React from 'react'
 import './paginainicial.css';
 import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 import ListAventuras from '../paginainicial/Aventuras/ListAventuras.js'
 import DicasAventurei from '../paginainicial/dicas/dicasAventurei.js'
@@ -14,12 +15,12 @@ export default function paginainicial() {
 
                 <div className="header-menu">
                     <div className="logo-top"><img src={logoTop} className="logoImg"/></div>
-                    <div className="beColaborador-top"><h3>Seja um Colaborador</h3></div>
+                    <Link className="beColaborador-top" to="/seja-colaborador"><h3>Seja um Colaborador</h3></Link>
                 </div>
 
                 <div className="header-msg">
                     <h1 className="text-Slogan">ENCONTRE O MELHOR DESTINO PARA SUA AVENTURA</h1>
-                    <Button size="large" variant="contained" >Explore novas aventuras</Button>
+                    <button className="button">Explore novas aventuras</button>
                 </div>
                 
             </div>
