@@ -25,3 +25,11 @@
     width: 100%;
     height: 250px;
 }
+
+@media screen and (max-width: 768px) {
+    .containerDicasCard{
+        flex-direction: column;}
+    .cardDicas{
+        width: 100%;
+    }
+}

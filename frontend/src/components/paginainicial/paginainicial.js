@@ -20,14 +20,14 @@ export default function paginainicial() {
 
                 <div className="header-msg">
                     <h1 className="text-Slogan">ENCONTRE O MELHOR DESTINO PARA SUA AVENTURA</h1>
-                    <button className="button">Explore novas aventuras</button>
+                    <button className="button" >Explore novas aventuras</button>
                 </div>
                 
             </div>
 
-            <ListAventuras />
+            <ListAventuras/>
 
-            <DicasAventurei />
+            <DicasAventurei/>
             <Footer />
         </div>
     )

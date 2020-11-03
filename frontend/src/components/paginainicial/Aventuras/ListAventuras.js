@@ -5,13 +5,10 @@ import SearchIcon from '@material-ui/icons/Search';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import IconButton from '@material-ui/core/IconButton';
-import imgCachoeira from '../../../assets/cachoeira-do-roncador.jpg'
 
 export default function ListAventuras(props) {
     const estados = ["Brasil", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
-    const ListEstados = estados.map((estados) =>
-        <a>{estados}</a>
-    );
+    
     const [UF, setUF] = React.useState(null);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
 
@@ -108,18 +105,12 @@ export default function ListAventuras(props) {
         </div>
     );
 
-    const handleClickListItem = (event) => {
-        setUF(event.currentTarget);
-    };
-
     const handleMenuItemClick = (event, index) => {
         setSelectedIndex(index);
         setUF(null);
     };
 
-    const handleClose = () => {
-        setUF(null);
-    };
+    
 
 
     return (
