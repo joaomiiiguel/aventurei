@@ -25,7 +25,7 @@ export default function cadasColaborador() {
                     <div className="logo-Login"><img src={logoTop} className="logoImgCor"/></div>
                     <div className="formContent">
                         
-                    <p className="infoTitle">CADASTRO DE COLABORADOR</p>
+                    <p className="infoTitle">CADASTROo DE COLABORADOR</p>
                         <input type="text" placeholder="Nome" />
                         <input type="text" size="50" placeholder="Nome da Equipe(Opcional)" />
                         <input type="email" placeholder="E-mail" />

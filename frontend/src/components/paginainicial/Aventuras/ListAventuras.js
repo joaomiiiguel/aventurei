@@ -8,8 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 
 export default function ListAventuras(props) {
     const estados = ["Brasil", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
-    
-    const [UF, setUF] = React.useState(null);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
 
     const aventurasApi = [
@@ -107,7 +105,6 @@ export default function ListAventuras(props) {
 
     const handleMenuItemClick = (event, index) => {
         setSelectedIndex(index);
-        setUF(null);
     };
 
     
@@ -117,7 +114,7 @@ export default function ListAventuras(props) {
         <div className="container-ListAdv" >
 
             <div className="buscaAventura">
-                <p className="tituloBranco">EXPLORE <b>NOVAS AVENTURAS</b></p>
+                <p className="tituloBranco">EXPLORE NOVAS AVENTURAS</p>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <div className="Advsearch">
                         <InputBase
