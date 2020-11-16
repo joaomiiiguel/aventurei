@@ -1,5 +1,6 @@
 .containerCadColab{
     width: 100vw;
+    display: flex;
 }
 
 .LeftContent{
@@ -41,10 +42,9 @@
 
 .logo-Login{
     padding: 15px;
-    margin-top: 5%;
 }
 .logoImgCor{
-    width: 150px;
+    width: 120px;
 }
 
 .formContent{

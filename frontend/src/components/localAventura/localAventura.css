@@ -1,0 +1,16 @@
+.local-Aventura{
+    display: flex;
+    width: 80%;
+    margin-top: 20px;
+    padding: 0 10%;
+}
+.header-menuLocal{
+    height: 15vh;
+    width: 80%;
+    padding: 0 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    box-shadow: 0 0 10px grey;
+}

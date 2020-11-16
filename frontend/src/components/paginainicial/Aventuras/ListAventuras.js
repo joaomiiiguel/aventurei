@@ -5,6 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import IconButton from '@material-ui/core/IconButton';
+import { Link } from 'react-router-dom';
 
 export default function ListAventuras(props) {
     const estados = ["Brasil", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
@@ -84,7 +85,7 @@ export default function ListAventuras(props) {
     ]
 
     const ListaCards = aventurasApi.map((aventurasApi) =>
-        <div className="cardAdventure">
+        <Link className="cardAdventure" to="/localAventura">
             <div className="headerCard">
                 <IconButton color="primary">
                     <FavoriteBorderRoundedIcon style={{ color: "white" }} />
@@ -100,7 +101,7 @@ export default function ListAventuras(props) {
                     <h4>{aventurasApi.cidade}-{aventurasApi.estado}</h4>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 
     const handleMenuItemClick = (event, index) => {
