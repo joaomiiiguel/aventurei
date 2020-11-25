@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './cadasColaborador.css';
 import { Link } from 'react-router-dom';
 import { BsChevronLeft } from "react-icons/bs";
-import api from '../../services/api';
+
 
 
 import logoTop from '../../assets/LogoCor.png'
