@@ -21,7 +21,10 @@
     background-size: 100% auto;
     
 }
-
+.contanierBuscar{
+    display: flex;
+    flex-direction: row;
+}
 .Advsearch {
     display: flex;
     flex-direction: row;
@@ -87,7 +90,6 @@
 }
 
 .custom-select {
-    padding: 8px 12px;
     color: grey;
     background-color: white;
     border-radius: 5px;
@@ -112,14 +114,16 @@
 .cardAdventure {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin-bottom: 20px;
     min-width: 23%;
     height: 50vh;
+    max-height: 300px;
     width: 20%;
     border-radius: 20px;
     background-image: url('../../../assets/cachoeira-do-roncador.jpg');
     background-repeat: no-repeat;
-    background-size: 100% auto;
+    background-size: 100%;
     justify-content: space-between;
 }
 
@@ -157,7 +161,12 @@ p {
 .precoHead{
     margin-right: 20px;
 }
-
+@media screen and (max-width: 1100px) {
+    .cardAdventure {
+        width: 30%;
+        
+    }
+}
 @media screen and (max-width: 768px) {
     .buscaAventura {
         padding: 50px 10px;
@@ -166,13 +175,18 @@ p {
         background-size: auto 100%;
     }
     .Advsearch {
-        width: 80%;
+        width: 100%;
     }
     .formBottom{
-        width: 20%;
+        margin-left: 0px;
+        width: 100%;
     }
     .cardAdventure {
         margin-bottom: 30px;
         width: 100%;
+    }
+    .contanierBuscar{
+        display: flex;
+        flex-direction: column;
     }
 }

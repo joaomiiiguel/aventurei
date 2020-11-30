@@ -10,20 +10,20 @@ import logoTop from '../../assets/LogoCor.png'
 
 export default function CadasColaborador() {
 
-    const [name,setName] = useState(0);
-    const [nameGrup,setNameGrup] = useState(0);
-    const [email,setEmail] = useState(0);
-    const [whatsapp,setWhatsapp] = useState(0);
-    const [instagram,setInstagram] = useState(0);
-    const [cidade,setCidade] = useState(0);
-    const [uf,setUf] = useState(0);
+    const [name,setName] = useState();
+    const [nameGrup,setNameGrup] = useState();
+    const [email,setEmail] = useState();
+    const [whatsapp,setWhatsapp] = useState();
+    const [instagram,setInstagram] = useState();
+    const [cidade,setCidade] = useState();
+    const [uf,setUf] = useState();
 
     
     return (
         <div className="containerCadColab">
             <div className="LeftContent">
                 <h1 className="titleLogin">Bem vindo ao AVENTUREI</h1>
-                <h2>Seja nosso colaborador e proporcione novas aventuras</h2>
+                <h2 style={{color:"white"}}>Seja nosso colaborador e proporcione novas aventuras</h2>
             </div>
             <div className="RigthContent">
                 <Link className="backHome" color="#0F5045" to="/">

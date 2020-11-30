@@ -95,7 +95,7 @@ export default function ListAventuras(props) {
                 </div>
             </div>
             <div className="bottonCard">
-                <h2>{aventurasApi.title}</h2>
+                <h2 style={{color:"white"}}>{aventurasApi.title}</h2>
                 <div className="localAdventure">
                     <RoomOutlinedIcon style={{ color: "white" }} fontSize="small" />
                     <h4>{aventurasApi.cidade}-{aventurasApi.estado}</h4>
@@ -116,7 +116,7 @@ export default function ListAventuras(props) {
 
             <div className="buscaAventura">
                 <p className="tituloBranco">EXPLORE NOVAS AVENTURAS</p>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div className="contanierBuscar">
                     <div className="Advsearch">
                         <InputBase
                             className="TextSearch"
