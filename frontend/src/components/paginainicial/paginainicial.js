@@ -8,6 +8,7 @@ import DicasAventurei from '../paginainicial/dicas/dicasAventurei.js'
 import Footer from '../paginainicial/footer/footer.js'
 import logoTop from '../../assets/LogoBranco.png'
 import scrollDown from '../../assets/scroll.gif'
+import emBreve from '../../assets/embreve.png'
 
 export default function paginainicial() {
     return (
