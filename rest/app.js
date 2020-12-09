@@ -1,10 +1,9 @@
 const express = require('express')
 const app = express();
 
-app.use((req, res, next) => {
-    res.status(200).send({
-        mensage: 'Ok! Deu certo!'
-    })
-});
+const rotaLocais = require('./routes/locais')
+
+app.use('/locais', rotaLocais);
+
 
 module.exports = app;
