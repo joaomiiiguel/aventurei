@@ -1,14 +1,13 @@
 import React from 'react'
 import './paginainicial.css';
 import { Link } from 'react-router-dom';
-import { BsChevronDoubleDown } from "react-icons/bs";
+
 
 import ListAventuras from '../paginainicial/Aventuras/ListAventuras.js'
 import DicasAventurei from '../paginainicial/dicas/dicasAventurei.js'
 import Footer from '../paginainicial/footer/footer.js'
 import logoTop from '../../assets/LogoBranco.png'
-import scrollDown from '../../assets/scroll.gif'
-import emBreve from '../../assets/embreve.png'
+
 
 export default function paginainicial() {
     return (

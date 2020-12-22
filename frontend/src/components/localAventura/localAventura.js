@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Link, useParams} from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+import { Link} from 'react-router-dom';
 import './localAventura.css';
 //import { Carousel } from 'react-responsive-carousel';
 //import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -16,10 +15,17 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 
 
+import api from '../../services/api';
 
-export default function localAventura(props) {
-    
-    const {id} = useParams();
+export default function LocalAventura(props) {
+    const [place, setPlace] = useState([]);
+
+
+    useEffect (() =>{
+        api.get('places').then(response =>{
+            setPlace(response.data);
+        })
+    },[]);
 
     
     return (
@@ -28,18 +34,18 @@ export default function localAventura(props) {
                 <Link className="logo-top" to="/"><img src={logoTopCor} alt="fogueira"   className="logoImg" /></Link>
                 <Link className="beColaborador-top" to="/seja-colaborador"><h3 style={{ color: 'white' }}>Seja um Colaborador</h3></Link>
             </div>
-            <div className="local-Aventura">
-                <div className="titleLocal">
+            {place.map(places =>(
+                <div className="local-Aventura" key={places.id}>
+                    <div className="titleLocal">
                     <div>
-                        <h1></h1>
-                        <div style={{display:"flex",flexDirection:"row", color:"gray"}}><RoomOutlinedIcon fontSize="small"/><p style={{color:"gray"}}>Bananeiras, Paraíba</p></div>
+                        <h1>{places.namePlace}</h1>
+                        <div style={{display:"flex",flexDirection:"row", color:"gray"}}><RoomOutlinedIcon fontSize="small"/><p style={{color:"gray"}}>{places.city}, {places.uf}</p></div>
                     </div>
                     <Link className="likeLocal" to="#">
                         <FavoriteBorderRoundedIcon />
                         <h3 className="likeLocalTxt">SALVAR</h3>
                     </Link>
                 </div>
-                
                 <div className="localInfos">
                     <div className="nivelAcesso">
                         <div className="cardAcesso">
@@ -47,11 +53,11 @@ export default function localAventura(props) {
                             <div className="boxAcesso" style={{ border: "1px solid orange" }}></div>
                             <div className="boxAcesso" style={{ border: "1px solid red" }}></div>
                         </div>
-                        <h2 style={{ color: "green", fontSize: "20pt" }}>FÁCIL</h2>
+                        <h2 style={{ color: "green", fontSize: "20pt" }}>{places.acessLevel}</h2>
                         <h3 style={{ color: "gray" }}>ACESSO</h3>
                     </div>
                     <div className="entradaPreco">
-                        <h2 style={{ fontSize: "20pt" }}>GRATUITA</h2>
+                        <h2 style={{ fontSize: "20pt" }}>{places.valueEntrance}</h2>
                         <h3 style={{ color: "gray" }}>ENTRADA</h3>
                     </div>
                     <div className="avaliacaoLocal">
@@ -63,25 +69,19 @@ export default function localAventura(props) {
                         <h3 style={{ color: "gray" }}>AVALIAÇÃO</h3>
                     </div>
                 </div>
-
                 <div className="descricaoLugar">
                     <h2>Descrição do Lugar</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi quis commodo odio aenean. Facilisis volutpat est velit egestas dui id ornare arcu odio. Viverra nam libero justo laoreet sit amet cursus sit. Aenean euismod elementum nisi quis eleifend quam adipiscing vitae proin. Velit aliquet sagittis id consectetur purus. Vel pharetra vel turpis nunc eget. Et odio pellentesque diam volutpat commodo sed egestas egestas. Sit amet consectetur adipiscing elit ut aliquam purus sit. Consequat mauris nunc congue nisi vitae suscipit tellus mauris a. Nam at lectus urna duis convallis. Sit amet mauris commodo quis imperdiet massa. Sed odio morbi quis commodo odio aenean sed adipiscing diam. Tempus urna et pharetra pharetra massa. Eget nulla facilisi etiam dignissim diam quis enim.
-                    Eu consequat ac felis donec et odio. Quam vulputate dignissim suspendisse in est ante. A arcu cursus vitae congue mauris rhoncus. Posuere ac ut consequat semper viverra. Consequat nisl vel pretium lectus quam id. Nulla pharetra diam sit amet nisl suscipit adipiscing. Sed risus pretium quam vulputate dignissim suspendisse. Porttitor eget dolor morbi non arcu. Orci sagittis eu volutpat odio. Sed vulputate mi sit amet mauris.
-                    Dolor magna eget est lorem ipsum dolor. Augue ut lectus arcu bibendum at varius vel pharetra vel. Aliquet nec ullamcorper sit amet risus nullam eget felis. Condimentum mattis pellentesque id nibh tortor id. Adipiscing elit ut aliquam purus sit amet.</p>
+                    <p>{places.description}</p>
                 </div>
                 <div className="comoChegar">
                     <div>
                         <h2>Como chegar</h2>
-                        <p style={{ textAlign: "justify" }}>Eu consequat ac felis donec et odio. Quam vulputate dignissim suspendisse in est ante. A arcu cursus vitae congue mauris rhoncus. Posuere ac ut consequat semper viverra. Consequat nisl vel pretium lectus quam id. Nulla pharetra diam sit amet nisl suscipit adipiscing. Sed risus pretium quam vulputate dignissim suspendisse. Porttitor eget dolor morbi non arcu. Orci sagittis eu volutpat odio. Sed vulputate mi sit amet mauris.
-                        Dolor magna eget est lorem ipsum dolor. Augue ut lectus arcu bibendum at varius vel pharetra vel. Aliquet nec ullamcorper sit amet risus nullam eget felis. Condimentum mattis pellentesque id nibh tortor id. Adipiscing elit ut aliquam purus sit amet. arcu cursus vitae congue mauris rhoncus. Posuere ac ut consequat semper viverra.
-                        Consequat nisl vel pretium lectus quam id. Nulla pharetra diam sit amet nisl suscipit adipiscing. Sed risus pretium quam vulputate dignissim suspendisse. Porttitor eget dolor morbi non arcu. </p>
+                        <p style={{ textAlign: "justify" }}>{places.howtoGet}</p>
                     </div>
                     <div className="btRota">
                         <Button
                             variant="contained"
                             color="primary"
-                            
                             endIcon={<NearMeRoundedIcon/>}
                         >
                             OBTER ROTA
@@ -99,7 +99,8 @@ export default function localAventura(props) {
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
+            ))}
             <Footer/>
         </div>
     )

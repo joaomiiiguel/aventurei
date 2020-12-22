@@ -45,7 +45,7 @@ export default function CadasColaborador() {
                 </Link>
                 <div className="formCadast">
 
-                    <div className="logo-Login"><img src={logoTop} className="logoImgCor" /></div>
+                    <div className="logo-Login"><img src={logoTop} className="logoImgCor" alt="logo do Aventurei" /></div>
 
                     <form className="formContent" onSubmit={handleRegister}>
 
