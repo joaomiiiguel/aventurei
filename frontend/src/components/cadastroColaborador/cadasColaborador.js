@@ -3,22 +3,30 @@ import './cadasColaborador.css';
 import { Link } from 'react-router-dom';
 import { BsChevronLeft } from "react-icons/bs";
 
-
+import api from '../../services/api';
 
 import logoTop from '../../assets/LogoCor.png'
 
-
 export default function CadasColaborador() {
 
-    const [name,setName] = useState();
-    const [nameGrup,setNameGrup] = useState();
-    const [email,setEmail] = useState();
-    const [whatsapp,setWhatsapp] = useState();
-    const [instagram,setInstagram] = useState();
-    const [cidade,setCidade] = useState();
-    const [uf,setUf] = useState();
+    const [name,setName] = useState('');
+    const [nameGrup,setNameGrup] = useState('');
+    const [email,setEmail] = useState('');
+    const [whatsapp,setWhatsapp] = useState('');
+    const [instagram,setInstagram] = useState('');
+    const [city,setCity] = useState('');
+    const [uf,setUf] = useState('');
 
-    
+    async function handleRegister(e){
+        e.preventDefault();
+
+        const data = {name, nameGrup, email, whatsapp, instagram, city, uf};
+        console.log(data);
+        
+        const response = await api.post('partners', data);
+        
+    }
+
     return (
         <div className="containerCadColab">
             <div className="LeftContent">
@@ -33,7 +41,8 @@ export default function CadasColaborador() {
                 <div className="formCadast">
 
                     <div className="logo-Login"><img src={logoTop} className="logoImgCor" /></div>
-                    <form className="formContent">
+
+                    <form className="formContent" onSubmit={handleRegister}>
 
                         <p className="infoTitle">CADASTRO DE COLABORADOR</p>
                         
@@ -41,45 +50,47 @@ export default function CadasColaborador() {
                                 type="text" 
                                 placeholder="Nome" 
                                 value={name}
-                                onChange={()=>{}}
+                                onChange={e => setName(e.target.value)}
                             />
                             <input 
                                 type="text" 
                                 size="50" 
                                 placeholder="Nome da Equipe (Opcional)" 
                                 value={nameGrup}
-                                onChange={()=>{}}
+                                onChange={e => setNameGrup(e.target.value)}
                             />
                             <input 
                                 type="email" 
                                 placeholder="E-mail" 
                                 value={email}
-                                onChange={()=>{}}
+                                onChange={e => setEmail(e.target.value)}
                             />
                             <input 
+                                type="number"
                                 placeholder="Whatsapp" 
+                                size="11"
                                 value={whatsapp}
-                                onChange={()=>{}}
+                                onChange={e => setWhatsapp(e.target.value)}
                             />
                             <input 
                                 type="text" 
                                 placeholder="Instagram" 
                                 value={instagram}
-                                onChange={()=>{}}
+                                onChange={e => setInstagram(e.target.value)}
                             />
                             <div className="input-group">
                                 <input 
                                     type="text" 
                                     placeholder="Cidade" 
-                                    value={cidade}
-                                    onChange={()=>{}}
+                                    value={city}
+                                    onChange={e => setCity(e.target.value)}
                                 />
                                 <input 
                                     type="text" 
                                     size="2" 
                                     placeholder="UF"
                                     value={uf}
-                                    onChange={()=>{}}
+                                    onChange={e => setUf(e.target.value)}
                                 />
                             </div>
                             <p className="infoCadast">As informações repassadas serão analisadas para aprovação</p>

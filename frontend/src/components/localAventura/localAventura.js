@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import './localAventura.css';
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+//import { Carousel } from 'react-responsive-carousel';
+//import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Button from '@material-ui/core/Button';
 import NearMeRoundedIcon from '@material-ui/icons/NearMeRounded';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
@@ -43,15 +43,7 @@ export default function localAventura() {
                         <h3 className="likeLocalTxt">SALVAR</h3>
                     </Link>
                 </div>
-                <div className="carouselFotos">
-                    <Carousel>
-                        <div><img src={img01} /></div>
-                        <div><img src={img02} /></div>
-                        <div><img src={img03} /></div>
-                        <div><img src={img04} /></div>
-                        <div><img src={img05} /></div>
-                    </Carousel>
-                </div>
+                
                 <div className="localInfos">
                     <div className="nivelAcesso">
                         <div className="cardAcesso">
