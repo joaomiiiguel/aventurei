@@ -21,9 +21,14 @@ export default function CadasColaborador() {
         e.preventDefault();
 
         const data = {name, nameGrup, email, whatsapp, instagram, city, uf};
-        console.log(data);
         
-        const response = await api.post('partners', data);
+        try{
+            const response = await api.post('partners', data);
+            alert(`Seu ID de acesso: ${response.data.id}`)
+        } catch(err){
+            alert('Erro no cadastro')
+        }
+        
         
     }
 
@@ -50,6 +55,7 @@ export default function CadasColaborador() {
                                 type="text" 
                                 placeholder="Nome" 
                                 value={name}
+                                required
                                 onChange={e => setName(e.target.value)}
                             />
                             <input 
@@ -63,12 +69,15 @@ export default function CadasColaborador() {
                                 type="email" 
                                 placeholder="E-mail" 
                                 value={email}
+                                required
                                 onChange={e => setEmail(e.target.value)}
                             />
                             <input 
-                                type="number"
+                                type="tel"
                                 placeholder="Whatsapp" 
-                                size="11"
+                                maxLength="11"
+                                pattern="[0-9]{2}[0-9]{5}[0-9]{4}"
+                                required
                                 value={whatsapp}
                                 onChange={e => setWhatsapp(e.target.value)}
                             />
@@ -76,6 +85,7 @@ export default function CadasColaborador() {
                                 type="text" 
                                 placeholder="Instagram" 
                                 value={instagram}
+                                required
                                 onChange={e => setInstagram(e.target.value)}
                             />
                             <div className="input-group">
@@ -83,6 +93,7 @@ export default function CadasColaborador() {
                                     type="text" 
                                     placeholder="Cidade" 
                                     value={city}
+                                    required
                                     onChange={e => setCity(e.target.value)}
                                 />
                                 <input 
@@ -90,6 +101,7 @@ export default function CadasColaborador() {
                                     size="2" 
                                     placeholder="UF"
                                     value={uf}
+                                    required
                                     onChange={e => setUf(e.target.value)}
                                 />
                             </div>

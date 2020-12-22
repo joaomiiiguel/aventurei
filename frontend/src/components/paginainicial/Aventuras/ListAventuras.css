@@ -7,8 +7,10 @@
 
 .container-ListAdv {
     background-color: white;
-   
-    
+}
+ul{
+    padding: 0;
+    width: 100%;
 }
 
 .buscaAventura {
@@ -120,7 +122,7 @@
     height: 50vh;
     max-height: 300px;
     width: 20%;
-    border-radius: 20px;
+    border-radius: 10px;
     background-image: url('../../../assets/cachoeira-do-roncador.jpg');
     background-repeat: no-repeat;
     background-size: 100%;
@@ -128,10 +130,7 @@
 }
 
 
-.cardAdventure>h1,
-h2,
-h4,
-p {
+.cardAdventure>h1,h2,h4,p {
     color: white
 }
 
@@ -150,13 +149,13 @@ p {
     padding: 15px;
     background: rgb(0,0,0);
     background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 100%);
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .localAdventure {
     display: flex;
     flex-direction: row;
-    margin: 5px 0 15px 5px;
+    margin: 0 0 15px 0;
 }
 .precoHead{
     margin-right: 20px;

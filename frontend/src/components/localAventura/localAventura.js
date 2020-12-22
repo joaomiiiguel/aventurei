@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { Link, useParams} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import './localAventura.css';
 //import { Carousel } from 'react-responsive-carousel';
@@ -15,30 +15,26 @@ import Footer from '../paginainicial/footer/footer.js';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 
-import img01 from '../../assets/localFotos/000001.png';
-import img02 from '../../assets/localFotos/000002.png';
-import img03 from '../../assets/localFotos/000003.png';
-import img04 from '../../assets/localFotos/000004.png';
-import img05 from '../../assets/localFotos/000005.png';
 
 
-export default function localAventura() {
+export default function localAventura(props) {
+    
+    const {id} = useParams();
 
-
-
+    
     return (
         <div>
-            <div className="header-menuLocal">
+            <div  className="header-menuLocal">
                 <Link className="logo-top" to="/"><img src={logoTopCor} alt="fogueira"   className="logoImg" /></Link>
                 <Link className="beColaborador-top" to="/seja-colaborador"><h3 style={{ color: 'white' }}>Seja um Colaborador</h3></Link>
             </div>
             <div className="local-Aventura">
                 <div className="titleLocal">
                     <div>
-                        <h1>Cachoeira do Roncador</h1>
+                        <h1></h1>
                         <div style={{display:"flex",flexDirection:"row", color:"gray"}}><RoomOutlinedIcon fontSize="small"/><p style={{color:"gray"}}>Bananeiras, Paraíba</p></div>
                     </div>
-                    <Link className="likeLocal">
+                    <Link className="likeLocal" to="#">
                         <FavoriteBorderRoundedIcon />
                         <h3 className="likeLocalTxt">SALVAR</h3>
                     </Link>
@@ -85,7 +81,7 @@ export default function localAventura() {
                         <Button
                             variant="contained"
                             color="primary"
-                            fullWidth="true"
+                            
                             endIcon={<NearMeRoundedIcon/>}
                         >
                             OBTER ROTA
@@ -93,7 +89,7 @@ export default function localAventura() {
                     </div>
 
                 </div>
-                <div class="colaboradorContainer">
+                <div className="colaboradorContainer">
                     <div className="avatarColab"></div>
                     <div>
                         <h3>Local sugerido por João Miguel</h3>

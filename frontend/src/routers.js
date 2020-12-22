@@ -11,7 +11,7 @@ export default function Routes(){
             <Switch>
                 <Route path="/" exact component={PaginaInicial} />
                 <Route path="/seja-colaborador" component={CadastroColaborador} />
-                <Route path="/localAventura" component={localAventura} />
+                <Route path="/localAventura/:id" component={localAventura} />
             </Switch>
         </BrowserRouter>
     )

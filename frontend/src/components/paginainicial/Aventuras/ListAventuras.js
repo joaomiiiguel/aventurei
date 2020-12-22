@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './ListAventuras.css';
 import { InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -7,109 +7,27 @@ import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded'
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 
+import api from '../../../services/api';
+
 export default function ListAventuras(props) {
     const estados = ["Brasil", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
     const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const [place, setPlace] = useState([]);
+    
+    function loadPlaces(){
+        api.get('places').then(response =>{
+            setPlace(response.data);
+        })
+    }
 
-    const aventurasApi = [
-        {
-            id: 1,
-            title: "Cachoeira do Roncador",
-            entrada: "Gratuita",
-            cidade: "Bananeiras",
-            estado: "PB",
-            like: true
-        },
-        {
-            id: 2,
-            title: "Cachoeira do Pinga",
-            image: "../../../assets/cachoeira-do-roncador.jpg",
-            entrada: "R$30",
-            cidade: "Bananeiras",
-            estado: "PB",
-            like: true
-        },
-        {
-            id: 3,
-            title: "Cachoeira do Altar",
-            image: "../assets/cachoeira-do-roncador.jpg",
-            entrada: "Gratuita",
-            cidade: "Bananeiras",
-            estado: "PB",
-            like: true
-        },
-        {
-            id: 4,
-            title: "Cachoeira do Altar",
-            image: "../assets/cachoeira-do-roncador.jpg",
-            entrada: "R$45",
-            cidade: "Bananeiras",
-            estado: "PB",
-            like: true
-        },
-        {
-            id: 1,
-            title: "Cachoeira do Roncador",
-            entrada: "Gratuita",
-            cidade: "Bananeiras",
-            estado: "PB",
-            like: true
-        },
-        {
-            id: 2,
-            title: "Cachoeira do Pinga",
-            image: "../../../assets/cachoeira-do-roncador.jpg",
-            entrada: "R$30",
-            cidade: "Bananeiras",
-            estado: "PB",
-            like: true
-        },
-        {
-            id: 3,
-            title: "Cachoeira do Altar",
-            image: "../assets/cachoeira-do-roncador.jpg",
-            entrada: "Gratuita",
-            cidade: "Bananeiras",
-            estado: "PB",
-            like: true
-        },
-        {
-            id: 4,
-            title: "Cachoeira do Altar",
-            image: "../assets/cachoeira-do-roncador.jpg",
-            entrada: "R$45",
-            cidade: "Bananeiras",
-            estado: "PB",
-            like: true
-        },
-    ]
+    useEffect (() =>{
+        loadPlaces()
+    },[]);
 
-    const ListaCards = aventurasApi.map((aventurasApi) =>
-        <Link className="cardAdventure" to="/localAventura">
-            <div className="headerCard">
-                <IconButton color="primary">
-                    <FavoriteBorderRoundedIcon style={{ color: "white" }} />
-                </IconButton>
-                <div className="precoHead">
-                    <h4>{aventurasApi.entrada}</h4>
-                </div>
-            </div>
-            <div className="bottonCard">
-                <h2 style={{color:"white"}}>{aventurasApi.title}</h2>
-                <div className="localAdventure">
-                    <RoomOutlinedIcon style={{ color: "white" }} fontSize="small" />
-                    <h4>{aventurasApi.cidade}-{aventurasApi.estado}</h4>
-                </div>
-            </div>
-        </Link>
-    );
 
     const handleMenuItemClick = (event, index) => {
         setSelectedIndex(index);
     };
-
-    
-
 
     return (
         <div className="container-ListAdv" >
@@ -130,9 +48,9 @@ export default function ListAventuras(props) {
                     <div className="formBottom">
                         <select className="custom-select" >
                             {estados.map((option, index) => (
-                                <option
+                                <option 
                                     key={option}
-                                    selected={index === selectedIndex}
+                                    value={index === selectedIndex}
                                     onClick={(event) => handleMenuItemClick(event, index)}
                                 >
                                     {option}
@@ -145,7 +63,27 @@ export default function ListAventuras(props) {
             </div>
 
             <div className="listaAventura">
-                {ListaCards}
+                
+                    {place.map(places =>(
+                        <li className="cardAdventure" key={places.id}>
+                        <div className="headerCard">
+                            <IconButton color="primary">
+                                <FavoriteBorderRoundedIcon style={{ color: "white" }} />
+                            </IconButton>
+                            <div className="precoHead">
+                                <h4>{places.valueEntrance}</h4>
+                            </div>
+                        </div>
+                        <Link className="bottonCard" to={`/localAventura/${places.id}`}>
+                            <h2 style={{color:"white"}}>{places.namePlace}</h2>
+                            <div className="localAdventure">
+                                <RoomOutlinedIcon style={{ color: "white" }} fontSize="small" />
+                                <h4>{places.city}-{places.uf}</h4>
+                            </div>
+                        </Link>
+                    </li>
+                    ))}
+                
             </div>
 
         </div>
