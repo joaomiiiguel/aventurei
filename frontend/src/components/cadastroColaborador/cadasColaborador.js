@@ -3,7 +3,7 @@ import './cadasColaborador.css';
 import { Link } from 'react-router-dom';
 import { BsChevronLeft } from "react-icons/bs";
 
-import api from '../../services/api';
+//import api from '../../services/api';
 
 import logoTop from '../../assets/LogoCor.png'
 
@@ -17,20 +17,7 @@ export default function CadasColaborador() {
     const [city,setCity] = useState('');
     const [uf,setUf] = useState('');
 
-    async function handleRegister(e){
-        e.preventDefault();
-
-        const data = {name, nameGrup, email, whatsapp, instagram, city, uf};
-        
-        try{
-            const response = await api.post('partners', data);
-            alert(`Seu ID de acesso: ${response.data.id}`)
-        } catch(err){
-            alert('Erro no cadastro')
-        }
-        
-        
-    }
+    
 
     return (
         <div className="containerCadColab">
@@ -47,7 +34,7 @@ export default function CadasColaborador() {
 
                     <div className="logo-Login"><img src={logoTop} className="logoImgCor" alt="logo do Aventurei" /></div>
 
-                    <form className="formContent" onSubmit={handleRegister}>
+                    <form className="formContent" >
 
                         <p className="infoTitle">CADASTRO DE COLABORADOR</p>
                         

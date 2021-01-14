@@ -16,7 +16,7 @@ export default function paginainicial() {
 
                 <div className="header-menu">
                     <div className="logo-top"><img src={logoTop} alt="fogueira" className="logoImg" /></div>
-                    <Link className="beColaborador-top" to="/seja-colaborador"><h3>Seja um Colaborador</h3></Link>
+                    <Link className="beColaborador-top" to="/seja-colaborador"><h3>Seja um partner</h3></Link>
                 </div>
 
                 <div className="header-msg">

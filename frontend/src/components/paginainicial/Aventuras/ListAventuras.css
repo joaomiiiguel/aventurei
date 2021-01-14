@@ -123,7 +123,6 @@ ul{
     max-height: 300px;
     width: 20%;
     border-radius: 10px;
-    background-image: url('../../../assets/cachoeira-do-roncador.jpg');
     background-repeat: no-repeat;
     background-size: 100%;
     justify-content: space-between;
@@ -136,6 +135,7 @@ ul{
 
 .headerCard {
     display: flex;
+    position: absolute;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
