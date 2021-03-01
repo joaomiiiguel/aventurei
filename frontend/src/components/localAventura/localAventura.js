@@ -9,8 +9,6 @@ import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded'
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import logoTopCor from '../../assets/LogoBranco.png';
-import Footer from '../paginainicial/footer/footer';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 
@@ -20,7 +18,7 @@ import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 export default function LocalAventura(props) {
     const [places, setPlaces] = useState([]);
     const [partner, setPartner] = useState([]);
-    const id_da_Rota = props.match.params.id;
+
 
    
 
@@ -28,21 +26,12 @@ export default function LocalAventura(props) {
        
     }, []);
 
-    console.log('o ID da rota é: ' + id_da_Rota)
+
 
     
     return (
         <div>
-            <div className="header-menuLocal">
-                <Link className="logo-top" to="/"><img src={logoTopCor} alt="fogueira" className="logoImg" /></Link>
-                <Link className="beColaborador-top" to="/seja-colaborador"><h3 style={{ color: 'white' }}>Seja um Colaborador</h3></Link>
-            </div>
-
-            {console.log(places.find(place => place.id === id_da_Rota))}
-            {console.log(places)}
-            
             {places.map(place => ( 
-                
                 <div className="local-Aventura" key={place.id}>
                     <div className="titleLocal">
     
@@ -111,9 +100,6 @@ export default function LocalAventura(props) {
                     ))}
                 </div>
             ))}
-
-
-            <Footer />
         </div>
     )
 }

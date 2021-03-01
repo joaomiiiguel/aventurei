@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ListAventuras.css';
 import { makeStyles } from '@material-ui/core/styles';
-import { InputBase, Card, CardActionArea, CardActions, Button, Typography, CardMedia, CardContent } from '@material-ui/core';
+import { Box, InputBase, Card, CardActionArea, CardActions, Button, Typography, CardMedia, CardContent } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
-
+import Modal from "@material-ui/core/Modal";
+import LocalAVenture from '../../localAventura/localAventura'
 
 import imageCapa from '../../../assets/localFotos/000001.png'
 import imageCapa2 from '../../../assets/localFotos/000002.png'
@@ -15,41 +16,44 @@ import imageCapa2 from '../../../assets/localFotos/000002.png'
 export default function ListAventuras(props) {
     const estados = ["Brasil", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
     const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const [idBtn, setidBtn] = useState([]);
+    const [openModal, setOpenModal] = useState(false);
 
-    
-    const places = [
+    const aventurasApi = [
         {
-            "id": 1,
-            "namePlace": "Pedra da Boca",
-            "link": "pedra-da-boca-araruna-pb",
-            "city": "Araruna",
-            "uf": "PB",
-            "imgCapa": "000001",
-            "valueEntrance": "Gratis"
+            id: 1,
+            title: "Cachoeira do Roncador",
+            entrada: "Gratuita",
+            cidade: "Bananeiras",
+            estado: "PB",
+            like: true
         },
         {
-            "id": 2,
-            "namePlace": "Cachoeira do Roncador",
-            "link": "cachoeira-roncador-bananeiras-pb",
-            "imgCapa": "000002",
-            "city": "Bananeiras",
-            "uf": "PB",
+            id: 2,
+            title: "Cachoeira do Pinga",
+            image: "../../../assets/localFotos/000001.png",
+            entrada: "R$30",
+            cidade: "Bananeiras",
+            estado: "PB",
+            like: true
         },
         {
-            "id": 3,
-            "namePlace": "Cachoeira do Roncador",
-            "link": "cachoeira-roncador-bananeiras-pb",
-            "imgCapa": "000003",
-            "city": "Bananeiras",
-            "uf": "PB",
+            id: 3,
+            title: "Cachoeira do Altar",
+            image: "../assets/cachoeira-do-roncador.jpg",
+            entrada: "Gratuita",
+            cidade: "Bananeiras",
+            estado: "PB",
+            like: true
         },
         {
-            "id": 4,
-            "namePlace": "Cachoeira do Roncador",
-            "link": "cachoeira-roncador-bananeiras-pb",
-            "imgCapa": "000004",
-            "city": "Bananeiras",
-            "uf": "PB",
+            id: 4,
+            title: "Cachoeira do Altar",
+            image: "../assets/cachoeira-do-roncador.jpg",
+            entrada: "R$45",
+            cidade: "Bananeiras",
+            estado: "PB",
+            like: true
         },
     ]
 
@@ -62,26 +66,65 @@ export default function ListAventuras(props) {
         media: {
             height: 350,
             width: 350,
-            
+
         },
         text: {
-            
-            color: 'white'
+            color: '#0F5045'
         },
         CardContent: {
             width: '100%',
-            position:'absolute',
+            position: 'absolute',
             bottom: 0,
             background: 'linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 100%)'
+        },
+        flexRow: {
+            display: 'flex',
+            alignItems: 'center'
         }
     });
+    const classes = useStyles();
+
+    const handleOpenModal = (place) => {
+        setidBtn(place);
+        setOpenModal(true);
+    };
+
+    const handleClose = () => {
+        setOpenModal(false);
+    };
 
 
+    const ListaCards = aventurasApi.map((place) =>
+        <div>
+            <Card className={classes.root} onClick={() => handleOpenModal(place)}>
+                <CardActionArea>
+                    <CardMedia
+                        component="img"
+                        className={classes.media}
+                        image={imageCapa}
+                        title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {place.title}
+                        </Typography>
+                        <Box className={classes.flexRow}>
+                            <RoomOutlinedIcon fontSize="small" style={{ color: "gray" }}/>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {place.cidade} - {place.estado}
+                            </Typography>
+                        </Box>
+                    </CardContent>
+                </CardActionArea>
+
+            </Card>
+        </div>
+    );
 
     const handleMenuItemClick = (event, index) => {
         setSelectedIndex(index);
     };
-    const classes = useStyles();
+
     return (
         <div className="container-ListAdv" >
 
@@ -116,32 +159,15 @@ export default function ListAventuras(props) {
             </div>
 
             <div className="listaAventura">
-                {/*Lista dos Cards*/}
-                {places.map(place => (
-                    <Card className={classes.root} key={place.id}>
-                        <CardActionArea>
-                            <Link to={`/detalhes-lugar/${place.link}`}>
-                            <CardMedia
-                                className={classes.media}
-                                
-                            >
-                                <img src={`./static/media/${place.imgCapa}.28b93523.png`}/>
-                                <img src={imageCapa2}/>
-                                <CardContent className={classes.CardContent}>
-                                    <Typography className={classes.text} gutterBottom variant="h5" component="h3">
-                                        {place.namePlace}
-                                    </Typography>
-                                    <Typography gutterBottom variant="h6" component="p">
-                                        {place.city}-{place.uf}
-                                    </Typography>
-                                </CardContent>
-                            </CardMedia>
-                            </Link>
-                        </CardActionArea>
-                    </Card>
-
-                ))}
+                {ListaCards}
             </div>
+
+            {/**Modal com detalhes do lugar */}
+            <Modal open={openModal} onClose={handleClose}>
+                <div className="ModalContainer">
+                    <LocalAVenture/>
+                </div>
+            </Modal>
 
         </div>
     )

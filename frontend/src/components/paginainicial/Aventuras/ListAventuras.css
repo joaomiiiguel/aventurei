@@ -112,30 +112,32 @@ ul{
     padding: 50px 10%;
     
 }
-
+#card1{
+    background-image: url('../../../assets/localFotos/000001.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
 .cardAdventure {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 20px;
     min-width: 23%;
-    height: 50vh;
+    height: 200vh;
     max-height: 300px;
     width: 20%;
     border-radius: 10px;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    justify-content: space-between;
+    
 }
 
 
 .cardAdventure>h1,h2,h4,p {
-    color: white
+    color: #0F5045
 }
 
 .headerCard {
     display: flex;
-    position: absolute;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
