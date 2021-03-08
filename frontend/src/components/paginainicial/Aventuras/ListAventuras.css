@@ -84,11 +84,11 @@ ul{
 }
 
 .formBottom{
-    width: 15%;
+    
     margin-left: 10px;
     align-items: center;
     margin-top: 20px;
-    
+    cursor: pointer;
 }
 
 .custom-select {
@@ -96,7 +96,7 @@ ul{
     background-color: white;
     border-radius: 5px;
     width: 100%;
-    height: 40px;
+    height: 30px;
   }
  
  
@@ -110,38 +110,6 @@ ul{
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 50px 10%;
-    
-}
-#card1{
-    background-image: url('../../../assets/localFotos/000001.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    
-}
-.cardAdventure {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    min-width: 23%;
-    height: 200vh;
-    max-height: 300px;
-    width: 20%;
-    border-radius: 10px;
-    
-}
-
-
-.cardAdventure>h1,h2,h4,p {
-    color: #0F5045
-}
-
-.headerCard {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
     
 }
 
@@ -162,11 +130,103 @@ ul{
 .precoHead{
     margin-right: 20px;
 }
+.titleLocal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.ModalContainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 15px;
+    color:#083a32;
+}
+.imgCapa{
+    border-radius: 15px;
+    height: 50vh;
+    margin-top: -30px;
+}
+
+.titleLocal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.containerLocal{
+    background-color: white;
+    margin-top: -20%;
+    border-radius: 15px;
+    padding: 2% 5%;
+}
+.localInfos{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin-top: 5%;
+}
+.nivelAcesso{
+    text-align: center;
+}
+.cardAcesso{
+    display:flex; 
+    flex-direction: row;
+    justify-content:space-between;
+    margin-bottom: 5px;
+}
+.descricaoLugar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+    text-align: justify;
+}
+.colaboradorContainer{
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 5%;
+
+}
+.likeLocal{
+    display: flex;
+    color: #0F5045;
+    text-decoration: none;
+}
+.avaliacaoLocal{
+    display: flex;
+    flex-direction: column;
+}
+.imgBoxLocal{
+    width: 200px;
+    height: 150px;
+    background-color: teal;
+    margin: 5px 5px 5px 0px
+}
+.carouselFotos{
+    margin: 15px 0;
+}
+.btnBack{
+    cursor: pointer;
+    z-index: 200;
+}
 @media screen and (max-width: 1100px) {
-    .cardAdventure {
-        width: 30%;
-        
+    .listaAventura{
+        justify-content: center;
     }
+    
 }
 @media screen and (max-width: 768px) {
     .buscaAventura {
@@ -178,16 +238,50 @@ ul{
     .Advsearch {
         width: 100%;
     }
+    
     .formBottom{
         margin-left: 0px;
-        width: 100%;
     }
-    .cardAdventure {
-        margin-bottom: 30px;
+    .ModalContainer {
         width: 100%;
+        height: 100vh;
     }
     .contanierBuscar{
         display: flex;
         flex-direction: column;
     }
+    .local-Aventura{
+        width: 100%;
+        padding: 0;
+    }
+    .header-menuLocal{
+        width: 100%;
+        padding: 0;
+    }
+    .titleLocal{
+        padding: 0 2%;
+    }
+    .likeLocalTxt{
+        display: none;
+    }
+    .carouselFotos{
+        width: 100%;
+    }
+    .localInfos{
+        margin-bottom: 5%;
+    }
+    .descricaoLugar{
+        padding: 5% 3%;
+    }
+    .colaboradorContainer{
+        padding: 5% 3%;
+    }
+    .containerLocal{
+        width: 100vw;
+        padding: 0;
+    }
+    .imgCapa{
+        height: 40vh;
+    }
+    
 }
