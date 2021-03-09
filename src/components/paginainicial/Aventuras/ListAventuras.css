@@ -139,17 +139,12 @@ ul{
     display: flex;
     flex-direction: column;
     background-color: white;
-    width: 70%;
+    width: 40%;
     margin: 0 auto;
     border-radius: 15px;
     color:#083a32;
     padding: 2% 5%;
 }
-.imgCapa{
-    width: 50%;
-    height: auto;
-}
-
 .containerLocal{
     background-color: white;
     border-radius: 15px;
@@ -201,21 +196,21 @@ ul{
 .btnBack{
     cursor: pointer;
     z-index: 200;
-    color: white;
+    color: #0F5045;
     margin-top: 10px;
-    margin-left: 10px;
-    background-color: rgba(0,0,0,0.5);
-    border-radius: 5px;
-    padding: 5px;
+    margin-right: 30px;
+    
+    
 }
 .btnBack:hover{
-    background-color: rgba(0,0,0,0.7);
+    color: #0f50456e;
     transition: 0.5s;
 }
 .PhotoThumb{
     border-radius: 10px;
     margin-right: 10px;
-    width: 40%;
+    max-width: 150px;
+    width: 48%;
 }
 @media screen and (max-width: 1100px) {
     .listaAventura{
@@ -251,6 +246,10 @@ ul{
         margin: 0;
         width: 90%;
         height: 100vh;
+    }
+    .contanierBuscar{
+        display: flex;
+        flex-direction: column;
     }
     
 }

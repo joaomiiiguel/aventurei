@@ -50,7 +50,8 @@ export default function ListAventuras(props) {
             avaliation: "4.8",
             uf: "PB",
             like: true,
-            imgCapa: require("../../../assets/localFotos/000002.png"),
+            imgCapa: require("../../../assets/localFotos/thumbnail/000002.png"),
+            imgFoto: require("../../../assets/localFotos/000002.png"),
             partner_name: "João Miguel",
             partner_insta: "joaomiiiguel",
             partner_whats: "83981390385",
@@ -66,7 +67,8 @@ export default function ListAventuras(props) {
             avaliation: "4.5",
             uf: "PB",
             like: true,
-            imgCapa: require("../../../assets/localFotos/000003.png"),
+            imgCapa: require("../../../assets/localFotos/thumbnail/000003.png"),
+            imgFoto: require("../../../assets/localFotos/000003.png"),
             partner_name: "João Miguel",
             partner_insta: "joaomiiiguel",
             partner_whats: "83981390385",
@@ -75,11 +77,10 @@ export default function ListAventuras(props) {
 
     const useStyles = makeStyles({
         root: {
-            maxWidth: 300,
             display: "flex",
             justifyContent: "center",
             margin: 10,
-            borderRadius: 20
+            borderRadius: 15
         },
         media: {
             height: 'auto',
@@ -108,9 +109,13 @@ export default function ListAventuras(props) {
         button: {
             marginTop: 15,
             width: '100%',
-            backgroundColor:'#0F5045',
-            color: 'white'
+            backgroundColor: '#0F5045',
+            color: 'white',
+            '&:hover': {
+                backgroundColor: '#157e6c',
+              },
         }
+        
 
     });
     const classes = useStyles();
@@ -126,7 +131,7 @@ export default function ListAventuras(props) {
 
 
     const ListaCards = aventurasApi.map((place) =>
-        <div>
+        <div style={{ width: '80%', maxWidth: 400 }}>
             <Card className={classes.root} onClick={() => handleOpenModal(place)}>
                 <CardActionArea>
                     <CardMedia
@@ -204,11 +209,15 @@ export default function ListAventuras(props) {
                 <Grid className="ModalContainer">
 
                     <Grid className="containerLocal">
-                        <ArrowBackIcon className="btnBack" fontSize="small" onClick={handleClose} />
-                        <div className="titleLocal">
-                            <h2>{idBtn.title}</h2>
-                            <div style={{ display: "flex", flexDirection: "row", color: "gray" }}><RoomOutlinedIcon fontSize="small" /><p style={{ color: "gray", fontSize: '13pt' }}>{idBtn.cidade} - {idBtn.uf}</p></div>
-                        </div>
+                        <Grid style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+                            <ArrowBackIcon className="btnBack"  onClick={handleClose} />
+                            <div className="titleLocal">
+                                <h2>{idBtn.title}</h2>
+                                <div style={{ display: "flex", flexDirection: "row", color: "gray" }}><RoomOutlinedIcon fontSize="small" /><p style={{ color: "gray", fontSize: '13pt' }}>{idBtn.cidade} - {idBtn.uf}</p></div>
+                            </div>
+
+                        </Grid>
+
                         <Divider />
 
                         <div className="localInfos">
@@ -229,13 +238,13 @@ export default function ListAventuras(props) {
 
                             </div>
                         </div>
-                        
+
                         <div className="descricaoLugar">
                             <h3>Descrição do Lugar</h3>
                             <Typography variant="body2" gutterBottom style={{ marginTop: 10, marginBottom: 10 }}>{idBtn.description}</Typography>
                         </div>
-                        <Grid style={{ width: '100%', marginTop:10 }}>
-                            <h4>Fotos</h4>
+                        <Grid style={{ width: '100%', marginTop: 10 }}>
+                            <h3>Fotos</h3>
                             <Gallery >
                                 <Item
                                     original={idBtn.imgFoto}
@@ -245,7 +254,7 @@ export default function ListAventuras(props) {
 
                                 >
                                     {({ ref, open }) => (
-                                        <img ref={ref} onClick={open} src={idBtn.imgCapa} className="PhotoThumb" />
+                                        <img alt="Foto local" ref={ref} onClick={open} src={idBtn.imgCapa} className="PhotoThumb" />
                                     )}
                                 </Item>
                                 <Item
@@ -256,22 +265,22 @@ export default function ListAventuras(props) {
 
                                 >
                                     {({ ref, open }) => (
-                                        <img ref={ref} onClick={open} src={idBtn.imgCapa} className="PhotoThumb" />
+                                        <img alt="Foto local" ref={ref} onClick={open} src={idBtn.imgCapa} className="PhotoThumb" />
                                     )}
                                 </Item>
 
-                                
+
                             </Gallery>
                         </Grid>
                         <Link href={idBtn.linkMaps} target="_blank" rel="noreferrer" underline="none">
-                                <Button
-                                    variant="contained"
-                                    className={classes.button}
-                                    endIcon={<NearMeRoundedIcon />}
-                                >
-                                    Visualizar Rota
+                            <Button
+                                variant="contained"
+                                className={classes.button}
+                                endIcon={<NearMeRoundedIcon />}
+                            >
+                                Visualizar Rota
                                 </Button>
-                            </Link>
+                        </Link>
 
                         <Divider style={{ marginTop: 15 }} />
                         <div className="colaboradorContainer">
