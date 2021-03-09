@@ -84,7 +84,7 @@ ul{
 }
 
 .formBottom{
-    
+    width: 15%;
     margin-left: 10px;
     align-items: center;
     margin-top: 20px;
@@ -96,7 +96,7 @@ ul{
     background-color: white;
     border-radius: 5px;
     width: 100%;
-    height: 30px;
+    height: 38px;
   }
  
  
@@ -132,50 +132,35 @@ ul{
 }
 .titleLocal{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-.ModalContainer{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    background-color: white;
-    width: 50%;
-    display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    border-radius: 15px;
-    color:#083a32;
-}
-.imgCapa{
-    border-radius: 15px;
-    height: 50vh;
-    margin-top: -30px;
-}
-
-.titleLocal{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 10px;
 }
+.ModalContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 15px;
+    color:#083a32;
+    padding: 2% 5%;
+}
+.imgCapa{
+    width: 50%;
+    height: auto;
+}
+
 .containerLocal{
     background-color: white;
-    margin-top: -20%;
     border-radius: 15px;
-    padding: 2% 5%;
+    
 }
 .localInfos{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 .nivelAcesso{
     text-align: center;
@@ -190,8 +175,8 @@ ul{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px 0;
     text-align: justify;
+    margin-top: 15px;
 }
 .colaboradorContainer{
     display: flex;
@@ -209,22 +194,32 @@ ul{
     display: flex;
     flex-direction: column;
 }
-.imgBoxLocal{
-    width: 200px;
-    height: 150px;
-    background-color: teal;
-    margin: 5px 5px 5px 0px
-}
+
 .carouselFotos{
     margin: 15px 0;
 }
 .btnBack{
     cursor: pointer;
     z-index: 200;
+    color: white;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    padding: 5px;
+}
+.btnBack:hover{
+    background-color: rgba(0,0,0,0.7);
+    transition: 0.5s;
+}
+.PhotoThumb{
+    border-radius: 10px;
+    margin-right: 10px;
+    width: 40%;
 }
 @media screen and (max-width: 1100px) {
     .listaAventura{
-        justify-content: center;
+        justify-content: space-around;
     }
     
 }
@@ -235,53 +230,27 @@ ul{
         background-repeat: no-repeat;
         background-size: auto 100%;
     }
+
+    .listaAventura {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0px auto;
+        
+    }
     .Advsearch {
         width: 100%;
     }
     
     .formBottom{
+        width: 100%;
         margin-left: 0px;
     }
     .ModalContainer {
-        width: 100%;
+        margin: 0;
+        width: 90%;
         height: 100vh;
-    }
-    .contanierBuscar{
-        display: flex;
-        flex-direction: column;
-    }
-    .local-Aventura{
-        width: 100%;
-        padding: 0;
-    }
-    .header-menuLocal{
-        width: 100%;
-        padding: 0;
-    }
-    .titleLocal{
-        padding: 0 2%;
-    }
-    .likeLocalTxt{
-        display: none;
-    }
-    .carouselFotos{
-        width: 100%;
-    }
-    .localInfos{
-        margin-bottom: 5%;
-    }
-    .descricaoLugar{
-        padding: 5% 3%;
-    }
-    .colaboradorContainer{
-        padding: 5% 3%;
-    }
-    .containerLocal{
-        width: 100vw;
-        padding: 0;
-    }
-    .imgCapa{
-        height: 40vh;
     }
     
 }
