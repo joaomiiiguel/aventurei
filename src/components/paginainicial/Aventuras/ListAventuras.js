@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import './ListAventuras.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Box, InputBase, Card, CardActionArea, Divider, Button, Typography, CardMedia, CardContent, Link } from '@material-ui/core';
@@ -17,7 +17,8 @@ import { Gallery, Item } from 'react-photoswipe-gallery'
 
 export default function ListAventuras(props) {
     const estados = ["Brasil", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
-    const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [search, setSearch] = useState('');
     const [idBtn, setidBtn] = useState([]);
     const [openModal, setOpenModal] = useState(false);
 
@@ -33,8 +34,10 @@ export default function ListAventuras(props) {
             avaliation: "4.5",
             uf: "PB",
             like: true,
-            imgCapa: require("../../../assets/localFotos/thumbnail/000001.png"),
-            imgFoto: require("../../../assets/localFotos/000001.png"),
+            imgCapa: require("../../../assets/localFotos/thumbnail/000001-01.png"),
+            imgCapa2: require("../../../assets/localFotos/thumbnail/000001-02.png"),
+            imgFoto1: require("../../../assets/localFotos/000001-01.png"),
+            imgFoto2: require("../../../assets/localFotos/000001-02.png"),
             partner_name: "João Miguel",
             partner_insta: "joaomiiiguel",
             partner_whats: "83981390385",
@@ -50,8 +53,10 @@ export default function ListAventuras(props) {
             avaliation: "4.8",
             uf: "PB",
             like: true,
-            imgCapa: require("../../../assets/localFotos/thumbnail/000002.png"),
-            imgFoto: require("../../../assets/localFotos/000002.png"),
+            imgCapa: require("../../../assets/localFotos/thumbnail/000002-01.png"),
+            imgCapa2: require("../../../assets/localFotos/thumbnail/000002-02.png"),
+            imgFoto1: require("../../../assets/localFotos/000002-01.png"),
+            imgFoto2: require("../../../assets/localFotos/000002-02.png"),
             partner_name: "João Miguel",
             partner_insta: "joaomiiiguel",
             partner_whats: "83981390385",
@@ -67,13 +72,19 @@ export default function ListAventuras(props) {
             avaliation: "4.5",
             uf: "PB",
             like: true,
-            imgCapa: require("../../../assets/localFotos/thumbnail/000003.png"),
-            imgFoto: require("../../../assets/localFotos/000003.png"),
+            imgCapa: require("../../../assets/localFotos/thumbnail/000003-01.png"),
+            imgCapa2: require("../../../assets/localFotos/thumbnail/000003-02.png"),
+            imgFoto1: require("../../../assets/localFotos/000003-01.png"),
+            imgFoto2: require("../../../assets/localFotos/000003-02.png"),
             partner_name: "João Miguel",
             partner_insta: "joaomiiiguel",
             partner_whats: "83981390385",
         },
     ]
+
+    useEffect(() => {
+        console.log(selectedIndex)
+      });
 
     const useStyles = makeStyles({
         root: {
@@ -129,9 +140,13 @@ export default function ListAventuras(props) {
         setOpenModal(false);
     };
 
+    const filteredLocal = aventurasApi.filter( place =>{
+        return place.title.includes(search)
+    })
+    
 
-    const ListaCards = aventurasApi.map((place) =>
-        <div style={{ width: '80%', maxWidth: 400 }}>
+    const ListaCards = filteredLocal.map((place) =>
+        <div style={{ width: '80%', maxWidth: 400 }} key={place.id}>
             <Card className={classes.root} onClick={() => handleOpenModal(place)}>
                 <CardActionArea>
                     <CardMedia
@@ -141,7 +156,7 @@ export default function ListAventuras(props) {
                         title={place.title}
                     />
                     <CardContent>
-                        <Typography className={classes.title}>
+                        <Typography className={classes.title} variant="h5">
                             {place.title}
                         </Typography>
                         <Box className={classes.flexRow}>
@@ -158,11 +173,7 @@ export default function ListAventuras(props) {
     );
 
 
-    const handleMenuItemClick = (event) => {
-        setSelectedIndex(event.target.value);
-    };
-
-
+    
     return (
         <div className="container-ListAdv" >
 
@@ -174,6 +185,7 @@ export default function ListAventuras(props) {
                             className="TextSearch"
                             placeholder="Estou procurando por…"
                             size="large"
+                            onChange={ event => setSearch(event.target.value)}
                         />
                         <div className="searchIcon">
                             <SearchIcon />
@@ -181,7 +193,7 @@ export default function ListAventuras(props) {
                     </div>
 
 
-                    {/**Modal com detalhes do lugar */}
+                    {/**Modal com detalhes do lugar 
                     <div className="formBottom">
                         <select className="custom-select" >
                             {estados.map((option, index) => (
@@ -189,13 +201,14 @@ export default function ListAventuras(props) {
                                     className="optionItem"
                                     key={option}
                                     value={index === selectedIndex}
-                                    onClick={(event) => handleMenuItemClick(event, index)}
+                                    onClick={event => setSelectedIndex(event.target.value)}
                                 >
                                     {option}
                                 </option>
                             ))}
                         </select>
                     </div>
+                    */}
 
                 </div>
             </div>
@@ -247,7 +260,7 @@ export default function ListAventuras(props) {
                             <h3>Fotos</h3>
                             <Gallery >
                                 <Item
-                                    original={idBtn.imgFoto}
+                                    original={idBtn.imgFoto1}
                                     thumbnail={idBtn.imgCapa}
                                     width="1024"
                                     height="564"
@@ -258,14 +271,14 @@ export default function ListAventuras(props) {
                                     )}
                                 </Item>
                                 <Item
-                                    original={idBtn.imgFoto}
-                                    thumbnail={idBtn.imgCapa}
+                                    original={idBtn.imgFoto2}
+                                    thumbnail={idBtn.imgCapa2}
                                     width="1024"
                                     height="564"
 
                                 >
                                     {({ ref, open }) => (
-                                        <img alt="Foto local" ref={ref} onClick={open} src={idBtn.imgCapa} className="PhotoThumb" />
+                                        <img alt="Foto local" ref={ref} onClick={open} src={idBtn.imgCapa2} className="PhotoThumb" />
                                     )}
                                 </Item>
 
@@ -286,6 +299,7 @@ export default function ListAventuras(props) {
                         <div className="colaboradorContainer">
                             <div>
                                 <h4>Local sugerido por {idBtn.partner_name}</h4>
+                                <p style={{ color: "gray", fontSize:'10pt', marginTop:5 }}>Entre em contato:</p>
                                 <div style={{ display: "flex", flexDirection: "row" }}>
                                     <Link href={`https://www.instagram.com/${idBtn.partner_insta}/`} target="_blank" rel="noreferrer" underline="none" style={{ display: "flex", flexDirection: "row", color: "gray" }}><InstagramIcon fontSize="small" /><p style={{ color: "gray" }}>@{idBtn.partner_insta}</p></Link>
                                     <Link href={`https://api.whatsapp.com/send?phone=55${idBtn.partner_whats}/`} target="_blank" rel="noreferrer" underline="none" style={{ display: "flex", flexDirection: "row", color: "gray", marginLeft: "5px" }}><WhatsAppIcon fontSize="small" /><p style={{ color: "gray" }}>{idBtn.partner_whats}</p></Link>

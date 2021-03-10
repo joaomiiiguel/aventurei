@@ -26,11 +26,12 @@ ul{
 .contanierBuscar{
     display: flex;
     flex-direction: row;
+    
 }
 .Advsearch {
     display: flex;
     flex-direction: row;
-    width: 85%;
+    width: 100%;
     height: 40px;
     background-color: white;
     color: #0F5045;

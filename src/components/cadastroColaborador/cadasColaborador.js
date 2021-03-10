@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './cadasColaborador.css';
 import { Link } from 'react-router-dom';
 import { BsChevronLeft } from "react-icons/bs";
-
+import emailjs from 'emailjs-com';
 //import api from '../../services/api';
 
 import logoTop from '../../assets/LogoCor.png'
@@ -17,7 +17,21 @@ export default function CadasColaborador() {
     const [city,setCity] = useState('');
     const [uf,setUf] = useState('');
 
+
+    function SendEmail(e) {
+        e.preventDefault();
     
+    
+          emailjs.sendForm('service_nio20p5', 'template_9syl71i', e.target, 'user_ewcrw0Hj1IHBLoQVXzEbS')
+            .then((result) => {
+              console.log(result.text);
+            }, (error) => {
+              console.log(error.text);
+            });
+          alert('Cadastrado com Sucesso!');
+        
+    
+      }
 
     return (
         <div className="containerCadColab">
@@ -34,13 +48,14 @@ export default function CadasColaborador() {
 
                     <div className="logo-Login"><img src={logoTop} className="logoImgCor" alt="logo do Aventurei" /></div>
 
-                    <form className="formContent" >
+                    <form className="formContent" onSubmit={SendEmail}>
 
                         <p className="infoTitle">CADASTRO DE COLABORADOR</p>
                         
                             <input 
                                 type="text" 
-                                placeholder="Nome" 
+                                placeholder="Nome"
+                                name="name_partner"
                                 value={name}
                                 required
                                 onChange={e => setName(e.target.value)}
@@ -48,6 +63,7 @@ export default function CadasColaborador() {
                             <input 
                                 type="text" 
                                 size="50" 
+                                name="name_Equipe"
                                 placeholder="Nome da Equipe (Opcional)" 
                                 value={nameGrup}
                                 onChange={e => setNameGrup(e.target.value)}
@@ -55,6 +71,7 @@ export default function CadasColaborador() {
                             <input 
                                 type="email" 
                                 placeholder="E-mail" 
+                                name="email_partner"
                                 value={email}
                                 required
                                 onChange={e => setEmail(e.target.value)}
@@ -62,6 +79,7 @@ export default function CadasColaborador() {
                             <input 
                                 type="tel"
                                 placeholder="Whatsapp" 
+                                name="whatsapp_partner"
                                 maxLength="11"
                                 pattern="[0-9]{2}[0-9]{5}[0-9]{4}"
                                 required
@@ -71,6 +89,7 @@ export default function CadasColaborador() {
                             <input 
                                 type="text" 
                                 placeholder="Instagram" 
+                                name="insta_partner"
                                 value={instagram}
                                 required
                                 onChange={e => setInstagram(e.target.value)}
@@ -79,6 +98,7 @@ export default function CadasColaborador() {
                                 <input 
                                     type="text" 
                                     placeholder="Cidade" 
+                                    name="city_partner"
                                     value={city}
                                     required
                                     onChange={e => setCity(e.target.value)}
@@ -87,6 +107,7 @@ export default function CadasColaborador() {
                                     type="text" 
                                     size="2" 
                                     placeholder="UF"
+                                    name="uf_partner"
                                     value={uf}
                                     required
                                     onChange={e => setUf(e.target.value)}
