@@ -16,8 +16,8 @@ import 'photoswipe/dist/default-skin/default-skin.css'
 import { Gallery, Item } from 'react-photoswipe-gallery'
 
 export default function ListAventuras(props) {
-    const estados = ["Brasil", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
-    const [selectedIndex, setSelectedIndex] = useState(0);
+    //const estados = ["Brasil", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"];
+    //const [selectedIndex, setSelectedIndex] = useState(0);
     const [search, setSearch] = useState('');
     const [idBtn, setidBtn] = useState([]);
     const [openModal, setOpenModal] = useState(false);
@@ -83,7 +83,7 @@ export default function ListAventuras(props) {
     ]
 
     useEffect(() => {
-        console.log(selectedIndex)
+        
       });
 
     const useStyles = makeStyles({
@@ -146,7 +146,7 @@ export default function ListAventuras(props) {
     
 
     const ListaCards = filteredLocal.map((place) =>
-        <div style={{ width: '80%', maxWidth: 400 }} key={place.id}>
+        <div style={{ width: '95%', maxWidth: 400 }} key={place.id}>
             <Card className={classes.root} onClick={() => handleOpenModal(place)}>
                 <CardActionArea>
                     <CardMedia
@@ -179,6 +179,7 @@ export default function ListAventuras(props) {
 
             <div className="buscaAventura">
                 <p className="tituloBranco">EXPLORE NOVAS AVENTURAS</p>
+                <p>Encontre informações para sua próxima aventura.</p>
                 <div className="contanierBuscar">
                     <div className="Advsearch">
                         <InputBase

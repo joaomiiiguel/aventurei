@@ -2,7 +2,9 @@
     margin: 0;
     font-family: 'Montserrat', sans-serif;
 }
-
+h1,h2,h3,p{
+  font-family: 'Montserrat', sans-serif;
+}
 .container-pg{
     height: 100vh;
     background-image: url("../../assets/capaInicio.jpg");
@@ -28,6 +30,7 @@
 .header-msg{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     color: white;
     height: 85vh;
@@ -76,7 +79,7 @@
 	margin: 0 auto;
 	width: 24px;
 	height: 100px;
-	margin-top: 80px;
+	
 }
 
 

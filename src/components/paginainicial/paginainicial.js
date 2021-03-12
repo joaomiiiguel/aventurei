@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import ListAventuras from '../paginainicial/Aventuras/ListAventuras.js'
 import DicasAventurei from '../paginainicial/dicas/dicasAventurei.js'
+import AboutUs from '../paginainicial/AboutUs'
 import Footer from '../paginainicial/footer/footer.js'
 import logoTop from '../../assets/LogoBranco.png'
 
@@ -21,11 +22,8 @@ export default function paginainicial() {
 
                 <div className="header-msg">
                     <h1 className="text-Slogan">ENCONTRE O MELHOR DESTINO PARA SUA AVENTURA</h1>
-                    <div className="mouse_scroll">
 
-                        <div className="mouse">
-                            <div className="wheel"></div>
-                        </div>
+                    <div className="mouse_scroll">
                         <div>
                             <span className="m_scroll_arrows unu"></span>
                             <span className="m_scroll_arrows doi"></span>
@@ -37,7 +35,7 @@ export default function paginainicial() {
             </div>
 
             <ListAventuras />
-
+            <AboutUs />
             <DicasAventurei />
             <Footer />
         </div>
