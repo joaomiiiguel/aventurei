@@ -1,28 +1,23 @@
 .containerCadColab{
     width: 100vw;
-    display: flex;
-}
-
-.LeftContent{
-    width: 50vw;
     height: 100vh;
+    display: flex;
     background-image: url("../../assets/rapel.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
 }
 .titleLogin{
     margin-top: 20%;
 }
 
 .RigthContent{
-    width: 50vw;
-    height: 100vh;
+    width: 30vw;
+    height: 90vh;
+    margin: auto 10%;
     background-color: #F2F2F2;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.37);
 }
 .backHome{
     display: flex;
@@ -41,6 +36,9 @@
 }
 
 .logo-Login{
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
     padding: 15px;
 }
 .logoImgCor{
@@ -52,7 +50,7 @@
     flex-direction: column;
     width: 90%;
 }
-.formContent input{
+.formContent input, textarea{
     margin-top: 10px;
     padding: 12px;
     background: white;
@@ -70,7 +68,7 @@
 }
 .infoTitle{
     color: #0F5045 ;
-    font-size: 13pt;
+    font-size: 12pt;
     margin: 5% auto;
     font-weight: bold;
 
@@ -106,13 +104,19 @@
 }
 
 @media screen and (max-width: 768px){
-    .LeftContent{
-        display: none;
-    }
+    
     .RigthContent{
-        width: 100%;
+        width: 100vw;
+        height: 100vh;
+        margin: 0px;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+    .formContent input{
+        padding: 2%;
     }
     .logoImgCor{
-        width: 120px;
+        
+        width: 25%;
     }
 }

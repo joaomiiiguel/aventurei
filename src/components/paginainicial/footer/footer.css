@@ -1,5 +1,5 @@
 .footerContainer{
-    height: 50vh;
+    height: 40vh;
     background: url("../../../assets/footer.jpg") no-repeat;
     background-size: cover;
     width: 100%;
@@ -21,7 +21,7 @@
 }
 .LogoInfo{
     width: 40%;
-    height: 25vh;
+    height: 15vh;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@
 }
 .textInfo{
     width: 40%;
-    height: 18vh;
+    height: 15vh;
     text-align: right;
     display: flex;
     flex-direction: column;
@@ -50,7 +50,7 @@ a {
 }
 @media screen and (max-width: 768px) {
     .footerContainer{
-        height: 50vh;
+        
         background-image: url("../../../assets/footerM.jpg");
         background-size: cover ;
         background-position: top left;

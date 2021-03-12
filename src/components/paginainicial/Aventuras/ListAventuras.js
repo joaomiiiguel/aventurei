@@ -216,8 +216,9 @@ export default function ListAventuras(props) {
 
             <div className="listaAventura">
                 {ListaCards}
+                
             </div>
-
+            <p className="novoLugar">Quer indicar algum lugar? <Link  to="/seja-colaborador"><p className="btnIndicar">Clique aqui...</p></Link></p>
             {/**Modal com detalhes do lugar */}
             <Modal open={openModal} onClose={handleClose} >
                 <Grid className="ModalContainer">

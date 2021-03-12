@@ -213,6 +213,26 @@ ul{
     max-width: 150px;
     width: 48%;
 }
+.novoLugar{
+    background-color: #297e70;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 5px 0;
+}
+.btnIndicar{
+    color: #223f39;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btnIndicar:hover{
+    color: #CADFDB;
+    transition: 0.3s;
+    text-decoration: none;
+}
 @media screen and (max-width: 1100px) {
     .listaAventura{
         justify-content: space-around;
