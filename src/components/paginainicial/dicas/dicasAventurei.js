@@ -34,38 +34,6 @@ export default function DicasAventurei() {
 
                     </CardActions>
                 </Card>
-                <Card className="cardDicas">
-
-                    <img src={imgCamping} alt="imagem cachoeira" className="imgCardDicas" />
-                    <CardContent>
-                        <h3>O que levar na mochila?</h3>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            Veja dicas de como viajar com conforto para uma viagem de ecoturismo
-                            </Typography>
-                    </CardContent>
-
-                    <CardActions>
-                        <Button fullWidth size="small" color="primary">
-                            Ver mais
-                        </Button>
-                    </CardActions>
-                </Card>
-                <Card className="cardDicas">
-
-                    <img src={imgRapel} alt="imagem cachoeira" className="imgCardDicas" />
-                    <CardContent>
-                        <h3>O que levar na mochila?</h3>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            Veja dicas de como viajar com conforto para uma viagem de ecoturismo
-                            </Typography>
-                    </CardContent>
-
-                    <CardActions>
-                        <Button fullWidth size="small" color="primary">
-                            Ver mais
-                        </Button>
-                    </CardActions>
-                </Card>
             </div>
         </div>
     )

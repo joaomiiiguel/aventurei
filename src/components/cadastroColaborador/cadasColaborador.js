@@ -44,11 +44,12 @@ export default function CadasColaborador() {
 
                     <div className="logo-Login">
                         <img src={logoTop} className="logoImgCor" alt="logo do Aventurei" />
+                        
                     </div>
 
                     <form className="formContent" onSubmit={SendEmail}>
 
-                        <p className="infoTitle">CADASTRO DE COLABORADOR</p>
+                        <p className="infoTitle">CADASTRO PARA PARCERIA</p>
 
                         <input
                             type="text"
