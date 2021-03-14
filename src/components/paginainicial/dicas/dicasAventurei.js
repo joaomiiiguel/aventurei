@@ -4,11 +4,10 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+
 import { Link } from 'react-router-dom';
 import imgCachoeira from '../../../assets/blogImagens/thumbnail/cachoeira10dicas.png';
-import imgCamping from '../../../assets/camping.jpg';
-import imgRapel from '../../../assets/rapel.jpg';
+import imgCamping from '../../../assets/blogImagens/thumbnail/camping8dicas.png';
 
 export default function DicasAventurei() {
 
@@ -22,16 +21,31 @@ export default function DicasAventurei() {
                         <h3 style={{ color: '#0F5045' }}>Cachoeira: 10 dicas de segurança que fazem a diferença em seu passeio</h3>
                     </CardContent>
                     <CardActions>
-
-                        <Button fullWidth size="large" style={{backgroundColor:'#0F5045'}}>
-                            <Link
-                                className="linkButton"
-                                to="/cachoeira-10-dicas-de-segurança"
-                            >
+                        <Link
+                            className="linkButton"
+                            to="/cachoeira-10-dicas-de-segurança"
+                        >
+                            <Button style={{backgroundColor:'#0F5045', width: '100%', color:'white'}}>
                                 Ver mais
-                            </Link>
-                        </Button>
+                            </Button>
+                        </Link>
+                    </CardActions>
+                </Card>
 
+                <Card className="cardDicas">
+                    <img src={imgCamping} alt="imagem cachoeira" className="imgCardDicas" />
+                    <CardContent>
+                        <h3 style={{ color: '#0F5045' }}>Camping: veja 8 dicas para quem vai acampar pela primeira vez</h3>
+                    </CardContent>
+                    <CardActions>
+                        <Link
+                            className="linkButton"
+                            to="/camping-8-dicas-do-primero-camping"
+                        >
+                            <Button style={{backgroundColor:'#0F5045', width: '100%', color:'white'}}>
+                                Ver mais
+                            </Button>
+                        </Link>
                     </CardActions>
                 </Card>
             </div>

@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "homepage": "http://localhost/",
   "private": true,
   "dependencies": {
     "@brainhubeu/react-carousel": "^1.19.26",
