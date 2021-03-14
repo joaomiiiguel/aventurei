@@ -13,9 +13,6 @@ import {
     TwitterShareButton, TwitterIcon,
     WhatsappShareButton, WhatsappIcon,
     LinkedinShareButton,LinkedinIcon,
-    OKShareButton
-
-
 } from "react-share";
 
 import Footer from '../paginainicial/footer/footer'
