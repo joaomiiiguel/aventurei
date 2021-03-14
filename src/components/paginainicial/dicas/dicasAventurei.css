@@ -9,7 +9,7 @@
 }
 .titulo{
     font-size: 18pt;
-    color: black;
+    color: #0F5045;
 }
 .containerDicasCard{
     display: flex;
@@ -24,6 +24,10 @@
 .imgCardDicas{
     width: 100%;
     height: 250px;
+}
+.linkButton{
+    color: white;
+
 }
 
 @media screen and (max-width: 768px) {

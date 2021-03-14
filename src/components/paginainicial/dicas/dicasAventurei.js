@@ -5,8 +5,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
-import imgCachoeira from '../../../assets/cachoeira.jpg';
+import { Link } from 'react-router-dom';
+import imgCachoeira from '../../../assets/blogImagens/thumbnail/cachoeira10dicas.png';
 import imgCamping from '../../../assets/camping.jpg';
 import imgRapel from '../../../assets/rapel.jpg';
 
@@ -18,28 +18,32 @@ export default function DicasAventurei() {
             <div className="containerDicasCard">
                 <Card className="cardDicas">
                     <img src={imgCachoeira} alt="imagem cachoeira" className="imgCardDicas" />
-                        <CardContent>
-                            <h3>O que levar na mochila?</h3>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                Veja dicas de como viajar com conforto para uma viagem de ecoturismo
-                            </Typography>
-                        </CardContent>
+                    <CardContent>
+                        <h3 style={{ color: '#0F5045' }}>Cachoeira: 10 dicas de segurança que fazem a diferença em seu passeio</h3>
+                    </CardContent>
                     <CardActions>
-                        <Button fullWidth size="small" color="primary">
-                            Ver mais
+
+                        <Button fullWidth size="large" style={{backgroundColor:'#0F5045'}}>
+                            <Link
+                                className="linkButton"
+                                to="/cachoeira-10-dicas-de-segurança"
+                            >
+                                Ver mais
+                            </Link>
                         </Button>
+
                     </CardActions>
                 </Card>
                 <Card className="cardDicas">
-                    
+
                     <img src={imgCamping} alt="imagem cachoeira" className="imgCardDicas" />
-                        <CardContent>
-                            <h3>O que levar na mochila?</h3>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                Veja dicas de como viajar com conforto para uma viagem de ecoturismo
+                    <CardContent>
+                        <h3>O que levar na mochila?</h3>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            Veja dicas de como viajar com conforto para uma viagem de ecoturismo
                             </Typography>
-                        </CardContent>
-                    
+                    </CardContent>
+
                     <CardActions>
                         <Button fullWidth size="small" color="primary">
                             Ver mais
@@ -47,15 +51,15 @@ export default function DicasAventurei() {
                     </CardActions>
                 </Card>
                 <Card className="cardDicas">
-                    
-                    <img src={imgRapel} alt="imagem cachoeira"  className="imgCardDicas" />
-                        <CardContent>
-                            <h3>O que levar na mochila?</h3>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                Veja dicas de como viajar com conforto para uma viagem de ecoturismo
+
+                    <img src={imgRapel} alt="imagem cachoeira" className="imgCardDicas" />
+                    <CardContent>
+                        <h3>O que levar na mochila?</h3>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            Veja dicas de como viajar com conforto para uma viagem de ecoturismo
                             </Typography>
-                        </CardContent>
-                    
+                    </CardContent>
+
                     <CardActions>
                         <Button fullWidth size="small" color="primary">
                             Ver mais
