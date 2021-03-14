@@ -1,8 +1,8 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Divider } from '@material-ui/core';
-import ImagemCapa from '../../assets/blogImagens/camping8dicas.png';
+import ImagemCapa from '../../assets/blogImagens/camping8dicas.jpg';
 import logoTop from '../../assets/LogoBranco.png';
 import './styles.css';
 import { Helmet } from "react-helmet";
@@ -17,9 +17,16 @@ import {
 
 import Footer from '../paginainicial/footer/footer'
 
+
+
 export default function PrimeiroCamping() {
-    const shareUrl = 'https://aventurei.com/cachoeira-10-dicas-de-segurança'
+    const shareUrl = 'https://aventurei.com/camping-8-dicas-do-primero-camping'
     const title = 'Camping: veja 8 dicas para quem vai acampar pela primeira vez'
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     return (
         <div className="containerPost">
             <Helmet>

@@ -48,6 +48,7 @@
 .formContent{
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 90%;
 }
 .formContent input, textarea{
@@ -60,6 +61,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 .infoCadast{
     color: #0F5045 ;
@@ -69,8 +71,17 @@
 .infoTitle{
     color: #0F5045 ;
     font-size: 12pt;
-    margin: 5% auto;
+    margin-top: 5%;
     font-weight: bold;
+
+}
+.infoSubTitle{
+    color: #778885 ;
+    font-size: 9pt;
+    text-align: center;
+    margin: 2% 0 5% 0;
+    font-weight: bold;
+    width: 80%;
 
 }
 .input-group{

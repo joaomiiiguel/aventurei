@@ -14,13 +14,13 @@
 .containterInfo{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 80%;
     margin: 2% auto;
 }
 .LogoInfo{
-    width: 40%;
+    width: 30%;
     height: 15vh;
     text-align: left;
     display: flex;
@@ -46,7 +46,11 @@
 
 a {
     text-decoration: none;
-    color: rgb(194, 194, 194);
+    color: #c2c2c2;
+}
+.linkSocial{
+    margin: 10px;
+    color:  #c2c2c2;
 }
 @media screen and (max-width: 768px) {
     .footerContainer{

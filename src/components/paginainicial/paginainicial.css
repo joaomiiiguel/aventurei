@@ -38,7 +38,6 @@ h1,h2,h3,p{
 }
 .logoImg{
     width: 80px;
-    cursor: pointer;
     margin-left: 20px;
 }
 .beColaborador-top{
@@ -48,6 +47,10 @@ h1,h2,h3,p{
     font-size: 10pt;
     text-decoration: none;
     color: white;
+}
+.beColaborador-top:hover{
+  color: #c0c0c0;
+  transition: 0.7s;
 }
 .text-Slogan{
     font-family: 'Montserrat', sans-serif;
@@ -78,10 +81,13 @@ h1,h2,h3,p{
 	display: block;
 	margin: 0 auto;
 	width: 24px;
-	height: 100px;
+	height: 150px;
 	
 }
-
+.Menu-Top{
+  display: flex;
+  flex-direction: row;
+}
 
 .m_scroll_arrows
 {
@@ -253,6 +259,7 @@ h1,h2,h3,p{
         border-radius: 15px;
         padding: 15px;
     }
+    
     .mouse_scroll{
         margin-top: 5px;
     }

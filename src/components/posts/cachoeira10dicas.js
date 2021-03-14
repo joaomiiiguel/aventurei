@@ -1,8 +1,8 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Divider } from '@material-ui/core';
-import ImagemCapa from '../../assets/blogImagens/cachoeira10dicas.png';
+import ImagemCapa from '../../assets/blogImagens/cachoeira10dicas.jpg';
 import logoTop from '../../assets/LogoBranco.png';
 import './styles.css';
 import { Helmet } from "react-helmet";
@@ -17,9 +17,19 @@ import {
 
 import Footer from '../paginainicial/footer/footer'
 
-export default function cachoeira10dicas() {
+
+
+export default function Cachoeira10dicas() {
     const shareUrl = 'https://aventurei.com/cachoeira-10-dicas-de-segurança'
     const title = 'Cachoeira: 10 dicas de segurança que fazem a diferença em seu passeio'
+
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+      
+    
+
     return (
         <div className="containerPost">
             <Helmet>
