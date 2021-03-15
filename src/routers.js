@@ -12,7 +12,7 @@ export default function Routes(){
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={PaginaInicial} />
-                <Route path="/seja-colaborador" component={CadastroColaborador} />
+                <Route path="/seja-nosso-guia" component={CadastroColaborador} />
                 <Route path="/cachoeira-10-dicas-de-segurança" component={Cachoeira10dicas} />
                 <Route path="/camping-8-dicas-do-primero-camping" component={PrimeiroCamping} />
             </Switch>

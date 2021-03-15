@@ -49,7 +49,7 @@ export default function CadasColaborador() {
 
                     <form className="formContent" onSubmit={SendEmail}>
 
-                        <p className="infoTitle">CADASTRO PARA PARCERIA</p>
+                        <p className="infoTitle">CADASTRO PARA GUIA</p>
                         <p className="infoSubTitle">Vamos iniciar uma parceria conosco, você divulga seus trabalhos e nós o mostramos para o mundo.</p>
 
                         <input
