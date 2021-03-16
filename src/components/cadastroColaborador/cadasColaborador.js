@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './cadasColaborador.css';
 import { Link } from 'react-router-dom';
 import { BsChevronLeft } from "react-icons/bs";
@@ -18,6 +18,10 @@ export default function CadasColaborador() {
     const [uf, setUf] = useState('');
 
 
+    useEffect(() =>{
+        document.title = 'Aventurei - Cadastro de Guia'
+    }, [])
+    
     function SendEmail(e) {
         e.preventDefault();
 
@@ -50,7 +54,7 @@ export default function CadasColaborador() {
                     <form className="formContent" onSubmit={SendEmail}>
 
                         <p className="infoTitle">CADASTRO PARA GUIA</p>
-                        <p className="infoSubTitle">Vamos iniciar uma parceria conosco, você divulga seus trabalhos e nós o mostramos para o mundo.</p>
+                        <p className="infoSubTitle">Venha iniciar uma parceria conosco, você divulga seus trabalhos e nós o espalhamos para o mundo. <br/><br/>Cadastre-se para saber de mais detalhes!</p>
 
                         <input
                             type="text"
@@ -113,7 +117,6 @@ export default function CadasColaborador() {
                                 onChange={e => setUf(e.target.value)}
                             />
                         </div>
-                        <p className="infoCadast">As informações repassadas serão analisadas para aprovação</p>
                         <button className="button-Cad" type="submit">CADASTRAR</button>
                     </form>
                 </div>

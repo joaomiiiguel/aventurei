@@ -12,6 +12,7 @@ import logoTop from '../../assets/LogoBranco.png'
 
 
 export default function paginainicial() {
+    
     return (
         <div className="container-pg" >
             <Helmet>

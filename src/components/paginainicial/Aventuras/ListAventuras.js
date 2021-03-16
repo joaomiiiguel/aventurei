@@ -11,7 +11,8 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import 'photoswipe/dist/photoswipe.css'
-import 'photoswipe/dist/default-skin/default-skin.css'
+import 'photoswipe/dist/default-skin/default-skin.css';
+import ReactGA from 'react-ga'
 
 import { Gallery, Item } from 'react-photoswipe-gallery'
 
@@ -134,6 +135,10 @@ export default function ListAventuras(props) {
     const handleOpenModal = (place) => {
         setidBtn(place);
         setOpenModal(true);
+        ReactGA.event({
+            category: 'Button',
+            action: 'Abrir modal de detalhes',
+          })
     };
 
     const handleClose = () => {

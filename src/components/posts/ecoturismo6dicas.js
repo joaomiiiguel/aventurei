@@ -20,8 +20,8 @@ import Footer from '../paginainicial/footer/footer'
 
 
 export default function Cachoeira10dicas() {
-    const shareUrl = 'https://aventurei.com/cachoeira-10-dicas-de-segurança'
-    const title = 'Cachoeira: 10 dicas de segurança que fazem a diferença em seu passeio'
+    const shareUrl = 'https://aventurei.com/ecoturismo-6-dicas-aproveitar-melhor'
+    const title = 'Ecoturismo: 6 dicas para aproveitar bem melhor o passeio'
 
 
     useEffect(() => {

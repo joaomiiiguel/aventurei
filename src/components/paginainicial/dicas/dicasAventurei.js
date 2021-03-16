@@ -48,6 +48,23 @@ export default function DicasAventurei() {
                         </Link>
                     </CardActions>
                 </Card>
+
+                <Card className="cardDicas">
+                    <img src={imgEcoturismo} alt="imagem cachoeira" className="imgCardDicas" />
+                    <CardContent>
+                        <h3 style={{ color: '#0F5045' }}>Ecoturismo: 6 dicas para aproveitar bem melhor o passeio</h3>
+                    </CardContent>
+                    <CardActions>
+                        <Link
+                            className="linkButton"
+                            to="/ecoturismo-6-dicas-aproveitar-melhor"
+                        >
+                            <Button style={{backgroundColor:'#0F5045', width: '100%', color:'white'}}>
+                                Ver mais
+                            </Button>
+                        </Link>
+                    </CardActions>
+                </Card>
             </div>
         </div>
     )

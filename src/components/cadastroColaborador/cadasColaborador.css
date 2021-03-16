@@ -108,6 +108,7 @@
     font-weight: 600;
     letter-spacing: 2px;
     transition-duration: 0.4s;
+    width: 100%;
 }
 .button-Cad:hover{
     font-weight: bold;

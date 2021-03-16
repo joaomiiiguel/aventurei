@@ -5,7 +5,6 @@ import { Divider } from '@material-ui/core';
 import ImagemCapa from '../../assets/blogImagens/camping8dicas.jpg';
 import logoTop from '../../assets/LogoBranco.png';
 import './styles.css';
-import { Helmet } from "react-helmet";
 import {
     EmailShareButton, EmailIcon,
     FacebookShareButton, FacebookIcon,
@@ -25,15 +24,11 @@ export default function PrimeiroCamping() {
 
     useEffect(() => {
         window.scrollTo(0, 0)
+        document.title = `Blog Aventurei - ${title}`
       }, [])
 
     return (
         <div className="containerPost">
-            <Helmet>
-                <meta charSet="utf-8" />
-                <title>Blog Aventurei - {title}</title>
-                <link rel="canonical" href="http://mysite.com/example" />
-            </Helmet>
             <div className="menuPost">
                 <Link className="Voltar-top" to="/"><ArrowBackIcon /></Link>
                 <div><h3>Blog Aventurei</h3></div>
