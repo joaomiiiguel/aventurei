@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import imgCachoeira from '../../../assets/blogImagens/thumbnail/cachoeira10dicas.png';
 import imgCamping from '../../../assets/blogImagens/thumbnail/camping8dicas.png';
+import imgEcoturismo from '../../../assets/blogImagens/thumbnail/ecoturismo6dicas.png';
 
 export default function DicasAventurei() {
 

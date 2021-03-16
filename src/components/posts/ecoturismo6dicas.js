@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Divider } from '@material-ui/core';
-import ImagemCapa from '../../assets/blogImagens/cachoeira10dicas.jpg';
+import ImagemCapa from '../../assets/blogImagens/ecoturismo6dicas.jpg';
 import logoTop from '../../assets/LogoBranco.png';
 import './styles.css';
 
