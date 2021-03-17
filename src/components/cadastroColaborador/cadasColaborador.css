@@ -50,6 +50,7 @@
     flex-direction: column;
     align-items: center;
     width: 90%;
+    margin-bottom: 10px;
 }
 .formContent input, textarea{
     margin-top: 10px;
@@ -90,7 +91,7 @@
     width: 100%;
     margin-bottom: 25px;
 }
-.input-group input{
+.input-group input {
     width: 100%;
 }
 .input-group input + input{
@@ -124,7 +125,7 @@
         border-radius: 0px;
         box-shadow: none;
     }
-    .formContent input{
+    .formContent input, textarea{
         padding: 2%;
     }
     .logoImgCor{

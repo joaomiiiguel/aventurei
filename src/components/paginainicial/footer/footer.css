@@ -1,5 +1,4 @@
 .footerContainer{
-    height: 40vh;
     background: url("../../../assets/footer.jpg") no-repeat;
     background-size: cover;
     width: 100%;
@@ -10,6 +9,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    margin: 2% auto;
 }
 .containterInfo{
     display: flex;
@@ -20,8 +20,8 @@
     margin: 2% auto;
 }
 .LogoInfo{
-    width: 30%;
-    height: 15vh;
+    width: 40%;
+    align-items: center;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@
 }
 .textInfo{
     width: 40%;
-    height: 15vh;
+    
     text-align: right;
     display: flex;
     flex-direction: column;
@@ -52,6 +52,24 @@ a {
     margin: 10px;
     color:  #c2c2c2;
 }
+.button-Contact{
+    margin-top: 8px;
+    background-color: #547a74;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition-duration: 0.4s;
+    width: 100%;
+}
+.button-Contact:hover{
+    font-weight: bold;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
 @media screen and (max-width: 768px) {
     .footerContainer{
         
@@ -69,6 +87,7 @@ a {
     .LogoInfo, .textInfo{
         width: 100%;
         text-align: center;
+        align-items: center;
     }
     .bottomText{
         font-size: 10pt;
