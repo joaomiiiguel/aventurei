@@ -26,7 +26,7 @@ export default function ListAventuras(props) {
     const aventurasApi = [
         {
             id: 1,
-            title: "Cachoeira do Roncador",
+            title: "Rapel na Cachoeira do Roncador",
             entrada: "Gratuito",
             description: "Um dos destinos de ecoturismo mais procurados da região é a cachoeira do Roncador, localizada entre os municípios de Bananeiras e Borborema. A cachoeira que faz parte da Área de Preservação Ambiental Roncador tem aproximadamente 40 metros de altura e quedas d’água vindo do Rio Bananeiras. A melhor época do ano para usufruir desse refúgio encantador é entre maio e agosto quando a cachoeira aumenta seu volume. Para ir a cachoeira o melhor acesso é por Pirpirituba e de lá pegar uma estrada de barro que segue por uns 10km até o Roncador e assim fazer uma caminhada por uma trilha leve de mais ou menos 1km.",
             linkMaps: "https://goo.gl/maps/Fbhog7r8dwsM6ibt7",
@@ -39,13 +39,13 @@ export default function ListAventuras(props) {
             imgCapa2: require("../../../assets/localFotos/thumbnail/000001-02.png"),
             imgFoto1: require("../../../assets/localFotos/000001-01.png"),
             imgFoto2: require("../../../assets/localFotos/000001-02.png"),
-            partner_name: "João Miguel",
-            partner_insta: "joaomiiiguel",
-            partner_whats: "83981390385",
+            partner_name: "Família Adventure",
+            partner_insta: "familia_adventure_pb",
+            partner_whats: "83999716493",
         },
         {
             id: 2,
-            title: "Pedra da Boca",
+            title: "Rapel na Pedra da Boca",
             entrada: "Gratuito",
             description: "Com uma área de 160 hectares, e situado na zona rural da cidade de Araruna, a Pedra da Boca chama atenção pelas belas paisagens. Uma das pedras tem cerca de 330 metros de altura, o local é ideal para a prática de rapel, escalada, caminhadas e acampamento. A região é apontada como o melhor local para voos de longa distância de asa delta e parapente, onde aconteceu recordes sul-americano e mundial.",
             linkMaps: "https://goo.gl/maps/Fbhog7r8dwsM6ibt7",
@@ -58,13 +58,13 @@ export default function ListAventuras(props) {
             imgCapa2: require("../../../assets/localFotos/thumbnail/000002-02.png"),
             imgFoto1: require("../../../assets/localFotos/000002-01.png"),
             imgFoto2: require("../../../assets/localFotos/000002-02.png"),
-            partner_name: "João Miguel",
-            partner_insta: "joaomiiiguel",
-            partner_whats: "83981390385",
+            partner_name: "Família Adventure",
+            partner_insta: "familia_adventure_pb",
+            partner_whats: "83999716493",
         },
         {
             id: 3,
-            title: "Praia do Guaju",
+            title: "Passeio na Praia do Guaju",
             entrada: "Gratuito",
             description: "Essa praia fica localizada na divisa entre os estados da Paraíba e o Rio Grande do Norte, está situada na cidade de Mataraca. O melhor acesso é por Sagi(RN) que fica a 2km da praia, a praia é acessível somente com buggy, 4x4 ou a pé. O rio Guaju tem uma beleza diferencial, onde é possível fazer passeio de barco pelo mangue, esquibunda nas dunas e tirolesa. E ainda comer espetinho de lagosta.",
             linkMaps: "https://goo.gl/maps/Fbhog7r8dwsM6ibt7",
@@ -92,7 +92,8 @@ export default function ListAventuras(props) {
             display: "flex",
             justifyContent: "center",
             margin: 10,
-            borderRadius: 15
+            borderRadius: 15,
+            
         },
         media: {
             height: 'auto',
@@ -101,7 +102,9 @@ export default function ListAventuras(props) {
         },
         title: {
             color: '#0F5045',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            height: 70,
+            alignItems:'center'
         },
         CardContent: {
             width: '100%',
@@ -299,17 +302,18 @@ export default function ListAventuras(props) {
                                 endIcon={<NearMeRoundedIcon />}
                             >
                                 Visualizar Rota
-                                </Button>
+                            </Button>
                         </Link>
 
                         <Divider style={{ marginTop: 15 }} />
                         <div className="colaboradorContainer">
-                            <div>
-                                <h4>Local sugerido por {idBtn.partner_name}</h4>
-                                <p style={{ color: "gray", fontSize:'10pt', marginTop:5 }}>Entre em contato:</p>
-                                <div style={{ display: "flex", flexDirection: "row" }}>
-                                    <Link href={`https://www.instagram.com/${idBtn.partner_insta}/`} target="_blank" rel="noreferrer" underline="none" style={{ display: "flex", flexDirection: "row", color: "gray" }}><InstagramIcon fontSize="small" /><p style={{ color: "gray" }}>@{idBtn.partner_insta}</p></Link>
-                                    <Link href={`https://api.whatsapp.com/send?phone=55${idBtn.partner_whats}/`} target="_blank" rel="noreferrer" underline="none" style={{ display: "flex", flexDirection: "row", color: "gray", marginLeft: "5px" }}><WhatsAppIcon fontSize="small" /><p style={{ color: "gray" }}>{idBtn.partner_whats}</p></Link>
+                            <div style={{ width:'100%', display: "flex", flexDirection: "column", textAlign: 'center'}}>
+                                <h3> {idBtn.partner_name}</h3>
+                                <h5 style={{marginBottom:5}}>Guia Aventurei</h5>
+                                <p style={{ color: "gray", fontSize:'10pt', marginTop:5 }}>Contato:</p>
+                                <div style={{ display: "flex", flexDirection: "row", justifyContent:'space-between' }}>
+                                    <Link href={`https://www.instagram.com/${idBtn.partner_insta}/`} target="_blank" rel="noreferrer" underline="none" style={{ display: "flex", flexDirection: "row", color: "gray", width:'45%' }}><Button variant="contained" className={classes.button} startIcon={<InstagramIcon />}>Instagram</Button></Link>
+                                    <Link href={`https://api.whatsapp.com/send?phone=55${idBtn.partner_whats}/`} target="_blank" rel="noreferrer" underline="none" style={{ display: "flex", flexDirection: "row", color: "gray", width:'45%' }}><Button variant="contained" className={classes.button} startIcon={<WhatsAppIcon />}>WhatsApp</Button></Link>
                                 </div>
                             </div>
                         </div>
