@@ -1,0 +1,9 @@
+[submodule "frontend"]
+	path = frontend
+	branch = main
+	url = https://github.com/joaomiiiguel/aventurei-front.git
+
+[submodule "backend"]
+	path = backend
+	branch = main
+	url = https://github.com/joaomiiiguel/aventurei-back.git
