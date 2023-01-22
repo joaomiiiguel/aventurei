@@ -1,3 +1,8 @@
 [submodule "aventurei-front"]
 	path = aventurei-front
 	url = https://github.com/joaomiiiguel/aventurei-front
+
+[submodule "aventurei-back"]
+	path = aventurei-back
+	url = https://github.com/joaomiiiguel/aventurei-back
+	
