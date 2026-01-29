@@ -1,7 +1,7 @@
 
 import { MapPin, ArrowRight } from "lucide-react";
 import { ModalityTag } from "@/components/ModalityTag";
-import { StarRating } from "@/components/StarRating";
+// import { StarRating } from "@/components/StarRating";
 import type { Guide } from "@/data/mockData";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,9 +28,9 @@ export default function GuideCard({ guide }: GuideCardProps) {
             <MapPin className="h-3.5 w-3.5" />
             <span>{guide.city}, {guide.state}</span>
           </div>
-          <div className="mt-1">
+          {/* <div className="mt-1">
             <StarRating rating={guide.rating} reviewCount={guide.reviewCount} />
-          </div>
+          </div> */}
         </div>
       </div>
 
