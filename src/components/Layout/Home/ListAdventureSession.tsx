@@ -1,27 +1,19 @@
 "use client";
-import { adventures, guides, type Modality } from "@/data/mockData";
+import { adventures, type Modality } from "@/data/mockData";
 import AdventureCard from "@/components/Cards/AdventureCard";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { filterAdventures } from "@/utils/filterUtils";
+import { useTranslations } from "@/contexts/LocaleContext";
 
 interface ListAdventureSessionProps {
   searchQuery: string;
   selectedModalities: Modality[];
 }
 
-const ListAdventureSession = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedModalities, setSelectedModalities] = useState<Modality[]>([]);
-
+const ListAdventureSession = ({ searchQuery, selectedModalities }: ListAdventureSessionProps) => {
+  const t = useTranslations();
   const filteredAdventures = useMemo(() => {
-    return adventures.filter((adventure) => {
-      const matchesSearch =
-        adventure.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        adventure.city.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesModality =
-        selectedModalities.length === 0 ||
-        selectedModalities.includes(adventure.modality);
-      return matchesSearch && matchesModality;
-    });
+    return filterAdventures(adventures, searchQuery, selectedModalities);
   }, [searchQuery, selectedModalities]);
 
   return (
@@ -35,7 +27,7 @@ const ListAdventureSession = () => {
       ) : (
         <div className="rounded-xl bg-muted/50 py-12 text-center">
           <p className="text-muted-foreground">
-            Nenhuma aventura encontrada com os filtros selecionados.
+            {t.no_adventures_found || "Nenhuma aventura encontrada com os filtros selecionados."}
           </p>
         </div>
       )}
@@ -44,3 +36,4 @@ const ListAdventureSession = () => {
 };
 
 export default ListAdventureSession;
+

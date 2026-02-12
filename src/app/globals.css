@@ -27,7 +27,7 @@
 }
 
 body {
-  background: rgb(236, 239, 236);
+  background: rgb(245, 247, 245);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   @apply text-foreground antialiased;
@@ -50,7 +50,7 @@ body {
   }
 
   .btn-adventure:hover {
-    transform: translateY(-2px);
+    transform: translateY(-5px);
   }
 }
 

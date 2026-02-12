@@ -1,9 +1,12 @@
+"use client";
 import { MapPin, ArrowRight } from "lucide-react";
 import { ModalityTag } from "@/components/ModalityTag";
 import { getGuideById } from "@/data/mockData";
 import type { Adventure } from "@/data/mockData";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "@/contexts/LocaleContext";
+import { useParams } from "next/navigation";
 
 interface AdventureCardProps {
   adventure: Adventure;
@@ -11,9 +14,12 @@ interface AdventureCardProps {
 
 export default function AdventureCard({ adventure }: AdventureCardProps) {
   const guide = getGuideById(adventure.guideId);
+  const t = useTranslations();
+  const params = useParams();
+  const lang = params.lang as string;
 
   return (
-    <div className="adventure-card group bg-white">
+    <div className="adventure-card group bg-white text-[#00382F]">
       {/* Image */}
       <div className="relative overflow-hidden">
         <Image
@@ -31,7 +37,7 @@ export default function AdventureCard({ adventure }: AdventureCardProps) {
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="mb-2 text-lg font-bold text-foreground line-clamp-1 group-hover:text-primary transition-colors">
+        <h3 className="mb-2 text-lg font-bold line-clamp-1 group-hover:text-primary transition-colors">
           {adventure.name}
         </h3>
 
@@ -50,19 +56,21 @@ export default function AdventureCard({ adventure }: AdventureCardProps) {
               height={24}
             />
             <span className="text-sm text-muted-foreground">
-              por <span className="font-medium text-foreground">{guide.name}</span>
+              {lang === 'en' ? 'by' : lang === 'es' ? 'por' : 'por'}{" "}
+              <span className="font-bold">{guide.name}</span>
             </span>
           </div>
         )}
 
         <Link
-          href={`/aventura/${adventure.id}`}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary/80 btn-adventure w-full justify-center py-2"
+          href={`/${lang}/${adventure.guideId}/${adventure.id}`}
+          className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-[#00382F] transition-colors hover:text-primary/80 btn-adventure w-full justify-center py-2"
         >
-          Ver Aventura
+          {t.view_more || 'Ver Mais'}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Link>
       </div>
     </div>
   );
 }
+

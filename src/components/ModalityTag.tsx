@@ -1,6 +1,7 @@
+"use client";
 import { ModalityIcon } from "./ModalityIcon";
 import type { Modality } from "@/data/mockData";
-import { modalityLabels } from "@/data/mockData";
+import { useTranslations } from "@/contexts/LocaleContext";
 
 interface ModalityTagProps {
   modality: Modality;
@@ -8,14 +9,21 @@ interface ModalityTagProps {
 }
 
 export function ModalityTag({ modality, size = "md" }: ModalityTagProps) {
+  const t = useTranslations();
   const sizeClasses = size === "sm" 
     ? "px-2 py-0.5 text-xs gap-1"
     : "px-3 py-1 text-sm gap-1.5";
 
+  const getModalityLabel = (m: Modality) => {
+    const key = `modality_${m.replace('-', '_')}`;
+    return t[key] || m;
+  };
+
   return (
     <span className={`tag-modality flex flex-row ${sizeClasses}`}>
       <ModalityIcon modality={modality} className={size === "sm" ? "h-3 w-3" : "h-4 w-4"} />
-      {modalityLabels[modality]}
+      {getModalityLabel(modality)}
     </span>
   );
 }
+

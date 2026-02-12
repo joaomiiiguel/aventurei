@@ -213,6 +213,40 @@ export const adventures: Adventure[] = [
     targetAudience: "Todos os públicos",
     highlights: ["Rio de águas cristalinas", "Avistamento de animais", "Trilha curta inclusa", "Equipamento fornecido"],
   },
+  {
+    id: "a7",
+    name: "Canoagem no Rio Formoso",
+    coverPhoto: "https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=800&h=600&fit=crop",
+    photos: [
+      "https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=800&h=600&fit=crop",
+    ],
+    modality: "canoagem",
+    city: "Bonito",
+    state: "MS",
+    guideId: "g2",
+    description: "Remada tranquila pelo Rio Formoso, passando por cenários de tirar o fôlego e observando a vida selvagem.",
+    difficulty: "fácil",
+    duration: "2-3 horas",
+    targetAudience: "Todos os públicos",
+    highlights: ["Rio de águas cristalinas", "Avistamento de animais", "Trilha curta inclusa", "Equipamento fornecido"],
+  },
+  {
+    id: "a8",
+    name: "Canoagem no Rio Formoso",
+    coverPhoto: "https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=800&h=600&fit=crop",
+    photos: [
+      "https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=800&h=600&fit=crop",
+    ],
+    modality: "canoagem",
+    city: "Bonito",
+    state: "MS",
+    guideId: "g2",
+    description: "Remada tranquila pelo Rio Formoso, passando por cenários de tirar o fôlego e observando a vida selvagem.",
+    difficulty: "fácil",
+    duration: "2-3 horas",
+    targetAudience: "Todos os públicos",
+    highlights: ["Rio de águas cristalinas", "Avistamento de animais", "Trilha curta inclusa", "Equipamento fornecido"],
+  },
 ];
 
 export const getGuideById = (id: string): Guide | undefined => {
