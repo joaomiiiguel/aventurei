@@ -8,36 +8,6 @@ export type Modality =
   | "mountain-bike" 
   | "camping";
 
-export interface Guide {
-  id: string;
-  name: string;
-  photo: string;
-  city: string;
-  state: string;
-  modalities: Modality[];
-  rating: number;
-  reviewCount: number;
-  description: string;
-  experience: string;
-  certifications: string[];
-}
-
-export interface Adventure {
-  id: string;
-  name: string;
-  coverPhoto: string;
-  photos: string[];
-  modality: Modality;
-  city: string;
-  state: string;
-  guideId: string;
-  description: string;
-  difficulty: "fácil" | "moderado" | "difícil" | "extremo";
-  duration: string;
-  targetAudience: string;
-  highlights: string[];
-}
-
 export const modalityLabels: Record<Modality, string> = {
   trilha: "Trilha",
   escalada: "Escalada",
@@ -49,13 +19,56 @@ export const modalityLabels: Record<Modality, string> = {
   camping: "Camping",
 };
 
+export interface Guide {
+  id: string;
+  name: string;
+  slug: string;
+  photo: string;
+  avatar: string; // for compatibility
+  bio: string;    // for compatibility
+  city: string;
+  state: string;
+  location: string; // for compatibility
+  modalities: Modality[];
+  rating: number;
+  reviewCount: number;
+  description: string;
+  experience: string;
+  certifications: string[];
+}
+
+export interface Adventure {
+  id: string;
+  name: string;
+  slug: string;
+  coverPhoto: string;
+  imageUrl: string; // for compatibility
+  photos: string[];
+  modality: Modality;
+  city: string;
+  state: string;
+  guideId: string;
+  description: string;
+  difficulty: "fácil" | "moderado" | "difícil" | "extremo";
+  duration: string;
+  price: number;
+  targetAudience: string;
+  highlights: string[];
+  rating?: number; // for compatibility
+  reviewCount?: number; // for compatibility
+}
+
 export const guides: Guide[] = [
   {
     id: "g1",
     name: "Carlos Monteiro",
+    slug: "carlos-monteiro",
     photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+    bio: "Guia experiente com mais de 15 anos conduzindo aventureiros pela Chapada Diamantina. Especialista em trilhas longas e camping selvagem.",
     city: "Chapada Diamantina",
     state: "BA",
+    location: "Chapada Diamantina, BA",
     modalities: ["trilha", "rapel", "camping"],
     rating: 4.9,
     reviewCount: 127,
@@ -66,9 +79,13 @@ export const guides: Guide[] = [
   {
     id: "g2",
     name: "Marina Silva",
+    slug: "marina-silva",
     photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face",
+    bio: "Bióloga e guia especializada em ecoturismo aquático. Apaixonada por conservação e educação ambiental.",
     city: "Bonito",
     state: "MS",
+    location: "Bonito, MS",
     modalities: ["mergulho", "canoagem", "trilha"],
     rating: 5.0,
     reviewCount: 89,
@@ -79,9 +96,13 @@ export const guides: Guide[] = [
   {
     id: "g3",
     name: "Pedro Araújo",
+    slug: "pedro-araujo",
     photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+    bio: "Especialista em esportes de aventura aquáticos. Instrutor certificado de rafting e canoagem.",
     city: "Brotas",
     state: "SP",
+    location: "Brotas, SP",
     modalities: ["rafting", "canoagem", "rapel"],
     rating: 4.8,
     reviewCount: 203,
@@ -92,9 +113,13 @@ export const guides: Guide[] = [
   {
     id: "g4",
     name: "Ana Beatriz Costa",
+    slug: "ana-beatriz-costa",
     photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+    bio: "Montanhista e ciclista apaixonada pela Serra do Cipó. Especialista em travessias e escaladas técnicas.",
     city: "Serra do Cipó",
     state: "MG",
+    location: "Serra do Cipó, MG",
     modalities: ["trilha", "escalada", "mountain-bike"],
     rating: 4.7,
     reviewCount: 156,
@@ -108,7 +133,9 @@ export const adventures: Adventure[] = [
   {
     id: "a1",
     name: "Travessia do Vale do Pati",
+    slug: "travessia-vale-do-pati",
     coverPhoto: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop",
     photos: [
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=800&h=600&fit=crop",
@@ -121,13 +148,18 @@ export const adventures: Adventure[] = [
     description: "Uma das trilhas mais icônicas do Brasil. A Travessia do Vale do Pati oferece paisagens de tirar o fôlego, com morros, cachoeiras e uma imersão total na natureza selvagem da Chapada Diamantina.",
     difficulty: "difícil",
     duration: "3-5 dias",
+    price: 1200,
     targetAudience: "Aventureiros experientes",
     highlights: ["Morro do Castelo", "Cachoeira do Funil", "Gerais do Rio Preto", "Hospedagem em casas de nativos"],
+    rating: 4.9,
+    reviewCount: 85
   },
   {
     id: "a2",
     name: "Flutuação no Rio da Prata",
+    slug: "flutuacao-rio-da-prata",
     coverPhoto: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop",
     photos: [
       "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop",
@@ -139,13 +171,18 @@ export const adventures: Adventure[] = [
     description: "Flutue por águas cristalinas com visibilidade de até 50 metros. Uma experiência única de imersão na natureza, observando peixes coloridos e vegetação aquática.",
     difficulty: "fácil",
     duration: "3-4 horas",
+    price: 350,
     targetAudience: "Todos os públicos",
     highlights: ["Visibilidade impressionante", "Centenas de peixes", "Nascente natural", "Equipamento incluso"],
+    rating: 5.0,
+    reviewCount: 156
   },
   {
     id: "a3",
     name: "Rafting Classe III-IV",
+    slug: "rafting-classe-iii-iv",
     coverPhoto: "https://images.unsplash.com/photo-1530866495561-507c9faab2ed?w=800&h=600&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1530866495561-507c9faab2ed?w=800&h=600&fit=crop",
     photos: [
       "https://images.unsplash.com/photo-1530866495561-507c9faab2ed?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=600&fit=crop",
@@ -157,13 +194,18 @@ export const adventures: Adventure[] = [
     description: "Adrenalina pura nas corredeiras do Rio Jacaré-Pepira! Descida emocionante com quedas, curvas e muita diversão em grupo.",
     difficulty: "moderado",
     duration: "2-3 horas",
+    price: 250,
     targetAudience: "Maiores de 14 anos",
     highlights: ["7km de descida", "Corredeiras classe III-IV", "Salto de cachoeira", "Fotos e vídeos inclusos"],
+    rating: 4.8,
+    reviewCount: 92
   },
   {
     id: "a4",
     name: "Escalada no Pico do Breu",
+    slug: "escalada-pico-do-breu",
     coverPhoto: "https://images.unsplash.com/photo-1522163182402-834f871fd851?w=800&h=600&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1522163182402-834f871fd851?w=800&h=600&fit=crop",
     photos: [
       "https://images.unsplash.com/photo-1522163182402-834f871fd851?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1504699439244-a1d7547e7b2f?w=800&h=600&fit=crop",
@@ -175,13 +217,18 @@ export const adventures: Adventure[] = [
     description: "Escalada técnica com vista panorâmica da Serra do Cipó. Uma experiência desafiadora para quem busca superar limites.",
     difficulty: "difícil",
     duration: "6-8 horas",
+    price: 450,
     targetAudience: "Escaladores iniciantes a intermediários",
     highlights: ["Vista 360°", "Rocha quartzítica", "Equipamento profissional", "Instrução personalizada"],
+    rating: 4.7,
+    reviewCount: 43
   },
   {
     id: "a5",
     name: "Trilha das Cachoeiras",
+    slug: "trilha-das-cachoeiras",
     coverPhoto: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=600&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=600&fit=crop",
     photos: [
       "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&h=600&fit=crop",
@@ -193,13 +240,18 @@ export const adventures: Adventure[] = [
     description: "Percurso por 5 cachoeiras incríveis em um único dia. Ideal para quem quer combinar trilha leve com banhos refrescantes.",
     difficulty: "fácil",
     duration: "5-6 horas",
+    price: 180,
     targetAudience: "Famílias e iniciantes",
     highlights: ["5 cachoeiras", "Banhos em piscinas naturais", "Flora do cerrado", "Piquenique incluso"],
+    rating: 4.9,
+    reviewCount: 67
   },
   {
     id: "a6",
     name: "Canoagem no Rio Formoso",
+    slug: "canoagem-rio-formoso",
     coverPhoto: "https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=800&h=600&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=800&h=600&fit=crop",
     photos: [
       "https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=800&h=600&fit=crop",
     ],
@@ -210,53 +262,49 @@ export const adventures: Adventure[] = [
     description: "Remada tranquila pelo Rio Formoso, passando por cenários de tirar o fôlego e observando a vida selvagem.",
     difficulty: "fácil",
     duration: "2-3 horas",
+    price: 220,
     targetAudience: "Todos os públicos",
     highlights: ["Rio de águas cristalinas", "Avistamento de animais", "Trilha curta inclusa", "Equipamento fornecido"],
-  },
-  {
-    id: "a7",
-    name: "Canoagem no Rio Formoso",
-    coverPhoto: "https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=800&h=600&fit=crop",
-    photos: [
-      "https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=800&h=600&fit=crop",
-    ],
-    modality: "canoagem",
-    city: "Bonito",
-    state: "MS",
-    guideId: "g2",
-    description: "Remada tranquila pelo Rio Formoso, passando por cenários de tirar o fôlego e observando a vida selvagem.",
-    difficulty: "fácil",
-    duration: "2-3 horas",
-    targetAudience: "Todos os públicos",
-    highlights: ["Rio de águas cristalinas", "Avistamento de animais", "Trilha curta inclusa", "Equipamento fornecido"],
-  },
-  {
-    id: "a8",
-    name: "Canoagem no Rio Formoso",
-    coverPhoto: "https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=800&h=600&fit=crop",
-    photos: [
-      "https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=800&h=600&fit=crop",
-    ],
-    modality: "canoagem",
-    city: "Bonito",
-    state: "MS",
-    guideId: "g2",
-    description: "Remada tranquila pelo Rio Formoso, passando por cenários de tirar o fôlego e observando a vida selvagem.",
-    difficulty: "fácil",
-    duration: "2-3 horas",
-    targetAudience: "Todos os públicos",
-    highlights: ["Rio de águas cristalinas", "Avistamento de animais", "Trilha curta inclusa", "Equipamento fornecido"],
+    rating: 4.6,
+    reviewCount: 28
   },
 ];
 
 export const getGuideById = (id: string): Guide | undefined => {
-  return guides.find((g) => g.id === id);
+  return guides.find((g) => g.id === id || g.slug === id);
 };
 
 export const getAdventureById = (id: string): Adventure | undefined => {
-  return adventures.find((a) => a.id === id);
+  return adventures.find((a) => a.id === id || a.slug === id);
 };
 
 export const getAdventuresByGuide = (guideId: string): Adventure[] => {
   return adventures.filter((a) => a.guideId === guideId);
 };
+
+export const MockDataService = {
+  getAllGuides: async (): Promise<Guide[]> => {
+    return guides;
+  },
+
+  getGuideById: async (id: string): Promise<Guide | undefined> => {
+    return guides.find(g => g.id === id || g.slug === id);
+  },
+  
+  getGuideBySlug: async (slug: string): Promise<Guide | undefined> => {
+      return guides.find(g => g.slug === slug || g.id === slug);
+  },
+
+  getAllAdventures: async (): Promise<Adventure[]> => {
+    return adventures;
+  },
+
+  getAdventureBySlug: async (slug: string): Promise<Adventure | undefined> => {
+    return adventures.find(a => a.slug === slug || a.id === slug);
+  },
+  
+  getAdventuresByGuideId: async (guideId: string): Promise<Adventure[]> => {
+    return adventures.filter(a => a.guideId === guideId);
+  }
+};
+

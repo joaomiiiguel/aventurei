@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Aventurei - Descubra sua próxima aventura",
   description: "Conecte-se com os melhores guias e explore destinos incríveis com segurança e exclusividade.",
-  metadataBase: new URL('https://aventurei.com'),
+  metadataBase: new URL('https://aventurei.es'),
 };
 
 export default function RootLayout({

@@ -1,5 +1,5 @@
 import GuideContent from "@/components/Views/GuideContent"
-import { MockDataService } from "@/services/mockData";
+import { MockDataService } from "@/data/mockData";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Person, WithContext } from "schema-dts";
@@ -16,9 +16,9 @@ interface PageProps {
 
 export async function generateStaticParams() {
     const guides = await MockDataService.getAllGuides();
-    
+
     // Generate params for all locales and all guides
-    return locales.flatMap(lang => 
+    return locales.flatMap(lang =>
         guides.map((guide) => ({
             lang,
             guide_id: guide.id,
@@ -47,13 +47,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             type: "profile",
         },
         alternates: {
-            canonical: `/guia/${guide.id}`, // Assuming canonical URL structure
+            canonical: `/${guide.id}`, // Assuming canonical URL structure
         }
     };
 }
 
 const GuidePage = async ({ params }: PageProps) => {
-    const { guide_id } = await params;
+    const { guide_id, lang } = await params;
     const guide = await MockDataService.getGuideById(guide_id);
 
     if (!guide) {
@@ -84,7 +84,7 @@ const GuidePage = async ({ params }: PageProps) => {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <GuideContent guideId={guide_id} />
+            <GuideContent guide_id={guide_id} lang={lang} />
         </>
     );
 };

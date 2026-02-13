@@ -1,5 +1,4 @@
 "use client";
-import { Mountain } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "@/contexts/LocaleContext";
 import { useParams } from "next/navigation";
@@ -12,12 +11,12 @@ export function Footer() {
 
   return (
     <footer className="bg-[#00382F] text-white">
-      <div className="container py-12 px-[5%]">
+      <div className="container pt-12 pb-4 px-[5%] mx-auto">
         <div className="grid gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Link href={`/${lang}`} className="mb-4 flex items-center gap-2">
-              <LogoAventurei />
+            <Link href="/" className="mb-4 block">
+              <LogoAventurei variant="white" />
             </Link>
             <p className="max-w-sm text-sm text-green-50/80">
               {t.connect_with_best_guides || "Conectando aventureiros a guias experientes em todo o Brasil. Descubra experiências únicas em contato com a natureza."}
@@ -47,7 +46,7 @@ export function Footer() {
 
         </div>
 
-        <div className="mt-8 border-t border-white/10 pt-8 text-center text-sm text-green-100/50">
+        <div className="mt-8 border-t border-white/10 pt-4 text-center text-sm text-green-100/50">
           © {new Date().getFullYear()} Aventurei. {t.all_rights_reserved || "Todos os direitos reservados."}
         </div>
       </div>

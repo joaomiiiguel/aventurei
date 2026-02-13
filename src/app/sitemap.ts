@@ -1,8 +1,8 @@
-import { MockDataService } from '@/services/mockData';
+import { MockDataService } from '@/data/mockData';
 import { MetadataRoute } from 'next';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://aventurei.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://aventurei.es';
 
   // Static routes
   const routes = [

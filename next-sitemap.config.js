@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-    siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://aventurei.com',
+    siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://aventurei.es',
     generateRobotsTxt: false, // We are using app/robots.ts
     sitemapSize: 7000,
     exclude: ['/server-sitemap.xml'], // Example exclusion

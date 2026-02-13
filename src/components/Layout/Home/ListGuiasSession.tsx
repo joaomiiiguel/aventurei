@@ -1,15 +1,27 @@
 "use client";
 import GuideCard from "@/components/Cards/GuideCard";
-import { guides, Modality } from "@/data/mockData";
-import { useMemo } from "react";
+
+import { useState, useEffect } from "react";
 import { filterGuides } from "@/utils/filterUtils";
 import { useTranslations } from "@/contexts/LocaleContext";
+import { MockDataService, Modality, Guide } from "@/data/mockData";
 
 const ListGuiasSession = ({ searchQuery, selectedModalities }: { searchQuery: string, selectedModalities: Modality[] }) => {
     const t = useTranslations();
-    const filteredGuides = useMemo(() => {
-        return filterGuides(guides, searchQuery, selectedModalities);
+    const [filteredGuides, setFilteredGuides] = useState<Guide[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchAndFilter = async () => {
+            setIsLoading(true);
+            const guides = await MockDataService.getAllGuides();
+            const filtered = filterGuides(guides, searchQuery, selectedModalities);
+            setFilteredGuides(filtered);
+            setIsLoading(false);
+        };
+        fetchAndFilter();
     }, [searchQuery, selectedModalities]);
+    
 
     return (
         <>

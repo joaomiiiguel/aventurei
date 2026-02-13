@@ -1,5 +1,5 @@
 import AdventureContent from "@/components/Views/AdventureContent";
-import { MockDataService } from "@/services/mockData";
+import { MockDataService } from "@/data/mockData";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Product, WithContext } from "schema-dts";
