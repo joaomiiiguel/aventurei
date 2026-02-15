@@ -81,10 +81,10 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
       </section>
 
       {/* Content */}
-      <section className="flex pb-12 px-[5%] text-[#00382F] ">
-        <div className="grid gap-8 lg:grid-cols-3">
+      <section className="flex pb-12 px-[5%] text-primary">
+        <div className="grid gap-8 lg:grid-cols-3 w-full">
           {/* Main Info */}
-          <div className="lg:col-span-2 ">
+          <div className="lg:col-span-2">
             {/* Header */}
             <div className="mb-6">
               <h1 className="mb-3 text-3xl font-extrabold md:text-4xl">
@@ -126,7 +126,7 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
             <div className="rounded-2xl shadow p-6 bg-white">
 
               <button
-                className="bg-[#00382F] text-white w-full flex justify-center items-center gap-2 font-bold text-lg px-10 py-3 rounded-full shadow-xl transition-transform hover:scale-102 hover:cursor-pointer"
+                className="bg-primary text-white w-full flex justify-center items-center gap-2 font-bold text-lg px-10 py-3 rounded-full shadow-xl transition-transform hover:scale-102 hover:cursor-pointer"
               >
                 <MessageCircle className="mr-2 h-4 w-4" />
                 {t.request_booking || 'Solicitar reserva'}
@@ -160,7 +160,7 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
                 </div>
                 <Link
                   href={`/${lang}/${guide.id}`}
-                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#00382F] py-2 text-sm font-medium text-white hover:bg-secondary/80 transition-colors"
+                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-2 text-sm font-medium text-white hover:bg-secondary/80 transition-colors"
                 >
                   {t.view_full_profile || "Ver perfil completo"}
                   <ArrowRight className="h-4 w-4" />

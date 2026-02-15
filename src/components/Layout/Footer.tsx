@@ -10,7 +10,7 @@ export function Footer() {
   const lang = params.lang as string;
 
   return (
-    <footer className="bg-[#00382F] text-white">
+    <footer className="bg-primary text-white">
       <div className="container pt-12 pb-4 px-[5%] mx-auto">
         <div className="grid gap-8 md:grid-cols-4">
           {/* Brand */}

@@ -18,18 +18,18 @@ export default function GuideCard({ guide }: GuideCardProps) {
   const lang = params.lang as string;
 
   return (
-    <div className="adventure-card group bg-white text-[#00382F]">
+    <div className="adventure-card group bg-white text-primary">
       {/* Header with photo */}
       <div className="relative flex items-center gap-4 p-4 pb-3">
         <Image
           src={guide.photo}
           alt={guide.name}
           width={60}
-          height={60} 
+          height={60}
           className="h-16 w-16 rounded-full object-cover ring-2 ring-primary/10"
         />
         <div className="flex-1">
-          <h3 className="font-bold text-[#00382F] group-hover:text-primary transition-colors">
+          <h3 className="font-bold text-primary group-hover:text-primary transition-colors">
             {guide.name}
           </h3>
           <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -45,8 +45,8 @@ export default function GuideCard({ guide }: GuideCardProps) {
       {/* Modalities */}
       <div className="flex flex-wrap gap-2 px-4 pb-3">
         {guide.modalities.slice(0, 3).map((modality) => (
-          <div key={modality} className="bg-[#00382F]/20 rounded-md">
-            <ModalityTag modality={modality} size="sm"/>
+          <div key={modality} className="bg-primary/20 rounded-md">
+            <ModalityTag modality={modality} size="sm" />
           </div>
         ))}
         {guide.modalities.length > 3 && (
@@ -60,7 +60,7 @@ export default function GuideCard({ guide }: GuideCardProps) {
       <div className=" px-4 py-3">
         <Link
           href={`/${lang}/${guide.id}`}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-[#00382F] transition-colors hover:text-primary/80 btn-adventure w-full justify-center py-2"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-primary transition-colors hover:text-white/80 btn-adventure w-full justify-center py-2"
         >
           {t.guide_profile || "Ver perfil do guia"}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

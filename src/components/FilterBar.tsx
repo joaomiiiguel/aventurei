@@ -59,10 +59,10 @@ export function FilterBar({
     <div className="w-full mx-auto max-w-5xl z-10 rounded-xl bg-card p-6 shadow-card bg-white/50 border border-green-50/60 text-green-50 backdrop-blur-md mt-10 shadow-lg">
       {/* Search and Toggle */}
       <div className="flex flex-col items-start">
-        <p className="mb-2 text-md font-bold text-[#00382F]">
+        <p className="mb-2 text-md font-bold text-primary">
           {t.filter || 'Filtrar'}
         </p>
-        <div className="relative flex-1 w-full text-[#00382F]">
+        <div className="relative flex-1 w-full text-primary">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
           <Input
             type="text"
@@ -71,7 +71,7 @@ export function FilterBar({
             onChange={(e: { target: { value: string } }) =>
               onSearchChange(e.target.value)
             }
-            className="pl-10 placeholder:text-[#00382F]/70 bg-white/50 w-full"
+            className="pl-10 placeholder:text-primary/70 bg-white/50 w-full"
           />
         </div>
         {hasActiveFilters && (
@@ -89,11 +89,10 @@ export function FilterBar({
               <button
                 key={modality}
                 onClick={() => toggleModality(modality)}
-                className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-medium transition-all ${
-                  isSelected
-                    ? "bg-green-900/20 text-[#00382F] border border-[#00382F]"
-                    : "bg-[#00382F] text-white hover:bg-[#00382F]/80 hover:cursor-pointer border border-[#00382F]"
-                }`}
+                className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-medium transition-all ${isSelected
+                    ? "bg-green-900/20 text-primary border border-primary"
+                    : "bg-primary text-white hover:bg-primary/80 hover:cursor-pointer border border-primary"
+                  }`}
               >
                 <ModalityIcon modality={modality} className="h-4 w-4" />
                 {getModalityLabel(modality)}

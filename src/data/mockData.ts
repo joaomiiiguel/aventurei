@@ -1,23 +1,4 @@
-export type Modality = 
-  | "trilha" 
-  | "escalada" 
-  | "rafting" 
-  | "mergulho" 
-  | "canoagem" 
-  | "rapel" 
-  | "mountain-bike" 
-  | "camping";
-
-export const modalityLabels: Record<Modality, string> = {
-  trilha: "Trilha",
-  escalada: "Escalada",
-  rafting: "Rafting",
-  mergulho: "Mergulho",
-  canoagem: "Canoagem",
-  rapel: "Rapel",
-  "mountain-bike": "Mountain Bike",
-  camping: "Camping",
-};
+import { Difficulty, Modality } from "@/types/Place";
 
 export interface Guide {
   id: string;
@@ -49,7 +30,7 @@ export interface Adventure {
   state: string;
   guideId: string;
   description: string;
-  difficulty: "fácil" | "moderado" | "difícil" | "extremo";
+  difficulty: Difficulty;
   duration: string;
   price: number;
   targetAudience: string;

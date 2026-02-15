@@ -1,6 +1,6 @@
 "use client";
 import { ModalityIcon } from "./ModalityIcon";
-import type { Modality } from "@/data/mockData";
+import type { Modality } from "@/types/Place";
 import { useTranslations } from "@/contexts/LocaleContext";
 
 interface ModalityTagProps {
@@ -10,7 +10,7 @@ interface ModalityTagProps {
 
 export function ModalityTag({ modality, size = "md" }: ModalityTagProps) {
   const t = useTranslations();
-  const sizeClasses = size === "sm" 
+  const sizeClasses = size === "sm"
     ? "px-2 py-0.5 text-xs gap-1"
     : "px-3 py-1 text-sm gap-1.5";
 

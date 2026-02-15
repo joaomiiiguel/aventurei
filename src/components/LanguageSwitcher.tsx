@@ -26,10 +26,10 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
     const segments = pathname.split('/')
     segments[1] = newLocale
     const newPath = segments.join('/')
-    
+
     // Set cookie to persist preference
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`
-    
+
     // Navigate to new locale
     router.push(newPath)
     setIsOpen(false)
@@ -56,7 +56,7 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[#00382F]/80 transition-colors hover:cursor-pointer ${isOpen ? "bg-[#00382F]/70" : ""}`}
+        className={`flex items-center gap-2 px-3 py-2 rounded-full hover:bg-white/20 transition-all transition-colors hover:cursor-pointer ${isOpen ? "bg-white/10" : ""}`}
         aria-label="Selecionar idioma"
       >
         <Globe className="h-5 w-5" />
@@ -66,16 +66,15 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-1 w-40 bg-[#00382F]/90 rounded-lg shadow-lg border border-[#00382F] py-1 z-50">
+        <div className="absolute right-0 mt-1 w-40 bg-white/20 rounded-xl shadow-lg py-1 z-50 overflow-hidden">
           {locales.map((locale) => (
             <button
               key={locale}
               onClick={() => switchLocale(locale)}
-              className={`w-full text-left px-4 py-2 text-sm hover:bg-white/20 transition-colors ${
-                locale === currentLocale
-                  ? 'bg-white/30 font-semibold'
-                  : ''
-              }`}
+              className={`w-full text-left px-4 py-2 text-sm hover:bg-white/20 transition-colors ${locale === currentLocale
+                ? 'bg-white/10 font-semibold'
+                : ''
+                }`}
             >
               {localeNames[locale]}
             </button>

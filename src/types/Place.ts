@@ -1,3 +1,28 @@
+export type Difficulty = "fácil" | "moderado" | "difícil" | "extremo";
+
+export type Modality = 
+  | "trilha" 
+  | "escalada" 
+  | "rafting" 
+  | "mergulho" 
+  | "canoagem" 
+  | "rapel" 
+  | "mountain-bike" 
+  | "camping";
+
+
+export const modalityLabels: Record<Modality, string> = {
+  trilha: "Trilha",
+  escalada: "Escalada",
+  rafting: "Rafting",
+  mergulho: "Mergulho",
+  canoagem: "Canoagem",
+  rapel: "Rapel",
+  "mountain-bike": "Mountain Bike",
+  camping: "Camping",
+};
+
+  
 export type PlaceType = {
     id?: string;
     title: string
@@ -14,4 +39,6 @@ export type PlaceType = {
     gallery?: string[]
     date_event?: string
     created_at?: string
+    difficulty?: Difficulty
+    modalities?: Modality[]
 }

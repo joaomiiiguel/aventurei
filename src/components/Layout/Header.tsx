@@ -1,5 +1,5 @@
 "use client";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User as UserIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import LogoAventurei from "../Logo";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useTranslations } from "@/contexts/LocaleContext";
+import { useAuth } from "@/contexts/AuthContext";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,10 +15,11 @@ export function Header() {
   const t = useTranslations();
   const params = useParams();
   const lang = params.lang as string;
+  const { user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 350);
+      setIsScrolled(window.scrollY > 100);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -25,7 +27,7 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full justify-between transition-all duration-300 px-[5%] ${isScrolled ? "bg-[#00382F]/40 backdrop-blur-md" : "bg-transparent"
+      className={`sticky top-0 z-50 w-full justify-between transition-all duration-300 px-[5%] ${isScrolled ? "bg-primary/40 backdrop-blur-md" : "bg-transparent"
         }`}
     >
       <div className="w-full flex h-16 items-center justify-between text-white">
@@ -40,17 +42,34 @@ export function Header() {
         <nav className="hidden items-center gap-6 md:flex">
           <Link
             href={`/${lang}`}
-            className="text-sm text-center font-medium hover:text-white/80 hover:font-bold"
+            className="text-sm text-center font-medium hover:bg-white/20 px-4 py-2 rounded-full transition-all"
           >
             {t.sobre || 'Sobre'}
           </Link>
           <Link
             href={`/${lang}`}
-            className="text-sm text-center font-medium hover:text-white/80 hover:font-bold"
-            onClick={() => setMobileMenuOpen(false)}
+            className="text-sm text-center font-medium hover:bg-white/20 px-4 py-2 rounded-full transition-all"
           >
             {t.be_a_guide || 'Seja um Guia'}
           </Link>
+
+          {user ? (
+            <Link
+              href={`/${lang}/dashboard`}
+              className="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-all border border-white/10"
+            >
+              <UserIcon className="w-4 h-4" />
+              <span className="text-sm font-medium">{t.dashboard}</span>
+            </Link>
+          ) : (
+            <Link
+              href={`/${lang}/login`}
+              className="bg-white text-primary hover:bg-white/90 px-6 py-2 rounded-full text-sm font-bold transition-all shadow-lg shadow-white/10"
+            >
+              {t.login}
+            </Link>
+          )}
+
           <LanguageSwitcher currentLocale={lang} />
         </nav>
 
@@ -70,37 +89,48 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="absolute right-10 top-14 w-1/2 bg-[#00382F] md:hidden text-white text-center">
-          <nav className="flex flex-col gap-2 p-2">
+        <div className="absolute right-10 top-14 w-1/2 bg-primary md:hidden text-white text-center rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+          <nav className="flex flex-col gap-2 p-4">
             <Link
               href={`/${lang}`}
-              className="text-sm font-medium transition-colors hover:bg-white/10 py-2"
+              className="text-sm font-medium transition-colors hover:bg-white/10 py-2 rounded-lg"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t.passeios || 'Aventuras'}
             </Link>
             <Link
               href={`/${lang}`}
-              className="text-sm font-medium transition-colors hover:bg-white/10 py-2"
+              className="text-sm font-medium transition-colors hover:bg-white/10 py-2 rounded-lg"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t.guias || 'Guias'}
             </Link>
             <Link
               href={`/${lang}`}
-              className="text-sm font-medium transition-colors hover:bg-white/10 py-2"
+              className="text-sm font-medium transition-colors hover:bg-white/10 py-2 rounded-lg"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t.sobre || 'Sobre'}
             </Link>
-            <div className="w-full h-[1px] bg-white/10"></div>
-            <Link
-              href={`/${lang}`}
-              className="text-sm font-medium transition-colors hover:bg-white/10 py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {t.be_a_guide || 'Seja um Guia'}
-            </Link>
+            <div className="w-full h-[1px] bg-white/10 my-1"></div>
+            {user ? (
+              <Link
+                href={`/${lang}/dashboard`}
+                className="text-sm font-bold text-emerald-400 py-3 bg-white/5 rounded-lg mb-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t.dashboard}
+              </Link>
+            ) : (
+              <Link
+                href={`/${lang}/login`}
+                className="text-sm font-bold text-white py-3 bg-emerald-600/50 rounded-lg mb-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t.login}
+              </Link>
+            )}
+            <LanguageSwitcher currentLocale={lang} />
           </nav>
         </div>
       )}

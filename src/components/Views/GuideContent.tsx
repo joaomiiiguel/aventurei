@@ -32,7 +32,7 @@ export default async function GuideContent({ guide_id, lang }: GuideContentProps
     return (
         <Layout>
             {/* Hero Banner */}
-            <section className="relative bg-[#00382F] text-white pt-24 md:pt-32 pb-10 px-[5%] mt-[-8vh]">
+            <section className="relative bg-primary text-white pt-24 md:pt-32 pb-10 px-[5%] mt-[-8vh]">
                 <div className="absolute inset-0 opacity-20">
                     <img
                         src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&h=600&fit=crop"
@@ -72,7 +72,7 @@ export default async function GuideContent({ guide_id, lang }: GuideContentProps
                             </div>
                         </div>
                         <button
-                            className="bg-white text-[#00382F] hover:bg-white/90 font-bold text-lg px-10 py-3 rounded-full shadow-xl transition-transform hover:scale-105 hover:cursor-pointer"
+                            className="bg-white text-primary hover:bg-white/90 font-bold text-lg px-10 py-3 rounded-full shadow-xl transition-transform hover:scale-105 hover:cursor-pointer"
                         >
                             {t.contact_guide || 'Entrar em contato'}
                         </button>
@@ -98,7 +98,7 @@ export default async function GuideContent({ guide_id, lang }: GuideContentProps
                     <ul className="flex flex-col md:flex-row flex-wrap gap-x-6 gap-y-2">
                         {guide.certifications.map((cert, index) => (
                             <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#00382F]" />
+                                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                                 {cert}
                             </li>
                         ))}

@@ -19,7 +19,7 @@ export default function AdventureCard({ adventure }: AdventureCardProps) {
   const lang = params.lang as string;
 
   return (
-    <div className="adventure-card group bg-white text-[#00382F]">
+    <div className="adventure-card group bg-white text-primary">
       {/* Image */}
       <div className="relative overflow-hidden">
         <Image
@@ -27,7 +27,7 @@ export default function AdventureCard({ adventure }: AdventureCardProps) {
           alt={adventure.name}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           width={300}
-          height={200}  
+          height={200}
         />
         <div className="image-overlay absolute inset-0" />
         <div className="absolute left-3 top-3 bg-white/80 rounded-md">
@@ -64,7 +64,7 @@ export default function AdventureCard({ adventure }: AdventureCardProps) {
 
         <Link
           href={`/${lang}/${adventure.guideId}/${adventure.id}`}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-[#00382F] transition-colors hover:text-primary/80 btn-adventure w-full justify-center py-2"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-primary transition-colors hover:text-white/80 btn-adventure w-full justify-center py-2"
         >
           {t.view_more || 'Ver Mais'}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

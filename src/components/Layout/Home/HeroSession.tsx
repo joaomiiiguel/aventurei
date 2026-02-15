@@ -22,7 +22,7 @@ const HeroSession = () => {
   }, []);
 
   return (
-    <div className="relative w-full flex justify-center items-center text-center min-h-[50vh] bg-[#00382F] text-white mt-[-8vh]">
+    <div className="relative w-full flex justify-center items-center text-center min-h-[50vh] bg-primary text-white mt-[-8vh]">
       <div className="absolute inset-0 overflow-hidden">
         <AnimatePresence>
           <motion.div
@@ -42,14 +42,14 @@ const HeroSession = () => {
               quality={70}
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#00382F]/90 via-[#00382F]/20 to-[#00382F]/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-primary/30" />
           </motion.div>
         </AnimatePresence>
       </div>
 
 
       <div className="relative z-10 max-w-4xl px-6 flex flex-col items-center gap-6 mt-20">
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
@@ -60,8 +60,8 @@ const HeroSession = () => {
             {t.discover_next_adventure?.split(' ').slice(3).join(' ') || 'grande aventura'}
           </span>
         </motion.h1>
-        
-        <motion.p 
+
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
@@ -69,14 +69,14 @@ const HeroSession = () => {
         >
           {t.connect_with_best_guides || 'Conecte-se com os melhores guias e explore destinos incríveis com segurança e exclusividade.'}
         </motion.p>
-        
+
         <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ delay: 0.9 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9 }}
         >
-          <button 
-            className="bg-white text-[#00382F] hover:bg-white/90 font-bold text-lg px-10 py-3 rounded-full shadow-xl transition-transform hover:scale-105 hover:cursor-pointer"
+          <button
+            className="bg-white text-primary hover:bg-white/90 font-bold text-lg px-10 py-3 rounded-full shadow-xl transition-transform hover:scale-105 hover:cursor-pointer"
             onClick={() => document.getElementById('adventures-list')?.scrollIntoView({ behavior: 'smooth' })}
           >
             {t.explore_now || 'Explorar Agora'}

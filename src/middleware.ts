@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { locales, defaultLocale } from "@/lib/i18n-config";
+import { updateSession } from "@/utils/supabase/middleware";
+import { createServerClient } from "@supabase/ssr";
 
 // Helper to find the best locale match
 function getLocale(request: NextRequest) {
@@ -21,39 +23,85 @@ function getLocale(request: NextRequest) {
   return defaultLocale;
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
+  // 1. Update Supabase session
+  let response = await updateSession(request);
   const { pathname } = request.nextUrl;
 
-  // 1. Ignore internal paths and assets
+  // 2. Ignore internal paths and assets
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
     pathname.includes('.')
   ) {
-    return;
+    return response;
   }
 
-  // 2. Redirect old /home URLs to localized root
+  // 3. Redirect old /home URLs to localized root
   if (pathname.endsWith('/home')) {
     const newPath = pathname.replace(/\/home$/, '') || '/';
     request.nextUrl.pathname = newPath;
     return NextResponse.redirect(request.nextUrl);
   }
 
-  // 3. Check if pathname already has locale
+  // 4. Check if pathname already has locale
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  if (pathnameHasLocale) return;
+  let currentLocale: typeof locales[number] = defaultLocale;
+  if (pathnameHasLocale) {
+    currentLocale = pathname.split('/')[1] as typeof locales[number];
+  } else {
+    // Redirect to locale for paths without it
+    currentLocale = getLocale(request) as typeof locales[number];
+    const newUrl = new URL(`/${currentLocale}${pathname}`, request.url);
+    // Copy search params
+    request.nextUrl.searchParams.forEach((value, key) => {
+      newUrl.searchParams.set(key, value);
+    });
+    return NextResponse.redirect(newUrl);
+  }
 
-  // 4. Redirect to locale for paths without it
-  const locale = getLocale(request);
-  request.nextUrl.pathname = `/${locale}${pathname}`;
-  return NextResponse.redirect(request.nextUrl);
+  // 5. Route Protection
+  const protectedRoutes = ['/dashboard', '/profile'];
+  const isProtectedRoute = protectedRoutes.some(route => 
+    pathname === `/${currentLocale}${route}` || pathname.startsWith(`/${currentLocale}${route}/`)
+  );
+
+  if (isProtectedRoute) {
+    // Check auth status
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll()
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+            response = NextResponse.next({
+              request,
+            })
+            cookiesToSet.forEach(({ name, value, options }) =>
+              response.cookies.set(name, value, options)
+            )
+          },
+        },
+      }
+    )
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+      const loginUrl = new URL(`/${currentLocale}/login`, request.url);
+      loginUrl.searchParams.set('next', pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  return response;
 }
-
-
 
 export const config = {
   matcher: [

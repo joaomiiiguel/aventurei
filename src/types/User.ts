@@ -1,3 +1,5 @@
+import { Modality } from "./Place"
+
 export interface UserType {
     id?: string
     name?: string
@@ -13,4 +15,8 @@ export interface UserType {
     UF?: string
     short_description?: string
     refund_rules?: string
+    adventures?: any[]
+    reviewCount?: number
+    rating?: number
+    modalities?: Modality[]
 }

@@ -27,8 +27,8 @@ const HomeContent = () => {
           onModalitiesChange={setSelectedModalities}
         />
         <div id="adventures-list" className="flex items-center gap-2">
-          <Compass className="h-6 w-6 text-[#00382F]" />
-          <h2 className="mb-0 text-xl md:text-2xl font-bold text-[#00382F]">
+          <Compass className="h-6 w-6 text-primary" />
+          <h2 className="mb-0 text-xl md:text-2xl font-bold text-primary">
             {t.featured_adventures || 'Aventuras em Destaque'}
           </h2>
         </div>
