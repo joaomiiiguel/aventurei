@@ -4,7 +4,8 @@ import GuideCard from "@/components/Cards/GuideCard";
 import { useState, useEffect } from "react";
 import { filterGuides } from "@/utils/filterUtils";
 import { useTranslations } from "@/contexts/LocaleContext";
-import { MockDataService, Modality, Guide } from "@/data/mockData";
+import { MockDataService, Guide } from "@/data/mockData";
+import { Modality } from "@/types/Place";
 
 const ListGuiasSession = ({ searchQuery, selectedModalities }: { searchQuery: string, selectedModalities: Modality[] }) => {
     const t = useTranslations();
@@ -21,7 +22,7 @@ const ListGuiasSession = ({ searchQuery, selectedModalities }: { searchQuery: st
         };
         fetchAndFilter();
     }, [searchQuery, selectedModalities]);
-    
+
 
     return (
         <>

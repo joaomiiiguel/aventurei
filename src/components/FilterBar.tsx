@@ -4,8 +4,9 @@ import { Search, SlidersHorizontal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ModalityIcon } from "@/components/ModalityIcon";
-import { type Modality } from "../data/mockData";
+
 import { useTranslations } from "@/contexts/LocaleContext";
+import { Modality } from "@/types/Place";
 
 interface FilterBarProps {
   searchQuery: string;
@@ -90,8 +91,8 @@ export function FilterBar({
                 key={modality}
                 onClick={() => toggleModality(modality)}
                 className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-medium transition-all ${isSelected
-                    ? "bg-green-900/20 text-primary border border-primary"
-                    : "bg-primary text-white hover:bg-primary/80 hover:cursor-pointer border border-primary"
+                  ? "bg-green-900/20 text-primary border border-primary"
+                  : "bg-primary text-white hover:bg-primary/80 hover:cursor-pointer border border-primary"
                   }`}
               >
                 <ModalityIcon modality={modality} className="h-4 w-4" />

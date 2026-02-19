@@ -26,8 +26,7 @@ export const modalityLabels: Record<Modality, string> = {
 export type PlaceType = {
     id?: string;
     title: string
-    short_description: string
-    long_description: string
+    description: string
     city: string
     UF: string
     price?: number | null
@@ -40,5 +39,5 @@ export type PlaceType = {
     date_event?: string
     created_at?: string
     difficulty?: Difficulty
-    modalities?: Modality[]
+    modalities?: Modality | null
 }

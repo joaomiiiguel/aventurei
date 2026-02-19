@@ -9,17 +9,23 @@ import {
     Mountain, Star, TrendingUp, Users, Plus,
     MapPin, Calendar, Clock, Loader2,
     Pencil,
-    Trash2
+    Trash2,
+    Award,
+    Camera
 } from 'lucide-react'
+import toast, { Toaster } from 'react-hot-toast'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import Avatar from '@/components/Avatar'
-import { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
+import { useEffect, useState, useMemo } from 'react'
+import { useParams, useRouter } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
-import { Modality, PlaceType } from '@/types/Place'
-import { ModalityTag } from '@/components/ModalityTag'
+import { Modality, PlaceType, modalityLabels } from '@/types/Place'
 import Image from 'next/image'
+import { UserType } from '@/types/User'
+import { ProfileEditView } from '@/components/Views/ProfileEditView'
+import Modal from '@/components/Modal'
+import AdventureEditView from '@/components/Views/AdventureEditView'
 
 const Card = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
     <div className={`bg-white rounded-2xl shadow-sm ${className}`}>
@@ -34,12 +40,16 @@ const CardContent = ({ children, className = "" }: { children: React.ReactNode, 
 )
 
 export default function DashboardPage() {
-    const { user, signOut } = useAuth()
+    const { user, signOut, isLoading } = useAuth()
     const { lang } = useParams()
+    const router = useRouter()
     const t = useTranslations()
     const [places, setPlaces] = useState<PlaceType[]>([])
     const [isLoadingPlaces, setIsLoadingPlaces] = useState(true)
-    const supabase = createClient()
+    const supabase = useMemo(() => createClient(), [])
+    const [isEditProfileOpen, setIsEditProfileOpen] = useState(false)
+    const [isEditPlaceOpen, setIsEditPlaceOpen] = useState(false)
+    const [editingPlace, setEditingPlace] = useState<PlaceType | null>(null);
 
     useEffect(() => {
         async function fetchPlaces() {
@@ -47,6 +57,7 @@ export default function DashboardPage() {
                 const { data, error } = await supabase
                     .from('places')
                     .select('*')
+                    .eq('user_id', user?.id)
                     .order('created_at', { ascending: false })
 
                 if (error) throw error
@@ -59,9 +70,31 @@ export default function DashboardPage() {
         }
 
         fetchPlaces()
-    }, [supabase])
+    }, [supabase, user?.id])
 
-    if (!user) return null
+    if (isLoading || isLoadingPlaces) {
+        return (
+            <div className="flex min-h-screen items-center justify-center bg-background">
+                <div className="flex flex-col items-center gap-4">
+                    <Loader2 className="h-10 w-10 animate-spin text-primary" />
+                    <p className="text-muted-foreground animate-pulse">{t.loading}</p>
+                </div>
+            </div>
+        )
+    }
+
+    if (!user) {
+        return (
+            <div className="flex min-h-screen items-center justify-center bg-background">
+                <div className="text-center">
+                    <h1 className="text-xl font-bold mb-4">{t.unauthorized_access}</h1>
+                    <Link href={`/${lang}/login`} className="text-primary hover:underline">
+                        {t.go_to_login}
+                    </Link>
+                </div>
+            </div>
+        )
+    }
 
     const stats = [
         { label: t.stat_adventures, value: places?.length || 0, icon: Mountain, color: "text-primary" },
@@ -70,32 +103,59 @@ export default function DashboardPage() {
         { label: t.stat_modalities, value: user.modalities?.length || 0, icon: Users, color: "text-blue-500" },
     ];
 
+    const openNewAdventure = () => {
+        setEditingPlace(null);
+        setIsEditPlaceOpen(true);
+    };
+
+    const openEditAdventure = (adv: PlaceType) => {
+        setEditingPlace(adv);
+        setIsEditPlaceOpen(true);
+    };
+
     return (
         <Layout>
             <div className="min-h-screen bg-background">
                 {/* Header Section */}
-                <div className="bg-primary/50 border-b border-border px-[5%] mt-[-8vh] pt-[10vh]">
-                    <div className="container mx-auto py-8">
+                <div className="relative overflow-hidden bg-primary/60 px-[5%] mt-[-8vh] pt-[16vh] pb-8">
+                    {/* Background Banner Image */}
+                    <div className="absolute inset-0 z-0">
+                        <Image
+                            src={user.banner || "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2070"}
+                            alt={t.dashboard_banner_alt}
+                            fill
+                            className="object-cover opacity-20 grayscale-[20%]"
+                            priority
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/20 to-transparent" />
+                    </div>
+
+                    <div className="container mx-auto relative z-10">
                         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                             <div className="flex items-center gap-4">
-                                <Avatar src={user.avatar} name={user.name} />
+                                <div className="relative">
+                                    <Avatar src={user.avatar} name={user.name} />
+                                    {/* Subdued badge for quality score or status could go here */}
+                                </div>
                                 <div>
-                                    <h1 className="text-2xl font-bold text-foreground">
-                                        {t.welcome_user}{user.name || 'Aventureiro'}
+                                    <p className="text-sm font-medium text-white/80 uppercase tracking-wider mb-1">
+                                        {t.welcome_user}
+                                    </p>
+                                    <h1 className="text-3xl font-bold text-white">
+                                        {user.name || t.default_user_name}
                                     </h1>
-                                    <p className="text-muted-foreground text-sm">{user.email}</p>
                                 </div>
                             </div>
                             <div className="flex gap-3">
-                                <Link href={`/${lang}/${user.id}`} target='_blank'>
+                                <Link href={`/${lang}/${user.nickname}`} target='_blank'>
                                     <Button onClick={() => { }}>
                                         <Eye className="h-4 w-4 mr-2" />
                                         {t.view_public_profile}
                                     </Button>
                                 </Link>
-                                <Button onClick={() => signOut()} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
-                                    <LogOut className="h-4 w-4 mr-2" />
-                                    {t.logout}
+                                <Button onClick={() => setIsEditProfileOpen(true)} className="text-primary hover:bg-muted transition-colors">
+                                    <Pencil className="h-4 w-4 mr-2" />
+                                    {t.edit_profile}
                                 </Button>
                             </div>
                         </div>
@@ -124,7 +184,7 @@ export default function DashboardPage() {
                     <div className="space-y-6">
                         <div className="flex items-center justify-between">
                             <h2 className="text-2xl font-bold text-foreground">{t.my_adventures}</h2>
-                            <Button onClick={() => { }} className="bg-primary text-white">
+                            <Button onClick={() => openNewAdventure()} className="bg-primary text-white">
                                 <Plus className="h-4 w-4 mr-2" />
                                 {t.new_adventure}
                             </Button>
@@ -143,7 +203,7 @@ export default function DashboardPage() {
                                         </div>
                                         <h3 className="text-lg font-bold text-foreground">{t.no_adventures_message}</h3>
                                         <p className="text-sm text-muted-foreground">{t.create_first_adventure}</p>
-                                        <Button onClick={() => { }} className="bg-primary text-white">
+                                        <Button onClick={() => openNewAdventure()} className="bg-primary text-white">
                                             <Plus className="h-4 w-4 mr-2" />
                                             {t.new_adventure}
                                         </Button>
@@ -201,7 +261,7 @@ export default function DashboardPage() {
                                                     </Link>
                                                     <Button
                                                         className="gap-1.5"
-                                                        onClick={() => { }}
+                                                        onClick={() => openEditAdventure(adv)}
                                                     >
                                                         <Pencil className="h-3.5 w-3.5" />
                                                         {t.edit}
@@ -219,6 +279,17 @@ export default function DashboardPage() {
                     </div>
                 </div>
             </div>
+            <Modal isOpen={isEditProfileOpen} onClose={() => setIsEditProfileOpen(false)} title={t.edit_profile}>
+                <ProfileEditView onClose={() => setIsEditProfileOpen(false)} />
+            </Modal>
+            <Modal isOpen={isEditPlaceOpen} onClose={() => setIsEditPlaceOpen(false)} title={t.edit_adventure}>
+                <AdventureEditView onClose={() => setIsEditPlaceOpen(false)} editingAdventure={editingPlace} />
+            </Modal>
+            <Toaster position="bottom-right" />
         </Layout>
     )
 }
+function setAdventureForm(arg0: { name: string; modality: string; city: string | undefined; state: string | undefined; description: string; difficulty: string; duration: string; targetAudience: string; photos: never[] }) {
+    throw new Error('Function not implemented.')
+}
+

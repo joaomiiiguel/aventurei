@@ -59,7 +59,7 @@ export default function GuideCard({ guide }: GuideCardProps) {
       {/* Link */}
       <div className=" px-4 py-3">
         <Link
-          href={`/${lang}/${guide.id}`}
+          href={`/${lang}/${guide.nickname}`}
           className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-primary transition-colors hover:text-white/80 btn-adventure w-full justify-center py-2"
         >
           {t.guide_profile || "Ver perfil do guia"}

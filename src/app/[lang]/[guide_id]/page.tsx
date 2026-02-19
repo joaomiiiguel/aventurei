@@ -1,34 +1,48 @@
 import GuideContent from "@/components/Views/GuideContent"
-import { MockDataService } from "@/data/mockData";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Person, WithContext } from "schema-dts";
 import { locales } from "@/lib/i18n-config";
+import { createClient } from "@supabase/supabase-js";
 
-// Force static generation for these paths, but allow ISR for new ones if needed (fallback: 'blocking' is default for generateStaticParams in App Router if not specified, but we can be explicit if we want strict SSG)
-// export const dynamicParams = true; // Default
-
-export const revalidate = 86400; // 24 hours ISR
+// Force static generation for these paths, but allow ISR for new ones if needed
+export const revalidate = 3600; // 1 hour ISR
 
 interface PageProps {
     params: Promise<{ lang: string; guide_id: string }>;
 }
 
-export async function generateStaticParams() {
-    const guides = await MockDataService.getAllGuides();
+const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
-    // Generate params for all locales and all guides
+export async function generateStaticParams() {
+    // No need to await createClient here as we use the static instance defined above
+    const { data: users } = await supabase
+        .from('users')
+        .select('nickname')
+        .not('nickname', 'is', null);
+
+    if (!users) return [];
+
+    // Generate params for all locales and all guides with nicknames
     return locales.flatMap(lang =>
-        guides.map((guide) => ({
+        users.map((user) => ({
             lang,
-            guide_id: guide.id,
+            guide_id: user.nickname,
         }))
     );
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { guide_id } = await params;
-    const guide = await MockDataService.getGuideById(guide_id);
+
+    const { data: guide } = await supabase
+        .from('users')
+        .select('*')
+        .eq('nickname', guide_id)
+        .single();
 
     if (!guide) {
         return {
@@ -39,22 +53,27 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     return {
         title: `${guide.name} - Guia de Aventura | Aventurei`,
-        description: guide.bio.substring(0, 160),
+        description: (guide.short_description || "").substring(0, 160),
         openGraph: {
             title: `${guide.name} - Guia Profissional`,
-            description: guide.bio,
+            description: guide.short_description,
             images: [guide.avatar],
             type: "profile",
         },
         alternates: {
-            canonical: `/${guide.id}`, // Assuming canonical URL structure
+            canonical: `/${guide.nickname}`,
         }
     };
 }
 
 const GuidePage = async ({ params }: PageProps) => {
     const { guide_id, lang } = await params;
-    const guide = await MockDataService.getGuideById(guide_id);
+
+    const { data: guide } = await supabase
+        .from('users')
+        .select('*')
+        .eq('nickname', guide_id)
+        .single();
 
     if (!guide) {
         notFound();
@@ -65,16 +84,16 @@ const GuidePage = async ({ params }: PageProps) => {
         "@type": "Person",
         name: guide.name,
         image: guide.avatar,
-        description: guide.bio,
+        description: guide.short_description,
         jobTitle: "Guia de Aventura",
         address: {
             "@type": "PostalAddress",
-            addressLocality: guide.location
+            addressLocality: `${guide.city}, ${guide.UF}`
         },
         aggregateRating: {
             "@type": "AggregateRating",
-            ratingValue: guide.rating,
-            reviewCount: guide.reviewCount
+            ratingValue: guide.rating || 5,
+            reviewCount: guide.reviewCount || 0
         }
     };
 
@@ -84,7 +103,7 @@ const GuidePage = async ({ params }: PageProps) => {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <GuideContent guide_id={guide_id} lang={lang} />
+            <GuideContent guide={guide} lang={lang} />
         </>
     );
 };

@@ -6,9 +6,10 @@ import { useTranslations } from "@/contexts/LocaleContext";
 interface ModalityTagProps {
   modality: Modality;
   size?: "sm" | "md";
+  className?: string
 }
 
-export function ModalityTag({ modality, size = "md" }: ModalityTagProps) {
+export function ModalityTag({ modality, size = "md", className }: ModalityTagProps) {
   const t = useTranslations();
   const sizeClasses = size === "sm"
     ? "px-2 py-0.5 text-xs gap-1"
@@ -20,7 +21,7 @@ export function ModalityTag({ modality, size = "md" }: ModalityTagProps) {
   };
 
   return (
-    <span className={`tag-modality flex flex-row ${sizeClasses}`}>
+    <span className={`tag-modality flex flex-row ${sizeClasses} ${className}`}>
       <ModalityIcon modality={modality} className={size === "sm" ? "h-3 w-3" : "h-4 w-4"} />
       {getModalityLabel(modality)}
     </span>

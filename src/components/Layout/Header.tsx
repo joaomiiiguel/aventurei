@@ -1,5 +1,5 @@
 "use client";
-import { Menu, X, User as UserIcon } from "lucide-react";
+import { Menu, X, User as UserIcon, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -15,7 +15,7 @@ export function Header() {
   const t = useTranslations();
   const params = useParams();
   const lang = params.lang as string;
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +39,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-2 md:flex">
           <Link
             href={`/${lang}`}
             className="text-sm text-center font-medium hover:bg-white/20 px-4 py-2 rounded-full transition-all"
@@ -47,7 +47,7 @@ export function Header() {
             {t.sobre || 'Sobre'}
           </Link>
           <Link
-            href={`/${lang}`}
+            href={`/${lang}/se-un-guia`}
             className="text-sm text-center font-medium hover:bg-white/20 px-4 py-2 rounded-full transition-all"
           >
             {t.be_a_guide || 'Seja um Guia'}
@@ -68,6 +68,15 @@ export function Header() {
             >
               {t.login}
             </Link>
+          )}
+
+          {user && (
+            <button
+              onClick={() => signOut()}
+              className="text-sm text-center font-medium hover:bg-white/20 px-2 py-2 rounded-full transition-all hover:cursor-pointer"
+            >
+              <LogOut className="h-4 w-4" />
+            </button>
           )}
 
           <LanguageSwitcher currentLocale={lang} />
@@ -129,6 +138,18 @@ export function Header() {
               >
                 {t.login}
               </Link>
+            )}
+            {user && (
+              <button
+                onClick={() => {
+                  signOut();
+                  setMobileMenuOpen(false);
+                }}
+                className="text-sm font-bold text-red-400 py-3 bg-white/5 rounded-lg mb-2 flex items-center justify-center gap-2"
+              >
+                <LogOut className="h-4 w-4" />
+                {t.logout || 'Sair'}
+              </button>
             )}
             <LanguageSwitcher currentLocale={lang} />
           </nav>

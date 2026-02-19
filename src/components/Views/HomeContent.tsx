@@ -6,8 +6,8 @@ import { FilterBar } from "@/components/FilterBar";
 import ListAdventureSession from "@/components/Layout/Home/ListAdventureSession";
 import ListGuiasSession from "@/components/Layout/Home/ListGuiasSession";
 import { Compass } from "lucide-react";
-import { Modality } from "@/data/mockData";
 import { useTranslations } from "@/contexts/LocaleContext";
+import { Modality } from "@/types/Place";
 
 const HomeContent = () => {
   const [searchQuery, setSearchQuery] = useState("");

@@ -11,6 +11,7 @@ export interface UserType {
     created_at?: string
     profile?: string //admin - guide - client
     avatar?: string
+    banner?: string
     city?: string
     UF?: string
     short_description?: string
@@ -19,4 +20,7 @@ export interface UserType {
     reviewCount?: number
     rating?: number
     modalities?: Modality[]
+    experience?: string
+    certifications?: string[]
+    status?: boolean
 }

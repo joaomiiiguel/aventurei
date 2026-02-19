@@ -3,7 +3,7 @@ import { Difficulty, Modality } from "@/types/Place";
 export interface Guide {
   id: string;
   name: string;
-  slug: string;
+  nickname: string;
   photo: string;
   avatar: string; // for compatibility
   bio: string;    // for compatibility
@@ -43,7 +43,7 @@ export const guides: Guide[] = [
   {
     id: "g1",
     name: "Carlos Monteiro",
-    slug: "carlos-monteiro",
+    nickname: "carlos-monteiro",
     photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
     bio: "Guia experiente com mais de 15 anos conduzindo aventureiros pela Chapada Diamantina. Especialista em trilhas longas e camping selvagem.",
@@ -60,7 +60,7 @@ export const guides: Guide[] = [
   {
     id: "g2",
     name: "Marina Silva",
-    slug: "marina-silva",
+    nickname: "marina-silva",
     photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face",
     bio: "Bióloga e guia especializada em ecoturismo aquático. Apaixonada por conservação e educação ambiental.",
@@ -77,7 +77,7 @@ export const guides: Guide[] = [
   {
     id: "g3",
     name: "Pedro Araújo",
-    slug: "pedro-araujo",
+    nickname: "pedro-araujo",
     photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
     bio: "Especialista em esportes de aventura aquáticos. Instrutor certificado de rafting e canoagem.",
@@ -94,7 +94,7 @@ export const guides: Guide[] = [
   {
     id: "g4",
     name: "Ana Beatriz Costa",
-    slug: "ana-beatriz-costa",
+    nickname: "ana-beatriz-costa",
     photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
     bio: "Montanhista e ciclista apaixonada pela Serra do Cipó. Especialista em travessias e escaladas técnicas.",
@@ -252,7 +252,7 @@ export const adventures: Adventure[] = [
 ];
 
 export const getGuideById = (id: string): Guide | undefined => {
-  return guides.find((g) => g.id === id || g.slug === id);
+  return guides.find((g) => g.id === id || g.nickname === id);
 };
 
 export const getAdventureById = (id: string): Adventure | undefined => {
@@ -269,11 +269,11 @@ export const MockDataService = {
   },
 
   getGuideById: async (id: string): Promise<Guide | undefined> => {
-    return guides.find(g => g.id === id || g.slug === id);
+    return guides.find(g => g.id === id || g.nickname === id);
   },
   
   getGuideBySlug: async (slug: string): Promise<Guide | undefined> => {
-      return guides.find(g => g.slug === slug || g.id === slug);
+      return guides.find(g => g.nickname === slug || g.id === slug);
   },
 
   getAllAdventures: async (): Promise<Adventure[]> => {

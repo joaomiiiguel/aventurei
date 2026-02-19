@@ -1,6 +1,7 @@
 import { getDictionary } from "@/lib/dictionary";
 import { LocaleProvider } from "@/contexts/LocaleContext";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { ProgressProvider } from "@/components/ProgressProvider";
 import { ReactNode } from "react";
 
 interface LangLayoutProps {
@@ -24,9 +25,11 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
         }}
       />
       <AuthProvider>
-        <LocaleProvider dictionary={dictionary}>
-          {children}
-        </LocaleProvider>
+        <ProgressProvider>
+          <LocaleProvider dictionary={dictionary}>
+            {children}
+          </LocaleProvider>
+        </ProgressProvider>
       </AuthProvider>
     </>
   );

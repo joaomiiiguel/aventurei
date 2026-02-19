@@ -1,18 +1,21 @@
 export const Input = ({
-  type,
+  type = 'text',
   placeholder,
   value,
   onChange,
   className,
+  id,
 }: {
-  type: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: { target: { value: string } }) => void;
+  type?: string;
+  placeholder?: string;
+  value?: string;
+  onChange?: (e: { target: { value: string } }) => void;
   className?: string;
+  id?: string;
 }) => {
   return (
     <input
+      id={id}
       type={type}
       placeholder={placeholder}
       value={value}

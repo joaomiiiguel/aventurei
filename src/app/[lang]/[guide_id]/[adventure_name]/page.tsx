@@ -17,7 +17,7 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const adventures = await MockDataService.getAllAdventures();
-  
+
   // Generate params for all locales and all adventures
   return locales.flatMap(lang =>
     adventures.map((adventure) => ({
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "website",
     },
     alternates: {
-        canonical: `/guia/${adventure.guideId}/${adventure.slug}`,
+      canonical: `/${adventure.guideId}/${adventure.slug}`,
     }
   };
 }

@@ -3,7 +3,7 @@
 import { createContext, useContext, ReactNode } from 'react'
 
 // Type for our dictionary
-export type Dictionary = Record<string, string>
+export type Dictionary = Record<string, any>
 
 // Create context with empty object as default
 const LocaleContext = createContext<Dictionary>({})
@@ -35,11 +35,11 @@ export function LocaleProvider({ children, dictionary }: LocaleProviderProps) {
  */
 export function useTranslations() {
   const context = useContext(LocaleContext)
-  
+
   if (!context) {
     throw new Error('useTranslations must be used within a LocaleProvider')
   }
-  
+
   return context
 }
 
