@@ -282,7 +282,7 @@ export default function DashboardPage() {
             <Modal isOpen={isEditProfileOpen} onClose={() => setIsEditProfileOpen(false)} title={t.edit_profile}>
                 <ProfileEditView onClose={() => setIsEditProfileOpen(false)} />
             </Modal>
-            <Modal isOpen={isEditPlaceOpen} onClose={() => setIsEditPlaceOpen(false)} title={t.edit_adventure}>
+            <Modal isOpen={isEditPlaceOpen} onClose={() => setIsEditPlaceOpen(false)} title={!editingPlace ? t.create_adventure : t.edit_adventure}>
                 <AdventureEditView onClose={() => setIsEditPlaceOpen(false)} editingAdventure={editingPlace} />
             </Modal>
             <Toaster position="bottom-right" />

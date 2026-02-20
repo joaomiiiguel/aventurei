@@ -22,14 +22,14 @@ export async function generateStaticParams() {
   return locales.flatMap(lang =>
     adventures.map((adventure) => ({
       lang,
-      guide_id: adventure.guideId,
+      guide_id: adventure.nickname,
       adventure_name: adventure.slug,
     }))
   );
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { adventure_name } = await params;
+  const { adventure_name, lang } = await params;
   const adventure = await MockDataService.getAdventureBySlug(adventure_name);
 
   if (!adventure) {
@@ -49,7 +49,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "website",
     },
     alternates: {
-      canonical: `/${adventure.guideId}/${adventure.slug}`,
+      canonical: `/${lang}/${adventure.nickname}/${adventure.slug}`,
+      languages: {
+        'pt-br': `/pt-br/${adventure.nickname}/${adventure.slug}`,
+        'es': `/es/${adventure.nickname}/${adventure.slug}`,
+        'en': `/en/${adventure.nickname}/${adventure.slug}`,
+        'x-default': `/es/${adventure.nickname}/${adventure.slug}`,
+      },
     }
   };
 }

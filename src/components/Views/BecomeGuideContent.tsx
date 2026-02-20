@@ -43,7 +43,6 @@ interface FormErrors {
 
 const backgroundImages = ["/capa1.jpg", "/capa2.jpg", "/capa3.jpg"];
 
-
 const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
     const t = useTranslations();
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -532,24 +531,26 @@ const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                     type="submit"
+                                    aria-label={t.become_guide.form_submit}
                                     className="mt-8 bg-gold rounded-lg flex gap-4 text-white items-center justify-center h-12 text-lg font-bold hover:cursor-pointer hover:bg-gold/90 transition-all shadow-md hover:shadow-lg"
                                 >
                                     {t.become_guide.form_submit}
-                                    <ArrowRight className="h-5 w-5" />
+                                    <ArrowRight className="h-5 w-5" aria-hidden="true" />
                                 </motion.button>
                                 <span className="text-gray-500 text-xs text-center pt-4 italic">{t.become_guide.form_footer}</span>
                             </div>
                         </form>
                     </motion.div>
                 </div>
-                <div
-                    className="absolute inset-0 opacity-10"
-                    style={{
-                        backgroundImage: `url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=1400&fit=crop')`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                    }}
-                />
+                <div className="absolute inset-0 opacity-10">
+                    <Image
+                        src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=1400&fit=crop"
+                        alt="Background landscape"
+                        fill
+                        className="object-cover"
+                        sizes="100vw"
+                    />
+                </div>
 
             </section>
         </div>

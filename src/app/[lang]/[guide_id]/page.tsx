@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Person, WithContext } from "schema-dts";
 import { locales } from "@/lib/i18n-config";
 import { createClient } from "@supabase/supabase-js";
+import { getGuideById } from "@/data/mockData";
 
 // Force static generation for these paths, but allow ISR for new ones if needed
 export const revalidate = 3600; // 1 hour ISR
@@ -36,7 +37,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { guide_id } = await params;
+    const { guide_id, lang } = await params;
 
     const { data: guide } = await supabase
         .from('users')
@@ -61,22 +62,35 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             type: "profile",
         },
         alternates: {
-            canonical: `/${guide.nickname}`,
+            canonical: `/${lang}/${guide.nickname}`,
+            languages: {
+                'pt-br': `/pt-br/${guide.nickname}`,
+                'es': `/es/${guide.nickname}`,
+                'en': `/en/${guide.nickname}`,
+                'x-default': `/es/${guide.nickname}`,
+            },
         }
     };
 }
 
 const GuidePage = async ({ params }: PageProps) => {
     const { guide_id, lang } = await params;
+    let guide = null
 
-    const { data: guide } = await supabase
+    const { data: guideData } = await supabase
         .from('users')
         .select('*')
         .eq('nickname', guide_id)
         .single();
 
-    if (!guide) {
-        notFound();
+    if (!guideData) {
+        const userMocked = await getGuideById(guide_id)
+        if (!userMocked) {
+            notFound();
+        }
+        guide = userMocked
+    } else {
+        guide = guideData
     }
 
     const jsonLd: WithContext<Person> & { aggregateRating?: any } = {

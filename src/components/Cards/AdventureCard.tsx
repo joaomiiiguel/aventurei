@@ -13,7 +13,7 @@ interface AdventureCardProps {
 }
 
 export default function AdventureCard({ adventure }: AdventureCardProps) {
-  const guide = getGuideById(adventure.guideId);
+  const guide = getGuideById(adventure.nickname);
   const t = useTranslations();
   const params = useParams();
   const lang = params.lang as string;
@@ -63,7 +63,7 @@ export default function AdventureCard({ adventure }: AdventureCardProps) {
         )}
 
         <Link
-          href={`/${lang}/${adventure.guideId}/${adventure.id}`}
+          href={`/${lang}/${adventure.nickname}/${adventure.id}`}
           className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-primary transition-colors hover:text-white/80 btn-adventure w-full justify-center py-2"
         >
           {t.view_more || 'Ver Mais'}

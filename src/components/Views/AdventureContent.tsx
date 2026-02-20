@@ -16,7 +16,7 @@ interface AdventureContentProps {
 export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
   const t = useTranslations();
   const adventure = getAdventureById(slug || "");
-  const guide = adventure ? getGuideById(adventure.guideId) : undefined;
+  const guide = adventure ? getGuideById(adventure.nickname) : undefined;
   const [selectedPhoto, setSelectedPhoto] = useState(0);
 
   if (!adventure) {

@@ -14,12 +14,8 @@ interface GuideContentProps {
 }
 
 export default async function GuideContent({ guide, lang }: GuideContentProps) {
-    const guideAdventures = getAdventuresByGuide(guide.id || "");
+    const guideAdventures = await getAdventuresByGuide(guide.nickname || "");
     const t = await getDictionary(lang);
-
-    const handleContactGuide = () => {
-        console.log('Contacting guide:', guide.name);
-    };
 
     return (
         <Layout>

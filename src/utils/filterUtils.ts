@@ -1,4 +1,5 @@
-import { Adventure, Guide, Modality } from "@/data/mockData";
+import { Modality } from "@/types/Place";
+import { Adventure, Guide } from "@/data/mockData";
 
 export const filterAdventures = (
   adventures: Adventure[],

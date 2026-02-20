@@ -1,9 +1,10 @@
 "use client";
-import { adventures, type Modality } from "@/data/mockData";
+import { adventures } from "@/data/mockData";
 import AdventureCard from "@/components/Cards/AdventureCard";
 import { useMemo } from "react";
 import { filterAdventures } from "@/utils/filterUtils";
 import { useTranslations } from "@/contexts/LocaleContext";
+import { Modality } from "@/types/Place";
 
 interface ListAdventureSessionProps {
   searchQuery: string;
