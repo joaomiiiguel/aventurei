@@ -12,8 +12,8 @@ export async function generateMetadata({ params }: LangPageProps): Promise<Metad
   const dict = await getDictionary(lang);
 
   return {
-    title: dict.metadata_title || "Aventurei - Descubra sua próxima aventura",
-    description: dict.metadata_description || "Conecte-se com os melhores guias e explore destinos incríveis com segurança e exclusividade.",
+    title: dict.metadata_title || "Aventurei - Descubre tu próxima aventura",
+    description: dict.metadata_description || 'Conéctate con los mejores guías locales y explora destinos increíbles en España con seguridad y exclusividad.',
     alternates: {
       canonical: `/${lang}`,
       languages: {
@@ -22,7 +22,29 @@ export async function generateMetadata({ params }: LangPageProps): Promise<Metad
         'en': '/en',
         'x-default': '/es',
       },
-    }
+    },
+    openGraph: {
+      title: dict.metadata_title,
+      description: dict.metadata_description,
+      url: `https://aventurei.es/${lang}`,
+      siteName: 'Aventurei',
+      locale: lang === 'pt-br' ? 'pt_BR' : lang === 'en' ? 'en_US' : 'es_ES',
+      type: 'website',
+      images: [
+        {
+          url: '/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Aventurei',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: dict.metadata_title,
+      description: dict.metadata_description,
+      images: ['/og-image.jpg'],
+    },
   };
 }
 

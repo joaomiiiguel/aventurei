@@ -22,7 +22,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
                 'en': '/en/sobre',
                 'x-default': '/es/sobre',
             },
-        }
+        },
+        openGraph: {
+            title: about?.sobre_title,
+            description: about?.sobre_p1?.substring(0, 160),
+            url: `https://aventurei.es/${lang}/sobre`,
+            siteName: 'Aventurei',
+            locale: lang === 'pt-br' ? 'pt_BR' : lang === 'en' ? 'en_US' : 'es_ES',
+            type: 'website',
+            images: [
+                {
+                    url: '/og-image.jpg',
+                    width: 1200,
+                    height: 630,
+                    alt: 'Sobre Aventurei',
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: about?.sobre_title,
+            description: about?.sobre_p1?.substring(0, 160),
+            images: ['/og-image.jpg'],
+        },
     };
 }
 
