@@ -13,13 +13,17 @@ import {
     CircleX,
     CircleCheckBig
 } from "lucide-react";
-import { modalityLabels } from "@/types/Place";
+import { Modality, modalityLabels } from "@/types/Place";
 import { useTranslations } from "@/contexts/LocaleContext";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Input } from "../ui/input";
 import Select from "../ui/select";
 import Label from "../ui/label";
+import { useSupabaseClient } from "@/utils/supabase/client";
+import toast from "react-hot-toast";
+import { useMemo } from "react";
+
 
 interface BecomeGuideContentProps {
     lang: string;
@@ -48,9 +52,13 @@ const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isFirstRender, setIsFirstRender] = useState(true);
     const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [city, setCity] = useState('')
     const [activity, setActivity] = useState('')
+    const [loading, setLoading] = useState(false);
+    const supabase = useSupabaseClient();
+
 
     // ── Data structures using translations ──────────────────────────────────
     const pains = [
@@ -132,6 +140,39 @@ const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
 
         return () => clearInterval(interval);
     }, []);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+
+        try {
+            const { error } = await supabase.from("leads_users").insert([
+                {
+                    name,
+                    email,
+                    phone,
+                    city,
+                    activity,
+                },
+            ]);
+
+            if (error) throw error;
+
+            toast.success(t.signup_success || "Solicitação enviada com sucesso!");
+            // Reset form
+            setName('');
+            setEmail('');
+            setPhone('');
+            setCity('');
+            setActivity('');
+        } catch (error: any) {
+            console.error("Error submitting lead:", error);
+            toast.error(error.message || "Erro ao enviar solicitação.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
 
     return (
         <div>
@@ -478,7 +519,8 @@ const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
                         className="mx-auto bg-white text-primary rounded-lg w-full md:w-1/2 shadow-2xl py-4 border-t-8 border-gold px-10"
                     >
                         <h2 className="text-2xl font-bold mb-8">{t.become_guide.form_title}</h2>
-                        <form onSubmit={(e) => e.preventDefault()} id="formulario">
+                        <form onSubmit={handleSubmit} id="formulario">
+
                             <div className="flex flex-col gap-4 mt-4">
                                 <motion.div
                                     initial={{ opacity: 0, y: 10 }}
@@ -494,6 +536,17 @@ const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
                                 <motion.div
                                     initial={{ opacity: 0, y: 10 }}
                                     whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.45 }}
+                                    className="space-y-2"
+                                >
+                                    <Label>
+                                        {t.email}
+                                    </Label>
+                                    <Input type="email" placeholder={t.email_placeholder} value={email} onChange={(e) => setEmail(e.target.value)} />
+                                </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.5 }}
                                     className="space-y-2"
                                 >
@@ -502,6 +555,7 @@ const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
                                     </Label>
                                     <Input placeholder={t.become_guide.form_phone} value={phone} onChange={(e) => setPhone(e.target.value)} />
                                 </motion.div>
+
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
@@ -511,6 +565,7 @@ const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
                                     >
                                         <Label>{t.become_guide.form_city}</Label>
                                         <Input placeholder={t.become_guide.form_city} value={city} onChange={(e) => setCity(e.target.value)} />
+
                                     </motion.div>
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
@@ -520,9 +575,12 @@ const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
                                     >
                                         <Label>{t.become_guide.form_modality}</Label>
                                         <Select
-                                            options={Object.entries(modalityLabels).map(([key, label]) => ({ value: key, label }))}
+                                            options={Object.keys(modalityLabels).map((key) => ({
+                                                value: key,
+                                                label: t[`modality_${key.replace('-', '_')}`] || key
+                                            }))}
                                             value={activity}
-                                            onChange={(v) => setActivity(v)}
+                                            onChange={(v) => setActivity(v as Modality)}
                                         />
                                     </motion.div>
                                 </div>
@@ -531,12 +589,14 @@ const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                     type="submit"
+                                    disabled={loading || !name || !email || !phone || !city || !activity}
                                     aria-label={t.become_guide.form_submit}
-                                    className="mt-8 bg-gold rounded-lg flex gap-4 text-white items-center justify-center h-12 text-lg font-bold hover:cursor-pointer hover:bg-gold/90 transition-all shadow-md hover:shadow-lg"
+                                    className="mt-8 bg-gold rounded-lg flex gap-4 text-white items-center justify-center h-12 text-lg font-bold hover:cursor-pointer hover:bg-gold/90 transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    {t.become_guide.form_submit}
-                                    <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                                    {loading ? "..." : t.become_guide.form_submit}
+                                    {!loading && <ArrowRight className="h-5 w-5" aria-hidden="true" />}
                                 </motion.button>
+
                                 <span className="text-gray-500 text-xs text-center pt-4 italic">{t.become_guide.form_footer}</span>
                             </div>
                         </form>

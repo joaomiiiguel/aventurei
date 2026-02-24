@@ -40,12 +40,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${adventure.name} - Aventura Inesquecível | Aventurei`,
+    title: `${adventure.title} - Aventura Inesquecível | Aventurei`,
     description: adventure.description.substring(0, 160),
     openGraph: {
-      title: adventure.name,
+      title: adventure.title,
       description: adventure.description,
-      images: [adventure.imageUrl],
+      images: [adventure.cover_img || ""],
       type: "website",
     },
     alternates: {
@@ -71,20 +71,15 @@ const AdventurePage = async ({ params }: PageProps) => {
   const jsonLd: WithContext<Product> = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: adventure.name,
-    image: adventure.imageUrl,
+    name: adventure.title,
+    image: adventure.cover_img || "",
     description: adventure.description,
     offers: {
       "@type": "Offer",
-      price: adventure.price,
+      price: adventure.price || 0,
       priceCurrency: "BRL",
       availability: "https://schema.org/InStock"
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: adventure.rating,
-      reviewCount: adventure.reviewCount
-    }
   };
 
   return (

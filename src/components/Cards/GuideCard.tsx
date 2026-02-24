@@ -18,7 +18,7 @@ export default function GuideCard({ guide }: GuideCardProps) {
   const lang = params.lang as string;
 
   return (
-    <div className="adventure-card group bg-white text-primary">
+    <div className="adventure-card flex flex-col justify-between bg-white text-primary">
       {/* Header with photo */}
       <div className="relative flex items-center gap-4 p-4 pb-3">
         <Image
@@ -57,7 +57,7 @@ export default function GuideCard({ guide }: GuideCardProps) {
       </div>
 
       {/* Link */}
-      <div className=" px-4 py-3">
+      <div className=" px-4 pb-3">
         <Link
           href={`/${lang}/${guide.nickname}`}
           className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-primary transition-colors hover:text-white/80 btn-adventure w-full justify-center py-2"

@@ -66,7 +66,7 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-1 w-40 bg-white/20 rounded-xl shadow-lg py-1 z-50 overflow-hidden">
+        <div className="absolute right-0 mt-1 w-40 bg-primary rounded-xl shadow-lg py-1 z-50 overflow-hidden">
           {locales.map((locale) => (
             <button
               key={locale}

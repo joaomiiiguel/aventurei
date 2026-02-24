@@ -6,9 +6,10 @@ import Textarea from "../ui/textarea";
 import { useEffect, useMemo, useState } from "react";
 import { Difficulty, Modality, modalityLabels, PlaceType } from "@/types/Place";
 import Select from "../ui/select";
-import { createClient } from "@/utils/supabase/client";
 import toast from "react-hot-toast";
 import { useTranslations } from "@/contexts/LocaleContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { useSupabaseClient } from "@/utils/supabase/client";
 
 interface AdventureEditViewProps {
   onClose: () => void
@@ -16,25 +17,26 @@ interface AdventureEditViewProps {
 }
 const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps) => {
   const t = useTranslations()
-  const supabase = useMemo(() => createClient(), [])
+  const { user } = useAuth()
+  const supabase = useSupabaseClient()
   const [adventureForm, setAdventureForm] = useState<PlaceType>({
     title: editingAdventure?.title || "",
     description: editingAdventure?.description || "",
     city: editingAdventure?.city || "",
     UF: editingAdventure?.UF || "",
     price: editingAdventure?.price || null,
-    nick_partner: editingAdventure?.nick_partner || "",
+    nickname: editingAdventure?.nickname || "",
     cover_img: editingAdventure?.cover_img || "",
     accessibility: editingAdventure?.accessibility || "",
     min_age: editingAdventure?.min_age || 4,
     booking_mode: editingAdventure?.booking_mode || true,
     gallery: editingAdventure?.gallery || [],
     difficulty: editingAdventure?.difficulty || "moderate" as Difficulty,
-    modalities: editingAdventure?.modalities || null
+    modalities: editingAdventure?.modalities || null,
+    slug: editingAdventure?.slug || "",
   });
 
   const handleAdventureSave = async () => {
-    console.log(adventureForm)
     if (editingAdventure?.id) {
       // update
       const { error } = await supabase.from("places").update(adventureForm).eq("id", editingAdventure.id)
@@ -44,7 +46,7 @@ const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps
       toast.success(t.adventure_updated_success)
     } else {
       // create
-      const { error } = await supabase.from("places").insert(adventureForm)
+      const { error } = await supabase.from("places").insert({ ...adventureForm, slug: adventureForm.title.toLowerCase().replace(/ /g, "-"), nickname: user?.id })
       if (error) {
         console.error("Error creating adventure:", error)
       }

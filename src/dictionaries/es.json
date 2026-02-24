@@ -1,4 +1,5 @@
 {
+  "display_only_notice": "IMPORTANTE: Los guías y aventuras mostrados son ficticios para fines de demostración. Este es un entorno temporal hasta el lanzamiento oficial de la plataforma.",
   "home": "Inicio",
   "guias": "Guías",
   "passeios": "Paseos",
@@ -214,5 +215,36 @@
     "form_modality": "Modalidade Principal",
     "form_submit": "Solicitar acceso",
     "form_footer": "Tus datos están seguros. Solo los usaremos para contactarte."
+  },
+  "about_page": {
+    "sobre_title": "Sobre Aventurei España",
+    "sobre_p1": "Aventurei España nació para conectar personas apasionadas por la naturaleza, la cultura y la aventura con los mejores destinos e experiencias al aire libre del país. En un territorio tan diverso como España — con montañas imponentes, parques naturales preservados, pueblos históricos y un litoral espectacular — creemos que explorar es más que viajar: es vivir con propósito.",
+    "sobre_p2": "Somos una plataforma dedicada al ecoturismo y al turismo de experiencia. Facilitamos la conexión entre viajeros y guías locales cualificados, ofreciendo información detallada sobre destinos, actividades y niveles de dificultad. Del trekking en las montañas a las rutas de kayak, del cicloturismo a las experiencias culturales en comunidades locales, Aventurei hace que el descubrimiento sea sencillo, seguro e inspirador.",
+    "mission_title": "Nuestra Misión",
+    "mission_desc": "Promover experiencias auténticas en contacto con la naturaleza, valorando la sostenibilidad, el respeto al medio ambiente y el desarrollo de las economías locales.",
+    "vision_title": "Nuestra Visión",
+    "vision_desc": "Ser la principal plataforma de ecoturismo en España, reconocida por conectar personas con experiencias transformadoras y por fortalecer una red de guías comprometidos con la calidad, seguridad y conciencia ambiental.",
+    "values_title": "Nuestros Valores",
+    "items": [
+      "Sostenibilidad — Incentivamos prácticas responsables y de bajo impacto ambiental.",
+      "Comunidad — Fortalecemos a los guías locales y promovemos conexiones humanas reales.",
+      "Aventura con Seguridad — Experiencias planificadas con responsabilidad y profesionalismo.",
+      "Conciencia Ambiental — Explorar preservando, siempre."
+    ],
+    "sobre_footer_1": "En Aventurei, creemos que cada sendero recorrido, cada montaña escalada y cada río explorado es una oportunidad de reconexión — con la naturaleza, con el mundo y con uno mismo.",
+    "sobre_footer_2": "Bienvenidos a Aventurei España.",
+    "sobre_footer_3": "Tu próxima aventura comienza aquí."
+  },
+  "how_it_works_section": {
+    "title": "¿Cómo funciona Aventurei?",
+    "description": "Descubrir nuevas aventuras en España nunca ha sido tan sencillo. Aventurei te conecta con los mejores destinos y guías locales para vivir experiencias auténticas en plena naturaleza.",
+    "step1_title": "Explora Destinos y Actividades",
+    "step1_description": "Descubre rutas, escalada y mucho más. Utiliza filtros para encontrar la aventura perfecta para ti.",
+    "step2_title": "Elige a tu Guía",
+    "step2_description": "Conoce a los guias locales, consulta descripciones detalladas de las actividades, el nivel de experiencia requerido e información importante para prepararte con seguridad.",
+    "step3_title": "Reserva con Facilidad",
+    "step3_description": "Contacta con el guía para resolver dudas y realizar tu reserva de forma práctica y segura.",
+    "step4_title": "Vive la Experiencia",
+    "step4_description": "Reúnete con tu guía en el lugar acordado y disfruta de una experiencia auténtica, segura y en conexión con la naturaleza."
   }
 }

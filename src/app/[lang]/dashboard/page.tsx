@@ -13,19 +13,19 @@ import {
     Award,
     Camera
 } from 'lucide-react'
-import toast, { Toaster } from 'react-hot-toast'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import Avatar from '@/components/Avatar'
 import { useEffect, useState, useMemo } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import { createClient } from '@/utils/supabase/client'
+import { useSupabaseClient } from '@/utils/supabase/client'
 import { Modality, PlaceType, modalityLabels } from '@/types/Place'
 import Image from 'next/image'
 import { UserType } from '@/types/User'
 import { ProfileEditView } from '@/components/Views/ProfileEditView'
 import Modal from '@/components/Modal'
 import AdventureEditView from '@/components/Views/AdventureEditView'
+import { MockDataService } from '@/data/mockData'
 
 const Card = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
     <div className={`bg-white rounded-2xl shadow-sm ${className}`}>
@@ -46,13 +46,20 @@ export default function DashboardPage() {
     const t = useTranslations()
     const [places, setPlaces] = useState<PlaceType[]>([])
     const [isLoadingPlaces, setIsLoadingPlaces] = useState(true)
-    const supabase = useMemo(() => createClient(), [])
+    const supabase = useSupabaseClient()
     const [isEditProfileOpen, setIsEditProfileOpen] = useState(false)
     const [isEditPlaceOpen, setIsEditPlaceOpen] = useState(false)
     const [editingPlace, setEditingPlace] = useState<PlaceType | null>(null);
 
     useEffect(() => {
         async function fetchPlaces() {
+            if (user?.email === 'test@mail.com') {
+                const mockPlaces = await MockDataService.getAllAdventures()
+                setPlaces(mockPlaces)
+                setIsLoadingPlaces(false)
+                return
+            }
+
             try {
                 const { data, error } = await supabase
                     .from('places')
@@ -69,8 +76,12 @@ export default function DashboardPage() {
             }
         }
 
-        fetchPlaces()
-    }, [supabase, user?.id])
+        if (user?.id) {
+            fetchPlaces()
+        } else if (!isLoading) {
+            setIsLoadingPlaces(false)
+        }
+    }, [supabase, user?.id, user?.email, isLoading])
 
     if (isLoading || isLoadingPlaces) {
         return (
@@ -96,11 +107,13 @@ export default function DashboardPage() {
         )
     }
 
+    const isTestUser = user?.email === 'teste@mail.com';
+
     const stats = [
         { label: t.stat_adventures, value: places?.length || 0, icon: Mountain, color: "text-primary" },
-        { label: t.stat_reviews, value: user.reviewCount || 0, icon: Star, color: "text-gold" },
-        { label: t.stat_average_rating, value: user.rating?.toFixed(1) || "0.0", icon: TrendingUp, color: "text-emerald-500" },
-        { label: t.stat_modalities, value: user.modalities?.length || 0, icon: Users, color: "text-blue-500" },
+        { label: t.stat_reviews, value: isTestUser ? 145 : (user.reviewCount || 0), icon: Star, color: "text-gold" },
+        { label: t.stat_average_rating, value: isTestUser ? "4.9" : (user.rating?.toFixed(1) || "0.0"), icon: TrendingUp, color: "text-emerald-500" },
+        { label: t.stat_modalities, value: isTestUser ? 3 : (user.modalities?.length || 0), icon: Users, color: "text-blue-500" },
     ];
 
     const openNewAdventure = () => {
@@ -285,7 +298,6 @@ export default function DashboardPage() {
             <Modal isOpen={isEditPlaceOpen} onClose={() => setIsEditPlaceOpen(false)} title={!editingPlace ? t.create_adventure : t.edit_adventure}>
                 <AdventureEditView onClose={() => setIsEditPlaceOpen(false)} editingAdventure={editingPlace} />
             </Modal>
-            <Toaster position="bottom-right" />
         </Layout>
     )
 }

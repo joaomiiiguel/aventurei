@@ -1,4 +1,5 @@
 {
+  "display_only_notice": "IMPORTANT: The guides and adventures displayed are fictional for demonstration purposes. This is a temporary environment until the platform's official launch.",
   "home": "Home",
   "guias": "Guides",
   "passeios": "Adventures",
@@ -214,5 +215,36 @@
     "form_modality": "Primary Modality",
     "form_submit": "Request access",
     "form_footer": "Your data is safe. We will only use it to contact you."
+  },
+  "about_page": {
+    "sobre_title": "About Aventurei Spain",
+    "sobre_p1": "Aventurei Spain was born to connect people passionate about nature, culture, and adventure with the best destinations and outdoor experiences in the country. In a territory as diverse as Spain — with imposing mountains, preserved natural parks, historical villages, and a spectacular coastline — we believe that exploring is more than traveling: it's living with purpose.",
+    "sobre_p2": "We are a platform dedicated to ecotourism and experience tourism. We facilitate the connection between travelers and qualified local guides, offering detailed information about destinations, activities, and difficulty levels. From mountain trekking to kayak routes, from cycle tourism to cultural experiences in local communities, Aventurei makes discovery simple, safe, and inspiring.",
+    "mission_title": "Our Mission",
+    "mission_desc": "To promote authentic experiences in contact with nature, valuing sustainability, respect for the environment, and the development of local economies.",
+    "vision_title": "Our Vision",
+    "vision_desc": "To be the leading ecotourism platform in Spain, recognized for connecting people with transformative experiences and for strengthening a network of guides committed to quality, safety, and environmental awareness.",
+    "values_title": "Our Values",
+    "items": [
+      "Sustainability — We encourage responsible and low-impact environmental practices.",
+      "Community — We strengthen local guides and promote real human connections.",
+      "Adventure with Safety — Experiences planned with responsibility and professionalism.",
+      "Environmental Awareness — Explore while preserving, always."
+    ],
+    "sobre_footer_1": "At Aventurei, we believe that every trail traveled, every mountain climbed, and every river explored is an opportunity for reconnection — with nature, with the world, and with oneself.",
+    "sobre_footer_2": "Welcome to Aventurei Spain.",
+    "sobre_footer_3": "Your next adventure starts here."
+  },
+  "how_it_works_section": {
+    "title": "How Aventurei Works",
+    "description": "Discovering new adventures in Spain has never been simpler. Aventurei connects you with the best destinations and local guides to live authentic experiences in nature.",
+    "step1_title": "Explore Destinations and Activities",
+    "step1_description": "Discover trails, climbing and more. Use filters to find the perfect adventure for you.",
+    "step2_title": "Choose Your Guide",
+    "step2_description": "Meet local guides, see detailed activity descriptions, required experience levels, and important information to prepare safely.",
+    "step3_title": "Book with Ease",
+    "step3_description": "Contact the guide to ask questions and make your booking safely.",
+    "step4_title": "Live the Experience",
+    "step4_description": "Meet your guide at the agreed location and enjoy an authentic, safe, and nature-connected experience."
   }
 }

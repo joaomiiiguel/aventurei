@@ -15,7 +15,7 @@ interface AdventureContentProps {
 
 export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
   const t = useTranslations();
-  const adventure = getAdventureById(slug || "");
+  const adventure = getAdventureById(slug);
   const guide = adventure ? getGuideById(adventure.nickname) : undefined;
   const [selectedPhoto, setSelectedPhoto] = useState(0);
 
@@ -46,14 +46,14 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
       </div>
 
       {/* Photo Gallery */}
-      <section className="flex flex-col w-full pb-8 px-[5%] gap-4">
+      <section className="flex flex-col w-full pb-8 px-[5%] 2xl:px-[15%] gap-4">
 
         {/* Main Photo */}
         <div className="lg:col-span-2">
           <div className="aspect-[16/10] h-[60vh] w-full overflow-hidden rounded-2xl">
             <img
-              src={adventure.photos[selectedPhoto]}
-              alt={adventure.name}
+              src={adventure.gallery?.[selectedPhoto]}
+              alt={adventure.title}
               className="h-full w-full object-cover"
             />
           </div>
@@ -61,7 +61,7 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
 
         {/* Thumbnails */}
         <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-          {adventure.photos.map((photo, index) => (
+          {adventure.gallery?.map((photo, index) => (
             <button
               key={index}
               onClick={() => setSelectedPhoto(index)}
@@ -72,7 +72,7 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
             >
               <img
                 src={photo}
-                alt={`${adventure.name} - ${t.photo || "Foto"} ${index + 1}`}
+                alt={`${adventure.title} - ${t.photo || "Foto"} ${index + 1}`}
                 className="h-full w-full object-cover"
               />
             </button>
@@ -81,33 +81,32 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
       </section>
 
       {/* Content */}
-      <section className="flex pb-12 px-[5%] text-primary">
+      <section className="flex pb-12 px-[5%] 2xl:px-[15%] text-primary">
         <div className="grid gap-8 lg:grid-cols-3 w-full">
           {/* Main Info */}
           <div className="lg:col-span-2">
             {/* Header */}
             <div className="mb-6">
               <h1 className="mb-3 text-3xl font-extrabold md:text-4xl">
-                {adventure.name}
+                {adventure.title}
               </h1>
               <div className="flex items-center gap-1">
                 <MapPin className="h-4 w-4" />
-                <span>{adventure.city}, {adventure.state}</span>
+                <span>{adventure.city}, {adventure.UF}</span>
               </div>
             </div>
 
             {/* Quick Info Cards */}
             <div className="mb-8 grid grid-cols-3 gap-4">
               <div className="rounded-xl bg-white/50 p-4 text-center flex flex-col items-center justify-center">
-                <ModalityTag modality={adventure.modality} />
+                <ModalityTag modality={adventure.modalities || 'trilha'} />
                 <p className="text-xs text-gray-400">{t.modality || "Modalidade"}</p>
               </div>
               <div className="rounded-xl bg-white/50 p-4 text-center flex flex-col items-center justify-center">
-                <p className="text-sm font-bold">{adventure.targetAudience}</p>
                 <p className="text-xs text-gray-400">{t.target_audience || "Público"}</p>
               </div>
               <div className="rounded-xl bg-white/50 p-4 text-center flex flex-col items-center justify-center">
-                <DifficultyBadge difficulty={adventure.difficulty} />
+                <DifficultyBadge difficulty={adventure.difficulty || 'fácil'} />
                 <p className="text-xs text-gray-400">{t.difficulty || "Dificuldade"}</p>
               </div>
             </div>

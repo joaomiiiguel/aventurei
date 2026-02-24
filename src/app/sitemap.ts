@@ -25,15 +25,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
-      defaults: { 'pt-br': 'pt-br/sobre', 'es': 'es/sobre', 'en': 'en/about' },
+      defaults: { 'pt-br': 'pt-br/sobre', 'es': 'es/sobre', 'en': 'en/sobre' },
       priority: 0.7,
     },
     {
-      defaults: { 'pt-br': 'pt-br/contato', 'es': 'es/contacto', 'en': 'en/contact' },
-      priority: 0.7,
-    },
-    {
-      defaults: { 'pt-br': 'pt-br/seja-um-guia', 'es': 'es/se-un-guia', 'en': 'en/become-a-guide' },
+      defaults: { 'pt-br': 'pt-br/se-un-guia', 'es': 'es/se-un-guia', 'en': 'en/se-un-guia' },
       priority: 0.8,
     },
   ];

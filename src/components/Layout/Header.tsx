@@ -41,7 +41,7 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-2 md:flex">
           <Link
-            href={`/${lang}`}
+            href={`/${lang}/sobre`}
             className="text-sm text-center font-medium hover:bg-white/20 px-4 py-2 rounded-full transition-all"
           >
             {t.sobre || 'Sobre'}
@@ -98,60 +98,59 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="absolute right-10 top-14 w-1/2 bg-primary md:hidden text-white text-center rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+        <div className="absolute right-10 top-14 w-1/2 bg-primary md:hidden text-white text-center rounded-2xl shadow-2xl border border-white/10">
           <nav className="flex flex-col gap-2 p-4">
             <Link
-              href={`/${lang}`}
-              className="text-sm font-medium transition-colors hover:bg-white/10 py-2 rounded-lg"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {t.passeios || 'Aventuras'}
-            </Link>
-            <Link
-              href={`/${lang}`}
-              className="text-sm font-medium transition-colors hover:bg-white/10 py-2 rounded-lg"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {t.guias || 'Guias'}
-            </Link>
-            <Link
-              href={`/${lang}`}
+              href={`/${lang}/sobre`}
               className="text-sm font-medium transition-colors hover:bg-white/10 py-2 rounded-lg"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t.sobre || 'Sobre'}
             </Link>
+            <Link
+              href={`/${lang}/se-un-guia`}
+              className="text-sm font-medium transition-colors hover:bg-white/10 py-2 rounded-lg"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {t.be_a_guide || 'Seja um Guia'}
+            </Link>
+
             <div className="w-full h-[1px] bg-white/10 my-1"></div>
+
             {user ? (
               <Link
                 href={`/${lang}/dashboard`}
-                className="text-sm font-bold text-emerald-400 py-3 bg-white/5 rounded-lg mb-2"
+                className="text-sm font-bold text-white py-3 bg-white/10 rounded-lg flex items-center justify-center gap-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
+                <UserIcon className="w-4 h-4" />
                 {t.dashboard}
               </Link>
             ) : (
               <Link
                 href={`/${lang}/login`}
-                className="text-sm font-bold text-white py-3 bg-emerald-600/50 rounded-lg mb-2"
+                className="text-sm font-bold text-primary py-3 bg-white rounded-lg"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t.login}
               </Link>
             )}
+
             {user && (
               <button
                 onClick={() => {
                   signOut();
                   setMobileMenuOpen(false);
                 }}
-                className="text-sm font-bold text-red-400 py-3 bg-white/5 rounded-lg mb-2 flex items-center justify-center gap-2"
+                className="text-sm font-bold text-red-400 py-3 bg-white/5 rounded-lg flex items-center justify-center gap-2 mt-2"
               >
                 <LogOut className="h-4 w-4" />
                 {t.logout || 'Sair'}
               </button>
             )}
-            <LanguageSwitcher currentLocale={lang} />
+            <div className="mt-2 flex justify-center">
+              <LanguageSwitcher currentLocale={lang} />
+            </div>
           </nav>
         </div>
       )}

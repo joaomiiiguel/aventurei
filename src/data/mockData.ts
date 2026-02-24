@@ -1,4 +1,4 @@
-import { Difficulty, Modality } from "@/types/Place";
+import { Difficulty, Modality, PlaceType } from "@/types/Place";
 
 export interface Guide {
   id: string;
@@ -18,26 +18,6 @@ export interface Guide {
   certifications: string[];
 }
 
-export interface Adventure {
-  id: string;
-  name: string;
-  slug: string;
-  coverPhoto: string;
-  imageUrl: string; // para compatibilidad
-  photos: string[];
-  modality: Modality;
-  city: string;
-  state: string;
-  nickname: string;
-  description: string;
-  difficulty: Difficulty;
-  duration: string;
-  price: number;
-  targetAudience: string;
-  highlights: string[];
-  rating?: number; // para compatibilidad
-  reviewCount?: number; // para compatibilidad
-}
 
 export const guides: Guide[] = [
   {
@@ -110,144 +90,114 @@ export const guides: Guide[] = [
   },
 ];
 
-export const adventures: Adventure[] = [
+export const adventures: PlaceType[] = [
   {
     id: "a1",
-    name: "Barranquismo en Montanejos",
+    title: "Barranquismo en Montanejos",
     slug: "barranquismo-montanejos",
-    coverPhoto: "https://images.unsplash.com/photo-1647523609181-4e76b144042a?w=800&h=600&fit=crop",
-    imageUrl: "https://images.unsplash.com/photo-1647523609181-4e76b144042a?w=800&h=600&fit=crop",
-    photos: [
+    cover_img: "https://images.unsplash.com/photo-1647523609181-4e76b144042a?w=800&h=600&fit=crop",
+    gallery: [
       "https://images.unsplash.com/photo-1647523609181-4e76b144042a?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1583431754400-da52277ed91e?w=800&h=600&fit=crop",
     ],
-    modality: "rapel",
+    modalities: "rapel",
     city: "Montanejos",
-    state: "Valencia",
+    UF: "Valencia",
     nickname: "alejandro-ferrer",
     description: "Desciende por las aguas cristalinas del río Mijares. Una aventura que combina saltos, toboganes naturales y rápeles en un entorno geológico único en la Comunidad Valenciana.",
     difficulty: "moderado",
-    duration: "4-5 horas",
+    booking_mode: true,
     price: 55,
-    targetAudience: "Buscadores de adrenalina",
-    highlights: ["Saltos de hasta 5 metros", "Toboganes naturales", "Estrechos de roca caliza", "Fotos de la actividad incluidas"],
-    rating: 4.9,
-    reviewCount: 64
   },
   {
     id: "a2",
-    name: "Kayak al Atardecer en la Albufera",
+    title: "Kayak al Atardecer en la Albufera",
     slug: "kayak-atardecer-albufera",
-    coverPhoto: "https://images.unsplash.com/photo-1480480565647-1c4385c7c0bf?w=800&h=600&fit=crop",
-    imageUrl: "https://images.unsplash.com/photo-1480480565647-1c4385c7c0bf?w=800&h=600&fit=crop",
-    photos: [
+    cover_img: "https://images.unsplash.com/photo-1480480565647-1c4385c7c0bf?w=800&h=600&fit=crop",
+    gallery: [
       "https://images.unsplash.com/photo-1480480565647-1c4385c7c0bf?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1472745942893-4b9f730c7668?w=800&h=600&fit=crop",
     ],
-    modality: "canoagem",
+    modalities: "canoagem",
     city: "Valencia",
-    state: "Valencia",
+    UF: "Valencia",
     nickname: "elena-martinez",
     description: "Navega en kayak por los canales tranquilos del Parque Natural de la Albufera. Descubre la fauna local y disfruta de la puesta de sol más emblemática de Valencia.",
     difficulty: "fácil",
-    duration: "3 horas",
+    booking_mode: true,
     price: 35,
-    targetAudience: "Parejas y familias",
-    highlights: ["Avistamiento de aves", "Puesta de sol espectacular", "Canales históricos", "Picnic de productos locales incluido"],
-    rating: 5.0,
-    reviewCount: 128
   },
   {
     id: "a3",
-    name: "Escalada en las Hoces del Turia",
+    title: "Escalada en las Hoces del Turia",
     slug: "escalada-hoces-turia",
-    coverPhoto: "https://images.unsplash.com/photo-1522163182402-834f871fd851?w=800&h=600&fit=crop",
-    imageUrl: "https://images.unsplash.com/photo-1522163182402-834f871fd851?w=800&h=600&fit=crop",
-    photos: [
+    cover_img: "https://images.unsplash.com/photo-1522163182402-834f871fd851?w=800&h=600&fit=crop",
+    gallery: [
       "https://images.unsplash.com/photo-1522163182402-834f871fd851?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=800&h=600&fit=crop",
     ],
-    modality: "escalada",
+    modalities: "escalada",
     city: "Chulilla",
-    state: "Valencia",
+    UF: "Valencia",
     nickname: "marc-ribes",
     description: "Iníciate en la escalada deportiva en uno de los mejores sectores de la región. Vistas impresionantes del cañón y los famosos puentes colgantes de Chulilla.",
     difficulty: "moderado",
-    duration: "4-6 horas",
+    booking_mode: true,
     price: 45,
-    targetAudience: "Principiantes e intermedios",
-    highlights: ["Puentes colgantes de Chulilla", "Roca caliza de alta calidad", "Vistas del Cañón del Turia", "Equipo técnico incluido"],
-    rating: 4.8,
-    reviewCount: 42
   },
   {
     id: "a4",
-    name: "Ruta BTT: El balcón del Garbí",
+    title: "Ruta BTT: El balcón del Garbí",
     slug: "ruta-btt-garbi",
-    coverPhoto: "https://images.unsplash.com/photo-1629056528325-f328b5f27ae7?w=800&h=600&fit=crop",
-    imageUrl: "https://images.unsplash.com/photo-1629056528325-f328b5f27ae7?w=800&h=600&fit=crop",
-    photos: [
+    cover_img: "https://images.unsplash.com/photo-1629056528325-f328b5f27ae7?w=800&h=600&fit=crop",
+    gallery: [
       "https://images.unsplash.com/photo-1629056528325-f328b5f27ae7?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1596733430284-f7437764b1a9?w=800&h=600&fit=crop",
     ],
-    modality: "mountain-bike",
+    modalities: "mountain-bike",
     city: "Serra",
-    state: "Valencia",
+    UF: "Valencia",
     nickname: "sofia-beltran",
     description: "Recorre los senderos más técnicos de la Sierra Calderona hasta alcanzar el mirador del Garbí, con vistas panorámicas de todo el litoral valenciano.",
     difficulty: "difícil",
-    duration: "4-5 horas",
+    booking_mode: true,
     price: 40,
-    targetAudience: "Ciclistas experimentados",
-    highlights: ["Vistas al Mar Mediterráneo", "Senderos de roca arenisca", "Descensos técnicos", "Almuerzo valenciano incluido"],
-    rating: 4.7,
-    reviewCount: 31
   },
   {
     id: "a5",
-    name: "Senderismo Geológico Sierra Espadán",
+    title: "Senderismo Geológico Sierra Espadán",
     slug: "senderismo-sierra-espadan",
-    coverPhoto: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=600&fit=crop",
-    imageUrl: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=600&fit=crop",
-    photos: [
+    cover_img: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=600&fit=crop",
+    gallery: [
       "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop",
     ],
-    modality: "trilha",
+    modalities: "trilha",
     city: "Almedíjar",
-    state: "Castellón",
+    UF: "Castellón",
     nickname: "alejandro-ferrer",
     description: "Una ruta por los bosques de alcornoques más meridionales de Europa. Descubre la geografía del 'Rodeno' y las antiguas minas de la zona.",
     difficulty: "fácil",
-    duration: "5-6 horas",
+    booking_mode: true,
     price: 25,
-    targetAudience: "Amantes de la naturaleza",
-    highlights: ["Bosque de alcornoques", "Roca roja (Rodeno)", "Fuentes naturales", "Guía biólogo experto"],
-    rating: 4.9,
-    reviewCount: 56
   },
   {
     id: "a6",
-    name: "Rafting en las Hoces del Cabriel",
+    title: "Rafting en las Hoces del Cabriel",
     slug: "rafting-hoces-cabriel",
-    coverPhoto: "https://images.unsplash.com/photo-1530866495561-507c9faab2ed?w=800&h=600&fit=crop",
-    imageUrl: "https://images.unsplash.com/photo-1530866495561-507c9faab2ed?w=800&h=600&fit=crop",
-    photos: [
+    cover_img: "https://images.unsplash.com/photo-1530866495561-507c9faab2ed?w=800&h=600&fit=crop",
+    gallery: [
       "https://images.unsplash.com/photo-1530866495561-507c9faab2ed?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=600&fit=crop",
     ],
-    modality: "rafting",
+    modalities: "rafting",
     city: "Venta del Moro",
-    state: "Valencia",
+    UF: "Valencia",
     nickname: "alejandro-ferrer",
     description: "Descenso de aguas bravas en el río más limpio de Europa. Diversión garantizada para grupos y familias en un paraje natural protegido.",
     difficulty: "moderado",
-    duration: "3-4 horas",
+    booking_mode: true,
     price: 40,
-    targetAudience: "Grupos y familias",
-    highlights: ["Parque Natural Hoces del Cabriel", "Rápidos nivel II-III", "Baño en el río", "Equipamiento de seguridad premium"],
-    rating: 4.6,
-    reviewCount: 75
   },
 ];
 
@@ -255,11 +205,11 @@ export const getGuideById = (id: string): Guide | undefined => {
   return guides.find((g) => g.id === id || g.nickname === id);
 };
 
-export const getAdventureById = (id: string): Adventure | undefined => {
+export const getAdventureById = (id: string): PlaceType | undefined => {
   return adventures.find((a) => a.id === id || a.slug === id);
 };
 
-export const getAdventuresByGuide = (nickname: string): Adventure[] => {
+export const getAdventuresByGuide = (nickname: string): PlaceType[] => {
   return adventures.filter((a) => a.nickname === nickname);
 };
 
@@ -276,15 +226,15 @@ export const MockDataService = {
       return guides.find(g => g.nickname === slug || g.id === slug);
   },
 
-  getAllAdventures: async (): Promise<Adventure[]> => {
+  getAllAdventures: async (): Promise<PlaceType[]> => {
     return adventures;
   },
 
-  getAdventureBySlug: async (slug: string): Promise<Adventure | undefined> => {
+  getAdventureBySlug: async (slug: string): Promise<PlaceType | undefined> => {
     return adventures.find(a => a.slug === slug || a.id === slug);
   },
   
-  getAdventuresByGuideId: async (nickname: string): Promise<Adventure[]> => {
+  getAdventuresByGuideId: async (nickname: string): Promise<PlaceType[]> => {
     return adventures.filter(a => a.nickname === nickname);
   }
 };

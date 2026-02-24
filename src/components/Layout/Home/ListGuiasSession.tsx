@@ -27,7 +27,7 @@ const ListGuiasSession = ({ searchQuery, selectedModalities }: { searchQuery: st
     return (
         <>
             {filteredGuides?.length > 0 ? (
-                <div className="w-full grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="w-full grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {filteredGuides.map((guide) => (
                         <GuideCard key={guide.id} guide={guide} />
                     ))}

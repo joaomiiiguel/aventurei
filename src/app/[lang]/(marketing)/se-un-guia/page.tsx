@@ -18,9 +18,9 @@ export async function generateMetadata({ params }: SeUnGuiaPageProps) {
     alternates: {
       canonical: `/${lang}/se-un-guia`,
       languages: {
-        'pt-br': `/pt-br/seja-um-guia`,
+        'pt-br': `/pt-br/se-un-guia`,
         'es': `/es/se-un-guia`,
-        'en': `/en/become-a-guide`,
+        'en': `/en/se-un-guia`,
         'x-default': `/es/se-un-guia`
       }
     }

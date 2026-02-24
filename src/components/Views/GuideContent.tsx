@@ -20,7 +20,7 @@ export default async function GuideContent({ guide, lang }: GuideContentProps) {
     return (
         <Layout>
             {/* Hero Banner */}
-            <section className="relative bg-primary text-white pt-24 md:pt-32 pb-10 px-[5%] mt-[-8vh]">
+            <section className="relative bg-primary text-white pt-24 md:pt-32 pb-10 px-[5%] 2xl:px-[10%] mt-[-8vh]">
                 <div className="absolute inset-0 opacity-20">
                     <img
                         src={guide.banner || "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&h=600&fit=crop"}
@@ -72,7 +72,7 @@ export default async function GuideContent({ guide, lang }: GuideContentProps) {
             </section>
 
             {/* Content */}
-            <section className="py-4 md:py-8 px-[5%] mx-auto">
+            <section className="py-4 md:py-8 px-[5%] 2xl:px-[10%] mx-auto">
                 {/* About */}
                 <div className="w-full mb-8 rounded-2xl bg-white p-6 shadow-card">
                     <h2 className="mb-4 text-xl font-bold text-foreground">{t.about_guide || "Sobre o Guia"}</h2>
@@ -105,7 +105,7 @@ export default async function GuideContent({ guide, lang }: GuideContentProps) {
                     <h2 className="mb-6 text-xl font-bold text-foreground">
                         {t.offered_adventures || "Aventuras oferecidas"} ({guideAdventures.length})
                     </h2>
-                    <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+                    <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {guideAdventures.map((adventure) => (
                             <AdventureCard key={adventure.id} adventure={adventure} />
                         ))}

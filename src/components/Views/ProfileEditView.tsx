@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { User as UserIcon, Camera, Loader2 } from 'lucide-react'
 import toast from 'react-hot-toast'
-import { createClient } from '@/utils/supabase/client'
+import { useSupabaseClient } from '@/utils/supabase/client'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslations } from '@/contexts/LocaleContext'
 import { Modality, modalityLabels } from '@/types/Place'
@@ -23,7 +23,7 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
     const { user } = useAuth()
     const router = useRouter()
     const t = useTranslations()
-    const supabase = useMemo(() => createClient(), [])
+    const supabase = useSupabaseClient()
 
     const [isUploading, setIsUploading] = useState(false)
     const [profileForm, setProfileForm] = useState<Partial<UserType>>({

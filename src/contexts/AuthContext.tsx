@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
-import { createClient } from '@/utils/supabase/client'
+import { useSupabaseClient } from '@/utils/supabase/client'
 import { Session } from '@supabase/supabase-js'
 import { useRouter } from 'next/navigation'
 import { UserType } from '@/types/User'
@@ -26,9 +26,8 @@ const AuthContext = createContext<AuthContextType>({
     signInWithGoogle: async () => { },
 })
 
-const supabase = createClient()
-
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+    const supabase = useSupabaseClient()
     const [user, setUser] = useState<UserType | null>(null)
     const [session, setSession] = useState<Session | null>(null)
     const [isLoading, setIsLoading] = useState(true)

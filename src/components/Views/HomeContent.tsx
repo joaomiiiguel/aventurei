@@ -5,6 +5,7 @@ import HeroSession from "@/components/Layout/Home/HeroSession";
 import { FilterBar } from "@/components/FilterBar";
 import ListAdventureSession from "@/components/Layout/Home/ListAdventureSession";
 import ListGuiasSession from "@/components/Layout/Home/ListGuiasSession";
+import HowItWorksSession from "@/components/Layout/Home/HowItWorksSession";
 import { Compass } from "lucide-react";
 import { useTranslations } from "@/contexts/LocaleContext";
 import { Modality } from "@/types/Place";
@@ -19,7 +20,7 @@ const HomeContent = () => {
       <section>
         <HeroSession />
       </section>
-      <section className="w-full flex flex-col items-start justify-between md:pb-12 px-[5%] gap-10">
+      <section className="w-full flex flex-col items-start justify-between md:pb-12 px-[5%] 2xl:px-[10%] gap-10">
         <FilterBar
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
@@ -48,6 +49,7 @@ const HomeContent = () => {
           selectedModalities={selectedModalities}
         />
       </section>
+      <HowItWorksSession />
     </>
   );
 };

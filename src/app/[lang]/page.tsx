@@ -31,9 +31,30 @@ export async function generateMetadata({ params }: LangPageProps): Promise<Metad
  */
 export default async function LangPage({ params }: LangPageProps) {
   const { lang } = await params;
+  const dict = await getDictionary(lang);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Aventurei",
+    "url": `https://aventurei.es/${lang}`,
+    "description": dict.metadata_description,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Aventurei",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://aventurei.es/logo.png"
+      }
+    }
+  };
 
   return (
     <Layout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <HomeContent />
     </Layout>
   );

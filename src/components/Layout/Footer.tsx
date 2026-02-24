@@ -50,6 +50,14 @@ export function Footer() {
           © {new Date().getFullYear()} Aventurei. {t.all_rights_reserved || "Todos os direitos reservados."}
         </div>
       </div>
+
+      {/* Fixed Demo Notice */}
+      <div className="fixed bottom-0 z-50 w-full bg-gold/90 py-2 px-4 text-center text-[10px] font-bold uppercase tracking-widest text-primary backdrop-blur-sm md:text-xs">
+        {t.display_only_notice}
+      </div>
+
+      {/* Spacer to avoid fixed banner overlapping footer content */}
+      <div className="h-8 md:h-10" />
     </footer>
   );
 }

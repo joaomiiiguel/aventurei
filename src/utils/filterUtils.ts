@@ -1,18 +1,18 @@
-import { Modality } from "@/types/Place";
-import { Adventure, Guide } from "@/data/mockData";
+import { Modality, PlaceType } from "@/types/Place";
+import { Guide } from "@/data/mockData";
 
 export const filterAdventures = (
-  adventures: Adventure[],
+  adventures: PlaceType[],
   searchQuery: string,
   selectedModalities: Modality[]
-): Adventure[] => {
+): PlaceType[] => {
   return adventures.filter((adventure) => {
     const matchesSearch =
-      adventure.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      adventure.city.toLowerCase().includes(searchQuery.toLowerCase());
+      (adventure.title || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (adventure.city || "").toLowerCase().includes(searchQuery.toLowerCase());
     const matchesModality =
       selectedModalities.length === 0 ||
-      selectedModalities.includes(adventure.modality);
+      (adventure.modalities && selectedModalities.includes(adventure.modalities));
     return matchesSearch && matchesModality;
   });
 };
