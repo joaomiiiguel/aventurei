@@ -7,6 +7,7 @@ import { Layout } from "../Layout/Layout";
 import { getDictionary } from "@/lib/dictionary";
 import { UserType } from "@/types/User";
 import { Button } from "../ui/button";
+import { getStorageUrl } from "@/utils/supabase/storage";
 
 interface GuideContentProps {
     guide: UserType;
@@ -23,7 +24,7 @@ export default async function GuideContent({ guide, lang }: GuideContentProps) {
             <section className="relative bg-primary text-white pt-24 md:pt-32 pb-10 px-[5%] 2xl:px-[10%] mt-[-8vh]">
                 <div className="absolute inset-0 opacity-20">
                     <img
-                        src={guide.banner || "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&h=600&fit=crop"}
+                        src={getStorageUrl('users', guide.banner) || "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&h=600&fit=crop"}
                         alt="Banner do guia"
                         className="h-full w-full object-cover"
                     />
@@ -39,7 +40,7 @@ export default async function GuideContent({ guide, lang }: GuideContentProps) {
 
                     <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6 md:flex-row md:items-end">
                         <img
-                            src={guide.avatar || "/default-avatar.png"}
+                            src={getStorageUrl('users', guide.avatar) || "/default-avatar.png"}
                             alt={guide.name || "Guia"}
                             className="h-32 w-32 rounded-2xl object-cover ring-4 ring-primary-foreground/20 md:h-40 md:w-40 bg-white"
                         />

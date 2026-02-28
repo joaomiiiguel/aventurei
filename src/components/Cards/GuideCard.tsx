@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "@/contexts/LocaleContext";
 import { useParams } from "next/navigation";
+import { getStorageUrl } from "@/utils/supabase/storage";
 
 interface GuideCardProps {
   guide: Guide;
@@ -22,7 +23,7 @@ export default function GuideCard({ guide }: GuideCardProps) {
       {/* Header with photo */}
       <div className="relative flex items-center gap-4 p-4 pb-3">
         <Image
-          src={guide.photo}
+          src={getStorageUrl('users', guide.photo || guide.avatar) || ""}
           alt={guide.name}
           width={60}
           height={60}

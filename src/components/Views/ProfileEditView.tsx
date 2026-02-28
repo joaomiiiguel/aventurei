@@ -8,6 +8,7 @@ import toast from 'react-hot-toast'
 import { useSupabaseClient } from '@/utils/supabase/client'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslations } from '@/contexts/LocaleContext'
+import { getStorageUrl } from '@/utils/supabase/storage'
 import { Modality, modalityLabels } from '@/types/Place'
 import { UserType } from '@/types/User'
 import { Input } from '@/components/ui/input'
@@ -30,9 +31,9 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
         name: '',
         city: '',
         UF: '',
-        short_description: '',
+        description: '',
         email: '',
-        cpf: '',
+        numberID: '',
         nickname: '',
         modalities: [],
         avatar: '',
@@ -45,9 +46,9 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
                 name: user.name || '',
                 city: user.city || '',
                 UF: user.UF || '',
-                short_description: user.short_description || '',
+                description: user.description || '',
                 email: user.email || '',
-                cpf: user.cpf || '',
+                numberID: user.numberID || '',
                 nickname: user.nickname || '',
                 modalities: user.modalities || [],
                 avatar: user.avatar || '',
@@ -63,20 +64,15 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
         try {
             setIsUploading(true)
             const fileExt = file.name.split('.').pop()
-            const fileName = `${user.id}-${Math.random()}.${fileExt}`
-            const filePath = `avatars/${fileName}`
+            const filePath = `${user.id}.${fileExt}`
 
             const { error: uploadError } = await supabase.storage
-                .from('avatars')
-                .upload(filePath, file)
+                .from('users')
+                .upload(filePath, file, { upsert: true })
 
             if (uploadError) throw uploadError
 
-            const { data: { publicUrl } } = supabase.storage
-                .from('avatars')
-                .getPublicUrl(filePath)
-
-            setProfileForm(prev => ({ ...prev, avatar: publicUrl }))
+            setProfileForm(prev => ({ ...prev, avatar: filePath }))
             toast.success(t.avatar_uploaded_success || 'Avatar atualizado!')
         } catch (error: any) {
             toast.error(error.message)
@@ -92,22 +88,15 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
         try {
             setIsUploading(true)
             const fileExt = file.name.split('.').pop()
-            const fileName = `${user.id}-banner-${Math.random()}.${fileExt}`
-            const filePath = `banners/${fileName}`
+            const filePath = `banners/${user.id}.${fileExt}`
 
-            // Using 'avatars' bucket for now as it's known to exist, 
-            // but normally a 'banners' bucket would be better
             const { error: uploadError } = await supabase.storage
-                .from('avatars')
-                .upload(filePath, file)
+                .from('users')
+                .upload(filePath, file, { upsert: true })
 
             if (uploadError) throw uploadError
 
-            const { data: { publicUrl } } = supabase.storage
-                .from('avatars')
-                .getPublicUrl(filePath)
-
-            setProfileForm(prev => ({ ...prev, banner: publicUrl }))
+            setProfileForm(prev => ({ ...prev, banner: filePath }))
             toast.success(t.banner_uploaded_success)
         } catch (error: any) {
             toast.error(error.message)
@@ -155,9 +144,9 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
                     name: profileForm.name,
                     city: profileForm.city,
                     UF: profileForm.UF,
-                    short_description: profileForm.short_description,
+                    description: profileForm.description,
                     email: profileForm.email,
-                    cpf: profileForm.cpf,
+                    numberID: profileForm.numberID,
                     nickname: profileForm.nickname,
                     modalities: profileForm.modalities,
                     avatar: profileForm.avatar,
@@ -184,7 +173,7 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
                     </div>
                 ) : profileForm.banner ? (
                     <Image
-                        src={profileForm.banner}
+                        src={getStorageUrl('users', profileForm.banner)!}
                         alt="Banner"
                         fill
                         className="object-cover"
@@ -219,7 +208,7 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
                             </div>
                         ) : profileForm.avatar ? (
                             <Image
-                                src={profileForm.avatar}
+                                src={getStorageUrl('users', profileForm.avatar)!}
                                 alt="Avatar"
                                 fill
                                 className="object-cover"
@@ -291,13 +280,13 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
                     />
                 </div>
                 <div className="space-y-2">
-                    <Label htmlFor="cpf">{t.id_number}</Label>
+                    <Label htmlFor="numberID">{t.id_number}</Label>
                     <Input
-                        id="cpf"
+                        id="numberID"
                         type="text"
-                        placeholder="CPF or ID"
-                        value={profileForm.cpf || ''}
-                        onChange={(e) => setProfileForm(prev => ({ ...prev, cpf: e.target.value }))}
+                        placeholder="numberID or ID"
+                        value={profileForm.numberID || ''}
+                        onChange={(e) => setProfileForm(prev => ({ ...prev, numberID: e.target.value }))}
                     />
                 </div>
             </div>
@@ -321,8 +310,8 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
                 <Label htmlFor="description">{t.description}</Label>
                 <Textarea
                     id="description"
-                    value={profileForm.short_description || ''}
-                    onChange={(e) => setProfileForm(prev => ({ ...prev, short_description: e.target.value }))}
+                    value={profileForm.description || ''}
+                    onChange={(e) => setProfileForm(prev => ({ ...prev, description: e.target.value }))}
                     placeholder={t.description}
                 />
             </div>

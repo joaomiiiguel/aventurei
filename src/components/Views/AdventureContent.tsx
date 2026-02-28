@@ -7,6 +7,7 @@ import { Layout } from "../Layout/Layout";
 import Link from "next/link";
 import DifficultyBadge from "../DifficultyBadge";
 import { useTranslations } from "@/contexts/LocaleContext";
+import { getStorageUrl } from "@/utils/supabase/storage";
 
 interface AdventureContentProps {
   slug: string;
@@ -52,7 +53,7 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
         <div className="lg:col-span-2">
           <div className="aspect-[16/10] h-[60vh] w-full overflow-hidden rounded-2xl">
             <img
-              src={adventure.gallery?.[selectedPhoto]}
+              src={getStorageUrl('places', adventure.gallery?.[selectedPhoto])}
               alt={adventure.title}
               className="h-full w-full object-cover"
             />
@@ -71,7 +72,7 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
                 }`}
             >
               <img
-                src={photo}
+                src={getStorageUrl('places', photo)}
                 alt={`${adventure.title} - ${t.photo || "Foto"} ${index + 1}`}
                 className="h-full w-full object-cover"
               />
@@ -145,7 +146,7 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
                 </h3>
                 <div className="flex items-center gap-3 mb-4">
                   <img
-                    src={guide.photo}
+                    src={getStorageUrl('users', guide.photo || guide.avatar)}
                     alt={guide.name}
                     className="h-14 w-14 rounded-full object-cover"
                   />

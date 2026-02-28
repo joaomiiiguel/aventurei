@@ -26,6 +26,7 @@ import { ProfileEditView } from '@/components/Views/ProfileEditView'
 import Modal from '@/components/Modal'
 import AdventureEditView from '@/components/Views/AdventureEditView'
 import { MockDataService } from '@/data/mockData'
+import { OnboardingFlow } from '@/components/Views/OnboardingFlow'
 
 const Card = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
     <div className={`bg-white rounded-2xl shadow-sm ${className}`}>
@@ -128,6 +129,9 @@ export default function DashboardPage() {
 
     return (
         <Layout>
+            {!user.onboarded && (
+                <OnboardingFlow />
+            )}
             <div className="min-h-screen bg-background">
                 {/* Header Section */}
                 <div className="relative overflow-hidden bg-primary/60 px-[5%] mt-[-8vh] pt-[16vh] pb-8">

@@ -4,23 +4,25 @@ export interface UserType {
     id?: string
     name?: string
     nickname?: string
-    cpf?: string
+    numberID?: string
     email?: string
     password?: string
     phone?: string
     created_at?: string
     profile?: string //admin - guide - client
     avatar?: string
-    banner?: string
     city?: string
     UF?: string
-    short_description?: string
+    description?: string
     refund_rules?: string
-    adventures?: any[]
+    status?: boolean
+    country?: string
     reviewCount?: number
     rating?: number
+    banner?: string
     modalities?: Modality[]
-    experience?: string
+    onboarded?: boolean
     certifications?: string[]
-    status?: boolean
+    short_description?: string
+    experience?: string
 }

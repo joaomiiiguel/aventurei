@@ -1,4 +1,4 @@
-import { ImagePlus, Trash2 } from "lucide-react";
+import { ImagePlus, Loader2, Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import Label from "../ui/label";
@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { useTranslations } from "@/contexts/LocaleContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { useSupabaseClient } from "@/utils/supabase/client";
+import { getStorageUrl } from "@/utils/supabase/storage";
 
 interface AdventureEditViewProps {
   onClose: () => void
@@ -27,7 +28,6 @@ const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps
     price: editingAdventure?.price || null,
     nickname: editingAdventure?.nickname || "",
     cover_img: editingAdventure?.cover_img || "",
-    accessibility: editingAdventure?.accessibility || "",
     min_age: editingAdventure?.min_age || 4,
     booking_mode: editingAdventure?.booking_mode || true,
     gallery: editingAdventure?.gallery || [],
@@ -36,23 +36,64 @@ const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps
     slug: editingAdventure?.slug || "",
   });
 
+  const [pendingPhotos, setPendingPhotos] = useState<{ file: File; url: string }[]>([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
   const handleAdventureSave = async () => {
-    if (editingAdventure?.id) {
-      // update
-      const { error } = await supabase.from("places").update(adventureForm).eq("id", editingAdventure.id)
-      if (error) {
-        console.error("Error updating adventure:", error)
+    if (!user) return
+    setIsSubmitting(true)
+
+    try {
+      const slug = adventureForm.title.toLowerCase().trim().replace(/\s+/g, "-")
+
+      // 1. Separate existing URLs from blob URLs
+      const existingGallery = adventureForm.gallery?.filter(url => !url.startsWith('blob:')) || []
+      const newPhotosToUpload = pendingPhotos
+
+      // 2. Upload new photos to slug folder
+      const uploadedUrls: string[] = []
+      for (let i = 0; i < newPhotosToUpload.length; i++) {
+        const { file } = newPhotosToUpload[i]
+        const fileExt = file.name.split('.').pop()
+        const filePath = `${slug}/${Date.now()}-${i}.${fileExt}`
+
+        const { error: uploadError } = await supabase.storage
+          .from('places')
+          .upload(filePath, file)
+
+        if (uploadError) throw uploadError
+
+        uploadedUrls.push(filePath)
       }
-      toast.success(t.adventure_updated_success)
-    } else {
-      // create
-      const { error } = await supabase.from("places").insert({ ...adventureForm, slug: adventureForm.title.toLowerCase().replace(/ /g, "-"), nickname: user?.id })
-      if (error) {
-        console.error("Error creating adventure:", error)
+
+      // 3. Final gallery
+      const finalGallery = [...existingGallery, ...uploadedUrls]
+
+      // 4. Record data
+      const finalData = {
+        ...adventureForm,
+        gallery: finalGallery,
+        cover_img: finalGallery[0] || "",
+        slug,
+        nickname: user.id,
+        user_id: user.id
       }
-      toast.success(t.adventure_created_success)
+
+      // 5. Update or insert
+      const { error } = editingAdventure?.id
+        ? await supabase.from("places").update(finalData).eq("id", editingAdventure.id)
+        : await supabase.from("places").insert(finalData)
+
+      if (error) throw error
+
+      toast.success(editingAdventure ? t.adventure_updated_success : t.adventure_created_success)
+      onClose()
+    } catch (error: any) {
+      console.error("Error saving adventure:", error)
+      toast.error(error.message)
+    } finally {
+      setIsSubmitting(false)
     }
-    onClose()
   }
 
   useEffect(() => {
@@ -159,12 +200,13 @@ const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps
           <div className="grid grid-cols-3 gap-3">
             {adventureForm?.gallery?.map((photo, index) => (
               <div key={index} className="group relative aspect-square overflow-hidden rounded-lg border border-border bg-muted">
-                <img src={photo} alt={`Foto ${index + 1}`} className="h-full w-full object-cover" />
+                <img src={getStorageUrl('places', photo)} alt={`Foto ${index + 1}`} className="h-full w-full object-cover" />
                 <button
                   type="button"
                   onClick={() => {
-                    const newPhotos = adventureForm?.gallery?.filter((_, i) => i !== index);
-                    setAdventureForm({ ...adventureForm, gallery: newPhotos });
+                    const urlToRemove = adventureForm.gallery![index];
+                    setAdventureForm({ ...adventureForm, gallery: adventureForm.gallery?.filter((_, i) => i !== index) });
+                    setPendingPhotos(prev => prev.filter(p => p.url !== urlToRemove));
                   }}
                   className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white text-red-600 opacity-0 transition-opacity group-hover:opacity-100"
                 >
@@ -187,8 +229,16 @@ const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps
                 className="hidden"
                 onChange={(e) => {
                   const files = Array.from(e.target.files || []);
-                  const urls = files.map((file) => URL.createObjectURL(file));
-                  setAdventureForm({ ...adventureForm, cover_img: urls[0], gallery: [...adventureForm.gallery!, ...urls] });
+                  const newPhotos = files.map(file => ({
+                    file,
+                    url: URL.createObjectURL(file)
+                  }));
+                  setPendingPhotos(prev => [...prev, ...newPhotos]);
+                  setAdventureForm(prev => ({
+                    ...prev,
+                    cover_img: prev.cover_img || newPhotos[0].url,
+                    gallery: [...(prev.gallery || []), ...newPhotos.map(p => p.url)]
+                  }));
                   e.target.value = "";
                 }}
               />
@@ -201,7 +251,8 @@ const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps
           <Button onClick={() => onClose()}>
             {t.cancel}
           </Button>
-          <Button onClick={handleAdventureSave} className="btn-adventure">
+          <Button onClick={handleAdventureSave} className="btn-adventure" disabled={isSubmitting}>
+            {isSubmitting ? <Loader2 className="animate-spin mr-2" /> : null}
             {editingAdventure ? t.save : t.create_adventure}
           </Button>
         </div>

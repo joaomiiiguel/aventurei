@@ -1,12 +1,14 @@
 import { User } from "lucide-react";
+import { getStorageUrl } from "@/utils/supabase/storage";
 
 const Avatar = ({ src, name }: { src: string | undefined; name: string | undefined }) => {
+    const imageUrl = getStorageUrl('users', src);
 
     return (
         <div className="rounded-full overflow-hidden">
-            {src ?
+            {imageUrl ?
                 <img
-                    src={src}
+                    src={imageUrl}
                     alt={name}
                     className="h-16 w-16 object-cover"
                 />

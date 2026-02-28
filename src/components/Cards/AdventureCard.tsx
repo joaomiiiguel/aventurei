@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "@/contexts/LocaleContext";
 import { useParams } from "next/navigation";
+import { getStorageUrl } from "@/utils/supabase/storage";
 
 interface AdventureCardProps {
   adventure: PlaceType;
@@ -23,7 +24,7 @@ export default function AdventureCard({ adventure }: AdventureCardProps) {
       {/* Image */}
       <div className="relative overflow-hidden">
         <Image
-          src={adventure.cover_img || ""}
+          src={getStorageUrl('places', adventure.cover_img) || ""}
           alt={adventure.title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           width={300}
@@ -49,7 +50,7 @@ export default function AdventureCard({ adventure }: AdventureCardProps) {
         {guide && (
           <div className="mb-4 flex items-center gap-2">
             <Image
-              src={guide.photo}
+              src={getStorageUrl('users', guide.photo || guide.avatar) || ""}
               alt={guide.name}
               className="h-6 w-6 rounded-full object-cover"
               width={24}

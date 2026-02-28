@@ -130,6 +130,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const signOut = async () => {
         await supabase.auth.signOut()
         router.refresh()
+        router.push(`/`)
     }
 
     const signIn = async ({ email, password }: any) => {

@@ -5,6 +5,7 @@ import { Person, WithContext } from "schema-dts";
 import { locales } from "@/lib/i18n-config";
 import { createClient } from "@supabase/supabase-js";
 import { getGuideById } from "@/data/mockData";
+import { getStorageUrl } from "@/utils/supabase/storage";
 
 // Force static generation for these paths, but allow ISR for new ones if needed
 export const revalidate = 3600; // 1 hour ISR
@@ -58,7 +59,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         openGraph: {
             title: `${guide.name} - Guia Profissional`,
             description: guide.short_description,
-            images: [guide.avatar],
+            images: [getStorageUrl('users', guide.avatar) || "/og-image.jpg"],
             type: "profile",
         },
         alternates: {
@@ -97,7 +98,7 @@ const GuidePage = async ({ params }: PageProps) => {
         "@context": "https://schema.org",
         "@type": "Person",
         name: guide.name,
-        image: guide.avatar,
+        image: getStorageUrl('users', guide.avatar),
         description: guide.short_description,
         jobTitle: "Guia de Aventura",
         address: {

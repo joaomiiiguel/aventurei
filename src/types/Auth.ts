@@ -9,7 +9,7 @@ export type ErrCallbackType = (err: { [key: string]: string }) => void
 
 export type RegisterParams = {
     name: string
-    cpf: string
+    numberID: string
     email: string
     password: string
     phone: string

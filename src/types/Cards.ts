@@ -16,7 +16,7 @@ export interface ICardGuide {
     id: string
     name: string
     email?: string
-    CPF?: string
+    numberID?: string
     profile?: string
     city: string
     UF: string
