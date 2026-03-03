@@ -4,5 +4,6 @@ module.exports = {
     generateRobotsTxt: false, // We are using app/robots.ts
     sitemapSize: 7000,
     exclude: ['/server-sitemap.xml'], // Example exclusion
+    sourceDir: '.vercel/output',
     // outDir: './out', // Only if using static export
 }
