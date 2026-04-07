@@ -155,6 +155,25 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
                 .eq('id', user.id)
 
             if (error) throw error
+
+            // On-demand Revalidation
+            const locales = ['es', 'pt-br', 'en'];
+            const profileNickname = profileForm.nickname || user.nickname;
+            const revalidationSecret = process.env.NEXT_PUBLIC_REVALIDATION_SECRET;
+
+            if (revalidationSecret && profileNickname) {
+                await Promise.all(locales.map(async (lang) => {
+                    try {
+                        // Revalidate profile page
+                        await fetch(`/api/revalidate?path=/${lang}/${profileNickname}&secret=${revalidationSecret}`);
+                        // Revalidate home page (might show list of guides)
+                        await fetch(`/api/revalidate?path=/${lang}&secret=${revalidationSecret}`);
+                    } catch (e) {
+                        console.error("Revalidation error:", e);
+                    }
+                }));
+            }
+
             toast.success(t.profile_updated_success)
             onClose()
             router.refresh()

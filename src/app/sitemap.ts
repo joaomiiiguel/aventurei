@@ -3,12 +3,17 @@ import { createClient as createStaticClient } from '@/utils/supabase/static';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = createStaticClient();
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://aventurei.es';
+  
+  // Normalize the base URL to prevent double slashes (removes trailing slash if present)
+  const rawBaseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://aventurei.es';
+  const baseUrl = rawBaseUrl.endsWith('/') ? rawBaseUrl.slice(0, -1) : rawBaseUrl;
 
   const getAlternates = (translations: Record<string, string>) => {
     const alternates: Record<string, string> = {};
     Object.entries(translations).forEach(([lang, p]) => {
-      alternates[lang] = `${baseUrl}/${p}`;
+      // Ensure the path starts with a single slash
+      const cleanPath = p.startsWith('/') ? p : `/${p}`;
+      alternates[lang] = `${baseUrl}${cleanPath}`;
     });
     return alternates;
   };
@@ -44,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   });
 
-  // Dynamic Guide routes
+  // Dynamic Guide routes from real data
   const { data: guides } = await supabase
     .from('profiles')
     .select('nickname')
@@ -74,7 +79,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  // Dynamic Adventure routes
+  // Dynamic Adventure routes from real data
   const { data: adventures } = await supabase
     .from('adventures')
     .select('slug, nickname');

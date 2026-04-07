@@ -81,10 +81,30 @@ const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps
 
       // 5. Update or insert
       const { error } = editingAdventure?.id
-        ? await supabase.from("places").update(finalData).eq("id", editingAdventure.id)
-        : await supabase.from("places").insert(finalData)
+        ? await supabase.from("adventures").update(finalData).eq("id", editingAdventure.id)
+        : await supabase.from("adventures").insert({ ...finalData, nickname: user.nickname, user_id: user.id })
 
       if (error) throw error
+
+      // 6. On-demand Revalidation
+      const locales = ['es', 'pt-br', 'en'];
+      const adventurePath = `/${user.nickname}/${slug}`;
+      const revalidationSecret = process.env.NEXT_PUBLIC_REVALIDATION_SECRET;
+
+      if (revalidationSecret) {
+        await Promise.all(locales.map(async (lang) => {
+          try {
+            const revalidateUrl = `/api/revalidate?path=/${lang}${adventurePath}&secret=${revalidationSecret}`;
+            await fetch(revalidateUrl);
+            // Also revalidate the guide's page since it lists adventures
+            await fetch(`/api/revalidate?path=/${lang}/${user.nickname}&secret=${revalidationSecret}`);
+            // Also revalidate home page 
+            await fetch(`/api/revalidate?path=/${lang}&secret=${revalidationSecret}`);
+          } catch (e) {
+            console.error("Revalidation error:", e);
+          }
+        }));
+      }
 
       toast.success(editingAdventure ? t.adventure_updated_success : t.adventure_created_success)
       onClose()

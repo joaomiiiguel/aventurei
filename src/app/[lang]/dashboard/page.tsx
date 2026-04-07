@@ -41,9 +41,9 @@ const CardContent = ({ children, className = "" }: { children: React.ReactNode, 
 )
 
 export default function DashboardPage() {
-    const { user, signOut, isLoading } = useAuth()
+    const { user, isLoading } = useAuth()
     const { lang } = useParams()
-    const router = useRouter()
+
     const t = useTranslations()
     const [places, setPlaces] = useState<PlaceType[]>([])
     const [isLoadingPlaces, setIsLoadingPlaces] = useState(true)
