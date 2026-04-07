@@ -13,6 +13,8 @@ interface LangLayoutProps {
  * Layout for [lang] routes
  * This layout loads the dictionary for the current locale and provides it to all child components
  */
+import CookieBanner from "@/components/Analytics/CookieBanner";
+
 export default async function LangLayout({ children, params }: LangLayoutProps) {
   const { lang } = await params;
   const dictionary = await getDictionary(lang);
@@ -28,6 +30,7 @@ export default async function LangLayout({ children, params }: LangLayoutProps) 
         <ProgressProvider>
           <LocaleProvider dictionary={dictionary}>
             {children}
+            <CookieBanner />
           </LocaleProvider>
         </ProgressProvider>
       </AuthProvider>

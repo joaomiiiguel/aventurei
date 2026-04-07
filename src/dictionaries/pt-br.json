@@ -270,5 +270,17 @@
   "whatsapp_hello": "Olá",
   "whatsapp_interest": "Tenho interesse na aventura",
   "whatsapp_more_info": "Gostaria de mais informações sobre datas e reservas.",
-  "photo": "Foto"
+  "photo": "Foto",
+  "cookie_banner": {
+    "title": "Controlamos sua privacidade",
+    "description": "Utilizamos cookies para melhorar sua experiência de navegação, exibir anúncios ou conteúdos personalizados e analisar nosso tráfego. Ao clicar em \"Aceitar todos\", você concorda com o uso de cookies.",
+    "accept_all": "Aceitar todos",
+    "reject_all": "Rejeitar todos",
+    "customize": "Personalizar",
+    "save_preferences": "Salvar preferências",
+    "ad_storage": "Publicidade",
+    "analytics_storage": "Análise",
+    "ad_user_data": "Dados do usuário",
+    "ad_personalization": "Personalização"
+  }
 }
