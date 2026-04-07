@@ -40,4 +40,8 @@ export type PlaceType = {
     slug: string
     difficulty?: Difficulty
     modalities?: Modality | null
+    guide?: {
+      name: string;
+      avatar: string;
+    } | null; //Usado para quando a aventura é criada por um guia (dados apenas para o front-end)
 }

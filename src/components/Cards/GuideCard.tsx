@@ -2,15 +2,16 @@
 import { MapPin, ArrowRight } from "lucide-react";
 import { ModalityTag } from "@/components/ModalityTag";
 // import { StarRating } from "@/components/StarRating";
-import type { Guide } from "@/data/mockData";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "@/contexts/LocaleContext";
 import { useParams } from "next/navigation";
 import { getStorageUrl } from "@/utils/supabase/storage";
+import { Modality } from "@/types/Place";
+import { UserType } from "@/types/User";
 
 interface GuideCardProps {
-  guide: Guide;
+  guide: UserType;
 }
 
 export default function GuideCard({ guide }: GuideCardProps) {
@@ -23,8 +24,8 @@ export default function GuideCard({ guide }: GuideCardProps) {
       {/* Header with photo */}
       <div className="relative flex items-center gap-4 p-4 pb-3">
         <Image
-          src={getStorageUrl('users', guide.photo || guide.avatar) || ""}
-          alt={guide.name}
+          src={getStorageUrl('users', guide.avatar) || ""}
+          alt={guide.name!}
           width={60}
           height={60}
           className="h-16 w-16 rounded-full object-cover ring-2 ring-primary/10"
@@ -35,7 +36,7 @@ export default function GuideCard({ guide }: GuideCardProps) {
           </h3>
           <div className="flex items-center gap-1 text-sm text-muted-foreground">
             <MapPin className="h-3.5 w-3.5" />
-            <span>{guide.city}, {guide.state}</span>
+            <span>{guide.city}, {guide.UF}</span>
           </div>
           {/* <div className="mt-1">
             <StarRating rating={guide.rating} reviewCount={guide.reviewCount} />
@@ -45,14 +46,14 @@ export default function GuideCard({ guide }: GuideCardProps) {
 
       {/* Modalities */}
       <div className="flex flex-wrap gap-2 px-4 pb-3">
-        {guide.modalities.slice(0, 3).map((modality) => (
+        {guide.modalities?.slice(0, 3).map((modality: Modality) => (
           <div key={modality} className="bg-primary/20 rounded-md">
             <ModalityTag modality={modality} size="sm" />
           </div>
         ))}
-        {guide.modalities.length > 3 && (
+        {guide.modalities?.length! > 3 && (
           <span className="px-2 py-0.5 text-xs text-muted-foreground">
-            +{guide.modalities.length - 3}
+            +{guide.modalities?.length! - 3}
           </span>
         )}
       </div>

@@ -25,7 +25,7 @@ import { UserType } from '@/types/User'
 import { ProfileEditView } from '@/components/Views/ProfileEditView'
 import Modal from '@/components/Modal'
 import AdventureEditView from '@/components/Views/AdventureEditView'
-import { MockDataService } from '@/data/mockData'
+
 import { OnboardingFlow } from '@/components/Views/OnboardingFlow'
 
 const Card = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
@@ -54,24 +54,19 @@ export default function DashboardPage() {
 
     useEffect(() => {
         async function fetchPlaces() {
-            if (user?.email === 'test@mail.com') {
-                const mockPlaces = await MockDataService.getAllAdventures()
-                setPlaces(mockPlaces)
-                setIsLoadingPlaces(false)
-                return
-            }
+            if (!user?.id) return;
 
             try {
                 const { data, error } = await supabase
-                    .from('places')
+                    .from('adventures')
                     .select('*')
-                    .eq('user_id', user?.id)
+                    .eq('nickname', user?.nickname) // Using nickname as common identifier in my system
                     .order('created_at', { ascending: false })
 
                 if (error) throw error
                 setPlaces(data || [])
             } catch (error) {
-                console.error('Error fetching places:', error)
+                console.error('Error fetching adventures:', error)
             } finally {
                 setIsLoadingPlaces(false)
             }
@@ -82,7 +77,7 @@ export default function DashboardPage() {
         } else if (!isLoading) {
             setIsLoadingPlaces(false)
         }
-    }, [supabase, user?.id, user?.email, isLoading])
+    }, [supabase, user?.id, user?.nickname, isLoading])
 
     if (isLoading || isLoadingPlaces) {
         return (

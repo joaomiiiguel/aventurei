@@ -1,10 +1,12 @@
 "use client";
-import { adventures } from "@/data/mockData";
 import AdventureCard from "@/components/Cards/AdventureCard";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { filterAdventures } from "@/utils/filterUtils";
 import { useTranslations } from "@/contexts/LocaleContext";
 import { Modality } from "@/types/Place";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setAdventures, setAdventuresLoading, setAdventuresError } from "@/store/slices/adventuresSlice";
+import EmptyAdventureIcon from "@/components/EmptyResultIcon";
 
 interface ListAdventureSessionProps {
   searchQuery: string;
@@ -13,9 +15,43 @@ interface ListAdventureSessionProps {
 
 const ListAdventureSession = ({ searchQuery, selectedModalities }: ListAdventureSessionProps) => {
   const t = useTranslations();
+  const dispatch = useAppDispatch();
+  const { items: adventures, loading, error } = useAppSelector((state) => state.adventures);
+
+  useEffect(() => {
+    const fetchAdventures = async () => {
+      if (adventures.length > 0) return; // Use cache if available
+
+      dispatch(setAdventuresLoading(true));
+      try {
+        const response = await fetch('/api/adventures');
+        const data = await response.json();
+        if (response.ok) {
+          dispatch(setAdventures(data));
+        } else {
+          dispatch(setAdventuresError(data.error || "Failed to fetch adventures"));
+        }
+      } catch (err) {
+        dispatch(setAdventuresError("Network error"));
+      } finally {
+        dispatch(setAdventuresLoading(false));
+      }
+    };
+
+    fetchAdventures();
+  }, [dispatch, adventures.length]);
+
   const filteredAdventures = useMemo(() => {
     return filterAdventures(adventures, searchQuery, selectedModalities);
-  }, [searchQuery, selectedModalities]);
+  }, [adventures, searchQuery, selectedModalities]);
+
+  if (loading && adventures.length === 0) {
+    return (
+      <div className="flex justify-center items-center py-20">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -26,8 +62,9 @@ const ListAdventureSession = ({ searchQuery, selectedModalities }: ListAdventure
           ))}
         </div>
       ) : (
-        <div className="rounded-xl bg-muted/50 py-12 text-center">
-          <p className="text-muted-foreground">
+        <div className="flex flex-col items-center justify-center py-12 text-center">
+          <EmptyAdventureIcon />
+          <p className="text-muted-foreground font-semibold">
             {t.no_adventures_found || "Nenhuma aventura encontrada com os filtros selecionados."}
           </p>
         </div>

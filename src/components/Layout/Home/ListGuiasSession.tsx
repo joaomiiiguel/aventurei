@@ -1,28 +1,52 @@
 "use client";
 import GuideCard from "@/components/Cards/GuideCard";
-
-import { useState, useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { filterGuides } from "@/utils/filterUtils";
 import { useTranslations } from "@/contexts/LocaleContext";
-import { MockDataService, Guide } from "@/data/mockData";
 import { Modality } from "@/types/Place";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setGuides, setGuidesLoading, setGuidesError } from "@/store/slices/guidesSlice";
+import EmptyAdventureIcon from "@/components/EmptyResultIcon";
 
 const ListGuiasSession = ({ searchQuery, selectedModalities }: { searchQuery: string, selectedModalities: Modality[] }) => {
     const t = useTranslations();
-    const [filteredGuides, setFilteredGuides] = useState<Guide[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const dispatch = useAppDispatch();
+    const { items: guides, loading, error } = useAppSelector((state) => state.guides);
 
     useEffect(() => {
-        const fetchAndFilter = async () => {
-            setIsLoading(true);
-            const guides = await MockDataService.getAllGuides();
-            const filtered = filterGuides(guides, searchQuery, selectedModalities);
-            setFilteredGuides(filtered);
-            setIsLoading(false);
-        };
-        fetchAndFilter();
-    }, [searchQuery, selectedModalities]);
+        const fetchGuides = async () => {
+            if (guides.length > 0) return; // Use cache if available
 
+            dispatch(setGuidesLoading(true));
+            try {
+                const response = await fetch('/api/guides');
+                const data = await response.json();
+                if (response.ok) {
+                    dispatch(setGuides(data));
+                } else {
+                    dispatch(setGuidesError(data.error || "Failed to fetch guides"));
+                }
+            } catch (err) {
+                dispatch(setGuidesError("Network error"));
+            } finally {
+                dispatch(setGuidesLoading(false));
+            }
+        };
+
+        fetchGuides();
+    }, [dispatch, guides.length]);
+
+    const filteredGuides = useMemo(() => {
+        return filterGuides(guides, searchQuery, selectedModalities);
+    }, [guides, searchQuery, selectedModalities]);
+
+    if (loading && guides.length === 0) {
+        return (
+            <div className="flex justify-center items-center py-20">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+        );
+    }
 
     return (
         <>
@@ -33,8 +57,9 @@ const ListGuiasSession = ({ searchQuery, selectedModalities }: { searchQuery: st
                     ))}
                 </div>
             ) : (
-                <div className="rounded-xl bg-muted/50 py-12 text-center">
-                    <p className="text-muted-foreground">
+                <div className="flex flex-col items-center justify-center py-12 text-center">
+                    <EmptyAdventureIcon />
+                    <p className="text-muted-foreground font-semibold">
                         {t.no_guides_found || "Nenhum guia encontrado com os filtros selecionados."}
                     </p>
                 </div>

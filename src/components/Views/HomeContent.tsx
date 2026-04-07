@@ -33,10 +33,12 @@ const HomeContent = () => {
             {t.featured_adventures || 'Aventuras em Destaque'}
           </h2>
         </div>
-        <ListAdventureSession
-          searchQuery={searchQuery}
-          selectedModalities={selectedModalities}
-        />
+        <div className="w-full">
+          <ListAdventureSession
+            searchQuery={searchQuery}
+            selectedModalities={selectedModalities}
+          />
+        </div>
 
         <div className="flex items-center gap-2">
           <Compass className="h-6 w-6 text-[#00382F]" />
@@ -44,10 +46,12 @@ const HomeContent = () => {
             {t.featured_guides_title || 'Guias Experientes'}
           </h2>
         </div>
-        <ListGuiasSession
-          searchQuery={searchQuery}
-          selectedModalities={selectedModalities}
-        />
+        <div className="w-full">
+          <ListGuiasSession
+            searchQuery={searchQuery}
+            selectedModalities={selectedModalities}
+          />
+        </div>
       </section>
       <HowItWorksSession />
     </>

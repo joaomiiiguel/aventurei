@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/components/Providers/ToastProvider";
+import Script from "next/script";
+import StoreProvider from "@/providers/StoreProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,8 +20,11 @@ export const metadata: Metadata = {
     default: "Aventurei - Descubre tu próxima aventura",
     template: "%s | Aventurei"
   },
-  description: "Conéctate con los mejores guías locales y explora destinos increíbles en España con seguridad y exclusividad.",
+  description: "Conéctate con los melhores guías locales y explora destinos increíbles en España con segurança e exclusividade.",
   metadataBase: new URL('https://aventurei.es'),
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "google-site-verification-id",
+  },
   alternates: {
     canonical: '/',
     languages: {
@@ -74,8 +79,27 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        <ToastProvider />
+        <StoreProvider>
+          {children}
+          <ToastProvider />
+        </StoreProvider>
+        {/* Google Analytics */}
+        {process.env.NEXT_PUBLIC_GA_ID ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+              `}
+            </Script>
+          </>
+        ) : null}
       </body>
     </html>
   );

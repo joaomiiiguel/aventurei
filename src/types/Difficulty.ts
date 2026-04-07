@@ -1,3 +1,5 @@
+export type Difficulty = "fácil" | "moderado" | "difícil" | "extremo";
+
 export interface DifficultyBadgeProps {
-  difficulty: "fácil" | "moderado" | "difícil" | "extremo";
+  difficulty: Difficulty;
 }

@@ -265,5 +265,10 @@
   "onboarding_adventure_title": "Informações da Aventura",
   "onboarding_photos_title": "Fotos da Aventura",
   "onboarding_success_title": "Parabéns!",
-  "onboarding_success_message": "Seu perfil e sua primeira aventura foram configurados com sucesso. Agora você faz parte da nossa rede de guias."
+  "onboarding_success_message": "Seu perfil e sua primeira aventura foram configurados com sucesso. Agora você faz parte da nossa rede de guias.",
+  "request_booking_whatsapp": "Reservar no WhatsApp",
+  "whatsapp_hello": "Olá",
+  "whatsapp_interest": "Tenho interesse na aventura",
+  "whatsapp_more_info": "Gostaria de mais informações sobre datas e reservas.",
+  "photo": "Foto"
 }

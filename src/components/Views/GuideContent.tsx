@@ -1,13 +1,13 @@
 import { ModalityTag } from "@/components/ModalityTag";
-import { getAdventuresByGuide } from "@/data/mockData";
 import { MapPin, Award, ArrowLeft, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import AdventureCard from "../Cards/AdventureCard";
 import { Layout } from "../Layout/Layout";
 import { getDictionary } from "@/lib/dictionary";
 import { UserType } from "@/types/User";
-import { Button } from "../ui/button";
+import { createClient } from "@/utils/supabase/server";
 import { getStorageUrl } from "@/utils/supabase/storage";
+import Image from "next/image";
 
 interface GuideContentProps {
     guide: UserType;
@@ -15,8 +15,14 @@ interface GuideContentProps {
 }
 
 export default async function GuideContent({ guide, lang }: GuideContentProps) {
-    const guideAdventures = await getAdventuresByGuide(guide.nickname || "");
+    const supabase = await createClient();
+    const { data: guideAdventures } = await supabase
+        .from('adventures')
+        .select('*')
+        .eq('nickname', guide.nickname);
+
     const t = await getDictionary(lang);
+    const adventures = guideAdventures || [];
 
     return (
         <Layout>
@@ -46,12 +52,12 @@ export default async function GuideContent({ guide, lang }: GuideContentProps) {
                         />
                         <div className="flex-1 text-center md:text-left">
                             <h1 className="mb-2 text-3xl font-extrabold md:text-4xl text-white">
-                                {guide.name}
+                                {guide.name || guide.nickname}
                             </h1>
                             <div className="mb-3 flex flex-wrap justify-center md:justify-start items-center gap-4">
                                 <div className="flex items-center gap-1 text-white/90">
                                     <MapPin className="h-4 w-4" />
-                                    <span>{guide.city}, {guide.UF}</span>
+                                    <span>{guide.city}, {guide.UF || (guide as any).uf}</span>
                                 </div>
                             </div>
                             <div className="flex flex-wrap gap-2">
@@ -77,7 +83,7 @@ export default async function GuideContent({ guide, lang }: GuideContentProps) {
                 {/* About */}
                 <div className="w-full mb-8 rounded-2xl bg-white p-6 shadow-card">
                     <h2 className="mb-4 text-xl font-bold text-foreground">{t.about_guide || "Sobre o Guia"}</h2>
-                    <p className="mb-4 text-muted-foreground">{guide.short_description}</p>
+                    <p className="mb-4 text-muted-foreground">{guide.short_description || guide.description}</p>
                     {guide.experience && (
                         <p className="text-muted-foreground">{guide.experience}</p>
                     )}
@@ -87,7 +93,7 @@ export default async function GuideContent({ guide, lang }: GuideContentProps) {
                 {guide.certifications && guide.certifications.length > 0 && (
                     <div className="rounded-2xl bg-white p-6 mb-8 shadow-card">
                         <div className="mb-4 flex items-center gap-2">
-                            <Award className="h-5 w-5 text-gold" />
+                            <Award className="h-5 w-5 text-amber-500" />
                             <h3 className="font-bold text-foreground">{t.certifications || "Certificações"}</h3>
                         </div>
                         <ul className="flex flex-col md:flex-row flex-wrap gap-x-6 gap-y-2">
@@ -104,10 +110,10 @@ export default async function GuideContent({ guide, lang }: GuideContentProps) {
                 {/* Adventures */}
                 <div>
                     <h2 className="mb-6 text-xl font-bold text-foreground">
-                        {t.offered_adventures || "Aventuras oferecidas"} ({guideAdventures.length})
+                        {t.offered_adventures || "Aventuras oferecidas"} ({adventures.length})
                     </h2>
                     <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                        {guideAdventures.map((adventure) => (
+                        {adventures.map((adventure) => (
                             <AdventureCard key={adventure.id} adventure={adventure} />
                         ))}
                     </div>

@@ -1,7 +1,6 @@
 "use client";
 import { MapPin, ArrowRight } from "lucide-react";
 import { ModalityTag } from "@/components/ModalityTag";
-import { getGuideById } from "@/data/mockData";
 import type { PlaceType } from "@/types/Place";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +13,6 @@ interface AdventureCardProps {
 }
 
 export default function AdventureCard({ adventure }: AdventureCardProps) {
-  const guide = getGuideById(adventure.nickname);
   const t = useTranslations();
   const params = useParams();
   const lang = params.lang as string;
@@ -47,18 +45,18 @@ export default function AdventureCard({ adventure }: AdventureCardProps) {
           <span>{adventure.city}, {adventure.UF}</span>
         </div>
 
-        {guide && (
+        {adventure.guide && (
           <div className="mb-4 flex items-center gap-2">
             <Image
-              src={getStorageUrl('users', guide.photo || guide.avatar) || ""}
-              alt={guide.name}
+              src={getStorageUrl('users', adventure.guide.avatar) || ""}
+              alt={adventure.guide.name}
               className="h-6 w-6 rounded-full object-cover"
               width={24}
               height={24}
             />
             <span className="text-sm text-muted-foreground">
               {lang === 'en' ? 'by' : lang === 'es' ? 'por' : 'por'}{" "}
-              <span className="font-bold">{guide.name}</span>
+              <span className="font-bold">{adventure.guide.name}</span>
             </span>
           </div>
         )}

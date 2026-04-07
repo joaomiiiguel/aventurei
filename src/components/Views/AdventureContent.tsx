@@ -1,6 +1,6 @@
-"use client";
+'use client'
+import Image from "next/image";
 import { ModalityTag } from "@/components/ModalityTag";
-import { getAdventureById, getGuideById } from "@/data/mockData";
 import { MapPin, Clock, Users, ArrowLeft, CheckCircle, MessageCircle, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Layout } from "../Layout/Layout";
@@ -8,16 +8,17 @@ import Link from "next/link";
 import DifficultyBadge from "../DifficultyBadge";
 import { useTranslations } from "@/contexts/LocaleContext";
 import { getStorageUrl } from "@/utils/supabase/storage";
+import { PlaceType } from "@/types/Place";
+import { UserType } from "@/types/User";
 
 interface AdventureContentProps {
-  slug: string;
+  adventure: PlaceType;
+  guide: UserType;
   lang: string;
 }
 
-export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
+export default function AdventureDetail({ adventure, guide, lang }: AdventureContentProps) {
   const t = useTranslations();
-  const adventure = getAdventureById(slug);
-  const guide = adventure ? getGuideById(adventure.nickname) : undefined;
   const [selectedPhoto, setSelectedPhoto] = useState(0);
 
   if (!adventure) {
@@ -32,6 +33,13 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
       </Layout>
     );
   }
+
+  // WhatsApp link formatting
+  const whatsappNumber = guide?.phone || "+34000000000";
+  const whatsappMessage = encodeURIComponent(
+    `${t.whatsapp_hello || "Olá"}, ${guide?.name}! ${t.whatsapp_interest || "Tenho interesse na aventura"}: *${adventure.title}*. ${t.whatsapp_more_info || "Gostaria de mais informações sobre datas e reservas."}`
+  );
+  const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=${whatsappMessage}`;
 
   return (
     <>
@@ -51,11 +59,13 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
 
         {/* Main Photo */}
         <div className="lg:col-span-2">
-          <div className="aspect-[16/10] h-[60vh] w-full overflow-hidden rounded-2xl">
-            <img
-              src={getStorageUrl('places', adventure.gallery?.[selectedPhoto])}
+          <div className="relative aspect-[16/10] h-[60vh] w-full overflow-hidden rounded-2xl">
+            <Image
+              src={getStorageUrl('places', adventure.gallery?.[selectedPhoto]) || ""}
               alt={adventure.title}
-              className="h-full w-full object-cover"
+              fill
+              className="object-cover"
+              priority
             />
           </div>
         </div>
@@ -66,15 +76,16 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
             <button
               key={index}
               onClick={() => setSelectedPhoto(index)}
-              className={`flex-1 h-[15vh] overflow-hidden rounded-xl transition-all ${selectedPhoto === index
+              className={`relative flex-1 h-[15vh] overflow-hidden rounded-xl transition-all ${selectedPhoto === index
                 ? "ring-2 ring-primary ring-offset-2"
                 : "opacity-70 hover:opacity-100"
                 }`}
             >
-              <img
-                src={getStorageUrl('places', photo)}
+              <Image
+                src={getStorageUrl('places', photo) || ""}
                 alt={`${adventure.title} - ${t.photo || "Foto"} ${index + 1}`}
-                className="h-full w-full object-cover"
+                fill
+                className="object-cover"
               />
             </button>
           ))}
@@ -93,7 +104,7 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
               </h1>
               <div className="flex items-center gap-1">
                 <MapPin className="h-4 w-4" />
-                <span>{adventure.city}, {adventure.UF}</span>
+                <span>{adventure.city}, {adventure.UF || (adventure as any).uf}</span>
               </div>
             </div>
 
@@ -125,12 +136,15 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
             {/* CTA Card */}
             <div className="rounded-2xl shadow p-6 bg-white">
 
-              <button
+              <Link
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-primary text-white w-full flex justify-center items-center gap-2 font-bold text-lg px-10 py-3 rounded-full shadow-xl transition-transform hover:scale-102 hover:cursor-pointer"
               >
                 <MessageCircle className="mr-2 h-4 w-4" />
-                {t.request_booking || 'Solicitar reserva'}
-              </button>
+                {t.request_booking_whatsapp || 'Reservar no WhatsApp'}
+              </Link>
 
 
               <p className="mt-4 text-center text-sm text-gray-400 font-bold">
@@ -145,13 +159,16 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
                   {t.responsible_guide || "Guia responsável"}
                 </h3>
                 <div className="flex items-center gap-3 mb-4">
-                  <img
-                    src={getStorageUrl('users', guide.photo || guide.avatar)}
-                    alt={guide.name}
-                    className="h-14 w-14 rounded-full object-cover"
-                  />
+                  <div className="relative h-14 w-14 shrink-0">
+                    <Image
+                      src={getStorageUrl('users', guide.avatar) || ""}
+                      alt={guide.name || guide.nickname || ""}
+                      fill
+                      className="rounded-full object-cover"
+                    />
+                  </div>
                   <div>
-                    <p className="font-bold text-foreground">{guide.name}</p>
+                    <p className="font-bold text-foreground">{guide.name || guide.nickname}</p>
                     <div className="flex items-center gap-1 text-sm text-gray-400">
                       <MapPin className="h-3.5 w-3.5" />
                       {guide.city}
@@ -159,7 +176,7 @@ export default function AdventureDetail({ slug, lang }: AdventureContentProps) {
                   </div>
                 </div>
                 <Link
-                  href={`/${lang}/${guide.id}`}
+                  href={`/${lang}/${guide.nickname}`}
                   className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-2 text-sm font-medium text-white hover:bg-secondary/80 transition-colors"
                 >
                   {t.view_full_profile || "Ver perfil completo"}

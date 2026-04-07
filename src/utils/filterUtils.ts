@@ -1,5 +1,5 @@
 import { Modality, PlaceType } from "@/types/Place";
-import { Guide } from "@/data/mockData";
+import { UserType } from "@/types/User";
 
 export const filterAdventures = (
   adventures: PlaceType[],
@@ -18,18 +18,18 @@ export const filterAdventures = (
 };
 
 export const filterGuides = (
-  guides: Guide[],
+  guides: UserType[],
   searchQuery: string,
   selectedModalities: Modality[]
-): Guide[] => {
+): UserType[] => {
   return guides.filter((guide) => {
     const matchesSearch =
-      guide.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      guide.city.toLowerCase().includes(searchQuery.toLowerCase());
+      (guide.name || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (guide.city || "").toLowerCase().includes(searchQuery.toLowerCase());
     const matchesModality =
       selectedModalities.length === 0 ||
-      selectedModalities.some((modality) =>
-        guide.modalities.includes(modality)
+      (guide.modalities || []).some((modality) =>
+        selectedModalities.includes(modality)
       );
     return matchesSearch && matchesModality;
   });
