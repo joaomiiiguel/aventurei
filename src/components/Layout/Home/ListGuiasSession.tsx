@@ -8,13 +8,27 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setGuides, setGuidesLoading, setGuidesError } from "@/store/slices/guidesSlice";
 import EmptyAdventureIcon from "@/components/EmptyResultIcon";
 
-const ListGuiasSession = ({ searchQuery, selectedModalities }: { searchQuery: string, selectedModalities: Modality[] }) => {
+const ListGuiasSession = ({ 
+    searchQuery, 
+    selectedModalities, 
+    initialData 
+}: { 
+    searchQuery: string, 
+    selectedModalities: Modality[],
+    initialData?: any[]
+}) => {
     const t = useTranslations();
     const dispatch = useAppDispatch();
     const { items: guides, loading, error } = useAppSelector((state) => state.guides);
 
     useEffect(() => {
         const fetchGuides = async () => {
+            // If we have initialData from server and store is empty, use it
+            if (initialData && initialData.length > 0 && guides.length === 0) {
+                dispatch(setGuides(initialData));
+                return;
+            }
+
             if (guides.length > 0) return; // Use cache if available
 
             dispatch(setGuidesLoading(true));
@@ -34,7 +48,7 @@ const ListGuiasSession = ({ searchQuery, selectedModalities }: { searchQuery: st
         };
 
         fetchGuides();
-    }, [dispatch, guides.length]);
+    }, [dispatch, guides.length, initialData]);
 
     const filteredGuides = useMemo(() => {
         return filterGuides(guides, searchQuery, selectedModalities);

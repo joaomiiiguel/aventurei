@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 const AdventurePage = async ({ params }: PageProps) => {
   const { adventure_name, lang, guide_id } = await params;
-  const supabase = await createClient();
+  const supabase = createStaticClient();
 
   const { data: adventure } = await supabase
     .from('adventures')

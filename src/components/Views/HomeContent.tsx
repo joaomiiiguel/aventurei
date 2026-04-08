@@ -8,9 +8,15 @@ import ListGuiasSession from "@/components/Layout/Home/ListGuiasSession";
 import HowItWorksSession from "@/components/Layout/Home/HowItWorksSession";
 import { Compass } from "lucide-react";
 import { useTranslations } from "@/contexts/LocaleContext";
-import { Modality } from "@/types/Place";
+import { Modality, PlaceType } from "@/types/Place";
+import { UserType } from "@/types/User";
 
-const HomeContent = () => {
+interface HomeContentProps {
+  initialAdventures?: PlaceType[];
+  initialGuides?: UserType[];
+}
+
+const HomeContent = ({ initialAdventures, initialGuides }: HomeContentProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedModalities, setSelectedModalities] = useState<Modality[]>([]);
   const t = useTranslations();
@@ -37,6 +43,7 @@ const HomeContent = () => {
           <ListAdventureSession
             searchQuery={searchQuery}
             selectedModalities={selectedModalities}
+            initialData={initialAdventures}
           />
         </div>
 
@@ -50,6 +57,7 @@ const HomeContent = () => {
           <ListGuiasSession
             searchQuery={searchQuery}
             selectedModalities={selectedModalities}
+            initialData={initialGuides}
           />
         </div>
       </section>

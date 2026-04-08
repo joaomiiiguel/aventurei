@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 const GuidePage = async ({ params }: PageProps) => {
     const { guide_id, lang } = await params;
-    const supabase = await createClient();
+    const supabase = createStaticClient();
 
     const { data: guide } = await supabase
         .from('profiles')

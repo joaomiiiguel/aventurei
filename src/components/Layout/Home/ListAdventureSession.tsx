@@ -11,15 +11,22 @@ import EmptyAdventureIcon from "@/components/EmptyResultIcon";
 interface ListAdventureSessionProps {
   searchQuery: string;
   selectedModalities: Modality[];
+  initialData?: any[];
 }
 
-const ListAdventureSession = ({ searchQuery, selectedModalities }: ListAdventureSessionProps) => {
+const ListAdventureSession = ({ searchQuery, selectedModalities, initialData }: ListAdventureSessionProps) => {
   const t = useTranslations();
   const dispatch = useAppDispatch();
   const { items: adventures, loading, error } = useAppSelector((state) => state.adventures);
 
   useEffect(() => {
     const fetchAdventures = async () => {
+      // If we have initialData from server and store is empty, use it
+      if (initialData && initialData.length > 0 && adventures.length === 0) {
+        dispatch(setAdventures(initialData));
+        return;
+      }
+
       if (adventures.length > 0) return; // Use cache if available
 
       dispatch(setAdventuresLoading(true));
@@ -39,7 +46,7 @@ const ListAdventureSession = ({ searchQuery, selectedModalities }: ListAdventure
     };
 
     fetchAdventures();
-  }, [dispatch, adventures.length]);
+  }, [dispatch, adventures.length, initialData]);
 
   const filteredAdventures = useMemo(() => {
     return filterAdventures(adventures, searchQuery, selectedModalities);

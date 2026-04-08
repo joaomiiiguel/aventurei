@@ -5,7 +5,7 @@ import AdventureCard from "../Cards/AdventureCard";
 import { Layout } from "../Layout/Layout";
 import { getDictionary } from "@/lib/dictionary";
 import { UserType } from "@/types/User";
-import { createClient } from "@/utils/supabase/server";
+import { createClient as createStaticClient } from "@/utils/supabase/static";
 import { getStorageUrl } from "@/utils/supabase/storage";
 
 interface GuideContentProps {
@@ -14,7 +14,7 @@ interface GuideContentProps {
 }
 
 export default async function GuideContent({ guide, lang }: GuideContentProps) {
-    const supabase = await createClient();
+    const supabase = createStaticClient();
     const t = await getDictionary(lang);
 
     // Fetch adventures directly on the server
