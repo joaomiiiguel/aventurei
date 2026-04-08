@@ -14,9 +14,12 @@ import Avatar from '@/components/Avatar'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
 import { getStorageUrl } from '@/utils/supabase/storage'
-import { Modality, modalityLabels, Difficulty, PlaceType } from '@/types/Place'
+import { Modality, modalityLabels, PlaceType } from '@/types/Place'
+import { DifficultyType } from '@/types/Difficulty'
 import Select from '@/components/ui/select'
 import { useRouter } from 'next/navigation'
+import { UserType } from '@/types/User'
+import { useImageConverter } from '@/hooks/useImageConverter';
 
 export function OnboardingFlow() {
     const t = useTranslations()
@@ -26,13 +29,14 @@ export function OnboardingFlow() {
     const [step, setStep] = useState(0)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [pendingPhotos, setPendingPhotos] = useState<{ file: File; url: string }[]>([])
+    const { convertToWebP } = useImageConverter();
 
     // Form States
-    const [profileForm, setProfileForm] = useState({
+    const [profileForm, setProfileForm] = useState<UserType>({
         name: user?.name || '',
         nickname: user?.nickname || '',
         city: user?.city || '',
-        UF: user?.UF || '',
+        uf: user?.uf || '',
         description: user?.description || '',
         avatar: user?.avatar || '',
         modalities: user?.modalities || [],
@@ -42,14 +46,14 @@ export function OnboardingFlow() {
         title: "",
         description: "",
         city: "",
-        UF: "",
+        uf: "",
         price: null,
-        nickname: user?.id || "",
+        nickname: "",
         cover_img: "",
         min_age: 4,
         booking_mode: true,
         gallery: [],
-        difficulty: "moderate" as Difficulty,
+        difficulty: "moderate" as DifficultyType,
         modalities: null,
         slug: "",
     })
@@ -64,14 +68,17 @@ export function OnboardingFlow() {
         if (!user) return
         setIsSubmitting(true)
         try {
-            const { error } = await supabase
-                .from('users')
-                .update({
-                    ...profileForm,
-                })
-                .eq('id', user.id)
+            const response = await fetch('/api/guides', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...profileForm, email: user.email, phone: user.phone })
+            })
 
-            if (error) throw error
+            if (!response.ok) {
+                const data = await response.json()
+                throw new Error(data.error || 'Erro ao atualizar perfil')
+            }
+
             nextStep()
         } catch (error: any) {
             toast.error(error.message)
@@ -95,9 +102,11 @@ export function OnboardingFlow() {
             // Upload photos to the folder named with the slug
             const uploadedUrls: string[] = []
             for (let i = 0; i < pendingPhotos.length; i++) {
-                const { file } = pendingPhotos[i]
-                const fileExt = file.name.split('.').pop()
-                const filePath = `${slug}/${Date.now()}-${i}.${fileExt}`
+                let { file } = pendingPhotos[i]
+                // Converte para WebP antes do upload
+                file = await convertToWebP(file, 0.8);
+
+                const filePath = `${slug}/${Date.now()}-${i}.webp`;
 
                 const { error: uploadError } = await supabase.storage
                     .from('places')
@@ -108,21 +117,49 @@ export function OnboardingFlow() {
                 uploadedUrls.push(filePath)
             }
 
-            // Create the place with the final paths in one go
-            const { error: insertError } = await supabase
-                .from("places")
-                .insert({
+            // Create the place with the final paths in one go via API
+            const response = await fetch('/api/adventures', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
                     ...adventureForm,
                     gallery: uploadedUrls,
                     cover_img: uploadedUrls[0] || "",
-                    slug,
-                    user_id: user.id,
-                    nickname: user.id
+                    slug
                 })
+            })
 
-            if (insertError) throw insertError
+            if (!response.ok) {
+                const data = await response.json()
+                throw new Error(data.error || 'Erro ao criar aventura')
+            }
 
             nextStep()
+        } catch (error: any) {
+            toast.error(error.message)
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
+
+    const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        let file = e.target.files?.[0]
+        if (!file || !user) return
+        try {
+            setIsSubmitting(true)
+            // Converte para WebP antes do upload
+            file = await convertToWebP(file, 0.8);
+
+            const filePath = `${user.id}.webp`;
+
+            const { error: uploadError } = await supabase.storage
+                .from('users')
+                .upload(filePath, file, { upsert: true })
+
+            if (uploadError) throw uploadError
+
+            setProfileForm(prev => ({ ...prev, avatar: filePath }))
+            toast.success(t.avatar_uploaded_success || 'Avatar atualizado!')
         } catch (error: any) {
             toast.error(error.message)
         } finally {
@@ -134,37 +171,19 @@ export function OnboardingFlow() {
         if (!user) return
         setIsSubmitting(true)
         try {
-            const { error } = await supabase
-                .from('users')
-                .update({ onboarded: true })
-                .eq('id', user.id)
+            const response = await fetch('/api/guides', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...profileForm, nickname: user.nickname, onboarded: true })
+            })
 
-            if (error) throw error
+            if (!response.ok) {
+                const data = await response.json()
+                throw new Error(data.error || 'Erro ao finalizar onboarding')
+            }
+
             toast.success(t.onboarding_success_title)
             window.location.reload() // Reload to show dashboard
-        } catch (error: any) {
-            toast.error(error.message)
-        } finally {
-            setIsSubmitting(false)
-        }
-    }
-
-    const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0]
-        if (!file || !user) return
-        try {
-            setIsSubmitting(true)
-            const fileExt = file.name.split('.').pop()
-            const filePath = `${user.id}.${fileExt}`
-
-            const { error: uploadError } = await supabase.storage
-                .from('users')
-                .upload(filePath, file, { upsert: true })
-
-            if (uploadError) throw uploadError
-
-            setProfileForm(prev => ({ ...prev, avatar: filePath }))
-            toast.success(t.avatar_uploaded_success || 'Avatar atualizado!')
         } catch (error: any) {
             toast.error(error.message)
         } finally {
@@ -270,8 +289,8 @@ export function OnboardingFlow() {
                                     <div className="space-y-2">
                                         <Label>{t.state}</Label>
                                         <Input
-                                            value={profileForm.UF}
-                                            onChange={e => setProfileForm({ ...profileForm, UF: e.target.value })}
+                                            value={profileForm.uf}
+                                            onChange={e => setProfileForm({ ...profileForm, uf: e.target.value })}
                                             placeholder={t.state}
                                         />
                                     </div>
@@ -280,7 +299,7 @@ export function OnboardingFlow() {
                                 <div className="space-y-2">
                                     <Label>{t.description}</Label>
                                     <Textarea
-                                        value={profileForm.description}
+                                        value={profileForm.description!}
                                         onChange={e => setProfileForm({ ...profileForm, description: e.target.value })}
                                         placeholder={t.description}
                                         rows={3}
@@ -338,14 +357,14 @@ export function OnboardingFlow() {
                                             <Label>{t.difficulty}</Label>
                                             <Select
                                                 options={[
-                                                    { value: "fácil", label: t.difficulty_easy },
-                                                    { value: "moderado", label: t.difficulty_moderate },
-                                                    { value: "difícil", label: t.difficulty_hard },
-                                                    { value: "extremo", label: t.difficulty_extreme },
+                                                    { value: "easy", label: t.difficulty_easy },
+                                                    { value: "moderate", label: t.difficulty_moderate },
+                                                    { value: "hard", label: t.difficulty_hard },
+                                                    { value: "extreme", label: t.difficulty_extreme },
                                                 ]}
                                                 value={adventureForm.difficulty!}
                                                 onChange={(v) =>
-                                                    setAdventureForm({ ...adventureForm, difficulty: v as Difficulty })
+                                                    setAdventureForm({ ...adventureForm, difficulty: v as DifficultyType })
                                                 }
                                             />
                                         </div>
@@ -362,8 +381,8 @@ export function OnboardingFlow() {
                                         <div className="space-y-2">
                                             <Label>{t.state}</Label>
                                             <Input
-                                                value={adventureForm.UF}
-                                                onChange={(e) => setAdventureForm({ ...adventureForm, UF: e.target.value })}
+                                                value={adventureForm.uf}
+                                                onChange={(e) => setAdventureForm({ ...adventureForm, uf: e.target.value })}
                                             />
                                         </div>
                                     </div>

@@ -3,16 +3,19 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const supabase = await createClient();
-  const { email, password, name, nickname } = await request.json();
+  const { email, password, name, phone, city, activity, next = '/' } = await request.json();
 
   // 1. Sign up user in Supabase Auth
   const { data: authData, error: authError } = await supabase.auth.signUp({
     email,
     password,
+    phone: phone.replaceAll(' ', '').replace(/\D/g, ''),
     options: {
       data: {
         full_name: name,
-        display_name: nickname,
+        phone: phone.replaceAll(' ', '').replace(/\D/g, ''),
+        city,
+        activity,
       },
     },
   });
@@ -22,24 +25,27 @@ export async function POST(request: Request) {
   }
 
   if (authData.user) {
-    // 2. Create entry in our profiles table (UserType)
-    const { error: profileError } = await supabase.from("profiles").insert({
+    // 2. Create entries in our tables
+    // Update 'users' table (used by AuthContext and Dashboard)
+    const { error: usersError } = await supabase.from("profiles").insert({
       id: authData.user.id,
       name,
-      nickname,
       email,
-      profile: 'guide', // Defaulting to guide for this app context, could be dynamic
+      phone,
+      city,
+      country: 'ESP',
+      profile: 'guide',
       onboarded: false,
+      modalities: [activity],
+      password,
     });
 
-    if (profileError) {
-      console.error("Error creating profile:", profileError);
-      // We don't return error here if auth was successful, but maybe we should or handle differently
-    }
+    if (usersError) console.error("Error creating users entry:", usersError);
+
   }
 
   return NextResponse.json({
-    message: "Registration successful. Please check your email for verification.",
+    message: "Registration successful",
     user: authData.user,
   });
 }

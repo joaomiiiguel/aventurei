@@ -4,13 +4,14 @@ import { Input } from "../ui/input";
 import Label from "../ui/label";
 import Textarea from "../ui/textarea";
 import { useEffect, useMemo, useState } from "react";
-import { Difficulty, Modality, modalityLabels, PlaceType } from "@/types/Place";
+import { Modality, modalityLabels, PlaceType } from "@/types/Place";
 import Select from "../ui/select";
 import toast from "react-hot-toast";
 import { useTranslations } from "@/contexts/LocaleContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { useSupabaseClient } from "@/utils/supabase/client";
 import { getStorageUrl } from "@/utils/supabase/storage";
+import { DifficultyType } from "@/types/Difficulty";
 
 interface AdventureEditViewProps {
   onClose: () => void
@@ -24,14 +25,14 @@ const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps
     title: editingAdventure?.title || "",
     description: editingAdventure?.description || "",
     city: editingAdventure?.city || "",
-    UF: editingAdventure?.UF || "",
+    uf: editingAdventure?.uf || "",
     price: editingAdventure?.price || null,
     nickname: editingAdventure?.nickname || "",
     cover_img: editingAdventure?.cover_img || "",
     min_age: editingAdventure?.min_age || 4,
     booking_mode: editingAdventure?.booking_mode || true,
     gallery: editingAdventure?.gallery || [],
-    difficulty: editingAdventure?.difficulty || "moderate" as Difficulty,
+    difficulty: editingAdventure?.difficulty || "moderate" as DifficultyType,
     modalities: editingAdventure?.modalities || null,
     slug: editingAdventure?.slug || "",
   });
@@ -157,7 +158,7 @@ const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps
               ]}
               value={adventureForm.difficulty!}
               onChange={(v) =>
-                setAdventureForm({ ...adventureForm, difficulty: v as Difficulty })
+                setAdventureForm({ ...adventureForm, difficulty: v as DifficultyType })
               }
             />
           </div>
@@ -174,8 +175,8 @@ const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps
           <div className="space-y-2">
             <Label>{t.state}</Label>
             <Input
-              value={adventureForm.UF}
-              onChange={(e) => setAdventureForm({ ...adventureForm, UF: e.target.value })}
+              value={adventureForm.uf}
+              onChange={(e) => setAdventureForm({ ...adventureForm, uf: e.target.value })}
             />
           </div>
         </div>

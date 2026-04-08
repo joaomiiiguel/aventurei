@@ -12,7 +12,7 @@ export interface UserType {
     profile?: string //admin - guide - client
     avatar?: string
     city?: string
-    UF?: string
+    uf?: string
     description?: string
     refund_rules?: string
     status?: boolean

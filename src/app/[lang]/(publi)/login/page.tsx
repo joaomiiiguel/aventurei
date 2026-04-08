@@ -10,7 +10,6 @@ import toast from 'react-hot-toast'
 import Link from 'next/link'
 import { Input } from '@/components/ui/input'
 import LogoAventurei from '@/components/Logo'
-import PhoneInput from '@/components/ui/inputPhone'
 
 export default function LoginPage() {
     const t = useTranslations()
@@ -18,12 +17,10 @@ export default function LoginPage() {
     const { lang } = useParams()
     const searchParams = useSearchParams()
     const next = searchParams.get('next')
-    const { signIn, signUp, signInWithGoogle } = useAuth()
+    const { signIn, signInWithGoogle } = useAuth()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [name, setName] = useState('')
-    const [phone, setPhone] = useState('')
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
@@ -46,7 +43,7 @@ export default function LoginPage() {
 
     const handleGoogleLogin = async () => {
         try {
-            await signInWithGoogle()
+            await signInWithGoogle(next || `/${lang}/dashboard`)
         } catch (error: any) {
             toast.error(error.message)
         }

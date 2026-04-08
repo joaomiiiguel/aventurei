@@ -1,24 +1,23 @@
-export type Difficulty = "fácil" | "moderado" | "difícil" | "extremo";
+import { DifficultyType } from "./Difficulty";
 
 export type Modality = 
-  | "trilha" 
-  | "escalada" 
+  | "trekking" 
+  | "climbing" 
   | "rafting" 
-  | "mergulho" 
-  | "canoagem" 
-  | "rapel" 
-  | "mountain-bike" 
+  | "diving" 
+  | "canoeing" 
+  | "rappelling" 
+  | "mountain_bike" 
   | "camping";
 
-
 export const modalityLabels: Record<Modality, string> = {
-  trilha: "Trilha",
-  escalada: "Escalada",
+  trekking: "Trekking",
+  climbing: "Climbing",
   rafting: "Rafting",
-  mergulho: "Mergulho",
-  canoagem: "Canoagem",
-  rapel: "Rapel",
-  "mountain-bike": "Mountain Bike",
+  diving: "Diving",
+  canoeing: "Canoeing",
+  rappelling: "Rappelling",
+  mountain_bike: "Mountain Bike",
   camping: "Camping",
 };
 
@@ -27,7 +26,7 @@ export type PlaceType = {
     id?: string;
     title: string
     city: string
-    UF: string
+    uf: string
     nickname: string
     cover_img?: string
     price?: number | null
@@ -38,7 +37,7 @@ export type PlaceType = {
     min_age?: number
     created_at?: string
     slug: string
-    difficulty?: Difficulty
+    difficulty?: DifficultyType
     modalities?: Modality | null
     guide?: {
       name: string;

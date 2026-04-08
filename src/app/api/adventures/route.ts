@@ -54,11 +54,17 @@ export async function POST(request: Request) {
     .single();
 
   if (profileError || !profile?.nickname) {
-    return NextResponse.json({ error: "Guide profile not found" }, { status: 403 });
+    console.error("Profile check error for adventure creation:", profileError);
+    return NextResponse.json({ 
+      error: "Guide profile not found or nickname missing.", 
+      details: profileError?.message 
+    }, { status: 403 });
   }
 
   try {
     const adventureData = await request.json();
+    console.log(`Creating adventure for user ${user.id} (nickname: ${profile.nickname}):`, adventureData);
+
     const { data: newAdventure, error: adventureError } = await supabase
       .from("adventures")
       .insert({
@@ -69,11 +75,14 @@ export async function POST(request: Request) {
       .single();
 
     if (adventureError) {
-      return NextResponse.json({ error: adventureError.message }, { status: 400 });
+      console.error("Supabase Error Creating Adventure:", adventureError);
+      return NextResponse.json({ error: adventureError.message, details: adventureError.details }, { status: 400 });
     }
 
+    console.log("Adventure created successfully:", newAdventure);
     return NextResponse.json(newAdventure);
-  } catch {
-    return NextResponse.json({ error: "Invalid request data" }, { status: 400 });
+  } catch (err: any) {
+    console.error("Internal Error in POST /api/adventures:", err);
+    return NextResponse.json({ error: "Invalid request data", details: err.message }, { status: 400 });
   }
 }

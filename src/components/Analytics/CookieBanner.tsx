@@ -9,7 +9,7 @@ export default function CookieBanner() {
   const t = useTranslations();
   const [showBanner, setShowBanner] = useState(false);
   const [showCustomizer, setShowCustomizer] = useState(false);
-  
+
   const [preferences, setPreferences] = useState({
     ad_storage: 'granted',
     analytics_storage: 'granted',
@@ -78,10 +78,10 @@ export default function CookieBanner() {
         exit={{ y: 100, opacity: 0 }}
         className="fixed bottom-4 left-4 right-4 md:left-auto md:right-8 md:max-w-md z-[9999]"
       >
-        <div className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl p-6 overflow-hidden">
+        <div className="bg-zinc-900/90 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl p-6 overflow-hidden">
           {!showCustomizer ? (
             <div className="space-y-4">
-              <div className="flex items-center gap-3 text-primary">
+              <div className="flex items-center gap-3 text-white">
                 <ShieldCheck className="w-6 h-6" />
                 <h3 className="font-bold text-lg">{t.cookie_banner?.title}</h3>
               </div>
@@ -114,14 +114,14 @@ export default function CookieBanner() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="font-bold text-lg">{t.cookie_banner?.customize}</h3>
-                <button 
+                <button
                   onClick={() => setShowCustomizer(false)}
                   className="p-1 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              
+
               <div className="space-y-3 pt-2">
                 {[
                   { id: 'ad_storage', label: t.cookie_banner?.ad_storage },
@@ -132,8 +132,8 @@ export default function CookieBanner() {
                   <div key={pref.id} className="flex items-center justify-between py-2 border-b border-zinc-100 dark:border-zinc-800 last:border-0">
                     <span className="text-sm font-medium">{pref.label}</span>
                     <label className="relative inline-flex items-center cursor-pointer">
-                      <input 
-                        type="checkbox" 
+                      <input
+                        type="checkbox"
                         className="sr-only peer"
                         checked={preferences[pref.id as keyof typeof preferences] === 'granted'}
                         onChange={(e) => setPreferences({

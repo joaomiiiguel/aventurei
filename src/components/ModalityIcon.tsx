@@ -17,13 +17,13 @@ interface ModalityIconProps {
 }
 
 const iconMap: Record<Modality, React.ComponentType<{ className?: string }>> = {
-  trilha: Footprints,
-  escalada: Mountain,
+  trekking: Footprints,
+  climbing: Mountain,
   rafting: Waves,
-  mergulho: Fish,
-  canoagem: Sailboat,
-  rapel: ArrowDownFromLine,
-  "mountain-bike": Bike,
+  diving: Fish,
+  canoeing: Sailboat,
+  rappelling: ArrowDownFromLine,
+  mountain_bike: Bike,
   camping: Tent,
 };
 

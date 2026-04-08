@@ -7,10 +7,9 @@ export async function GET() {
   // 1. Fetch only profiles with the 'guide' role and that are active/onboarded
   const { data: guides, error } = await supabase
     .from("profiles")
-    .select("*")
+    .select("id, name, nickname, avatar, banner, city, uf, phone, modalities, experience, certifications, short_description, description, rating, reviews_count")
     .eq("profile", "guide")
     .eq("status", true)
-    .order("rating", { ascending: false });
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
@@ -29,18 +28,30 @@ export async function PATCH(request: Request) {
   }
 
   try {
-    const updateData = await request.json();
-    const { error } = await supabase
+    const rawData = await request.json();
+    
+    // Filter out fields that shouldn't be updated or that are handled specifically
+    const { id: _id, email: _email, created_at: _created_at, password: _password, ...updateFields } = rawData;
+
+    // Ensure we are operating on the authenticated user's ID
+    const updateData = { ...updateFields, id: user.id };
+
+    console.log(`Upserting profile for user ${user.id}:`, updateData);
+
+    const { data, error } = await supabase
       .from("profiles")
-      .update(updateData)
-      .eq("id", user.id);
+      .upsert(updateData)
+      .select();
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 });
+      console.error("Supabase Error Updating Profile:", error);
+      return NextResponse.json({ error: error.message, details: error.details }, { status: 400 });
     }
 
-    return NextResponse.json({ message: "Profile updated successfully." });
-  } catch {
-    return NextResponse.json({ error: "Invalid request data" }, { status: 400 });
+    console.log("Profile updated successfully:", data);
+    return NextResponse.json({ message: "Profile updated successfully.", data });
+  } catch (err: any) {
+    console.error("Internal Error in PATCH /api/guides:", err);
+    return NextResponse.json({ error: "Invalid request data", details: err.message }, { status: 400 });
   }
 }

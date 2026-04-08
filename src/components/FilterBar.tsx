@@ -16,13 +16,13 @@ interface FilterBarProps {
 }
 
 const allModalities: Modality[] = [
-  "trilha",
-  "escalada",
+  "trekking",
+  "climbing",
   "rafting",
-  "mergulho",
-  "canoagem",
-  "rapel",
-  "mountain-bike",
+  "diving",
+  "canoeing",
+  "rappelling",
+  "mountain_bike",
   "camping",
 ];
 

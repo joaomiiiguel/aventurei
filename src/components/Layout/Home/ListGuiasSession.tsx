@@ -19,7 +19,7 @@ const ListGuiasSession = ({ searchQuery, selectedModalities }: { searchQuery: st
 
             dispatch(setGuidesLoading(true));
             try {
-                const response = await fetch('/api/guides');
+                const response = await fetch('/api/guides/all');
                 const data = await response.json();
                 if (response.ok) {
                     dispatch(setGuides(data));

@@ -6,7 +6,7 @@ const Select = ({ options, value, onChange, className, placeholder }: { options:
             <select
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className={`w-full appearance-none rounded-md border border-input bg-background px-3 py-2 pr-8 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}>
+                className={`w-full appearance-none rounded-md border border-gray-300 bg-background px-3 py-2 pr-8 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}>
                 <option value="" disabled>{placeholder}</option>
                 {options.map((option) => (
                     <option key={option.value} value={option.value}>

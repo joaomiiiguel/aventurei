@@ -30,7 +30,7 @@ export default function AdventureCard({ adventure }: AdventureCardProps) {
         />
         <div className="image-overlay absolute inset-0" />
         <div className="absolute left-3 top-3 bg-white/80 rounded-md">
-          <ModalityTag modality={adventure.modalities || 'trilha'} />
+          <ModalityTag modality={adventure.modalities || 'trekking'} />
         </div>
       </div>
 
@@ -42,7 +42,7 @@ export default function AdventureCard({ adventure }: AdventureCardProps) {
 
         <div className="mb-3 flex items-center gap-1 text-sm text-muted-foreground">
           <MapPin className="h-4 w-4" />
-          <span>{adventure.city}, {adventure.UF}</span>
+          <span>{adventure.city}, {adventure.uf}</span>
         </div>
 
         {adventure.guide && (

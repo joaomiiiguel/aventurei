@@ -30,7 +30,7 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
     const [profileForm, setProfileForm] = useState<Partial<UserType>>({
         name: '',
         city: '',
-        UF: '',
+        uf: '',
         description: '',
         email: '',
         numberID: '',
@@ -45,7 +45,7 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
             setProfileForm({
                 name: user.name || '',
                 city: user.city || '',
-                UF: user.UF || '',
+                uf: user.uf || '',
                 description: user.description || '',
                 email: user.email || '',
                 numberID: user.numberID || '',
@@ -143,7 +143,7 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
                 .update({
                     name: profileForm.name,
                     city: profileForm.city,
-                    UF: profileForm.UF,
+                    uf: profileForm.uf,
                     description: profileForm.description,
                     email: profileForm.email,
                     numberID: profileForm.numberID,
@@ -280,8 +280,8 @@ export function ProfileEditView({ onClose }: ProfileEditViewProps) {
                             id="state"
                             type="text"
                             placeholder={t.state}
-                            value={profileForm.UF || ''}
-                            onChange={(e) => setProfileForm(prev => ({ ...prev, UF: e.target.value }))}
+                            value={profileForm.uf || ''}
+                            onChange={(e) => setProfileForm(prev => ({ ...prev, uf: e.target.value }))}
                         />
                     </div>
                 </div>

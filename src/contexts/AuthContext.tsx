@@ -11,9 +11,9 @@ type AuthContextType = {
     session: Session | null
     isLoading: boolean
     signOut: () => Promise<void>
-    signIn: (credentials: any) => Promise<any>
-    signUp: (credentials: any) => Promise<any>
-    signInWithGoogle: () => Promise<void>
+    signIn: (credentials: { email: string, password: string }) => Promise<any>
+    signUp: (credentials: { email: string, password: string, name: string, phone: string, city?: string, activity?: string, next?: string }) => Promise<any>
+    signInWithGoogle: (next?: string) => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -21,9 +21,9 @@ const AuthContext = createContext<AuthContextType>({
     session: null,
     isLoading: true,
     signOut: async () => { },
-    signIn: async () => { },
-    signUp: async () => { },
-    signInWithGoogle: async () => { },
+    signIn: async () => ({ data: { user: null, session: null }, error: null }),
+    signUp: async () => ({ data: { user: null, session: null }, error: null }),
+    signInWithGoogle: async (next?: string) => { },
 })
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -40,73 +40,39 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const fetchProfile = async (session: Session) => {
             const fetchId = ++currentFetchId
             try {
-                const { data, error } = await supabase
-                    .from('users')
-                    .select('*')
-                    .eq('id', session.user.id)
-                    .single()
-
+                const response = await fetch('/api/auth/me')
+                const data = await response.json()
                 if (!mounted || fetchId !== currentFetchId) return
-
-                if (error) {
-                    if (error.code === 'PGRST116') {
-                        console.log('Profile not found in users table, using auth metadata fallback')
-                    } else {
-                        console.error('Error fetching user profile from "users" table:', error)
-                    }
-
-                    // Fallback to auth metadata for any error to allow dashboard to load
-                    setUser({
-                        ...session.user.user_metadata,
-                        id: session.user.id,
-                        email: session.user.email,
-                        name: session.user.user_metadata.full_name || session.user.user_metadata.name,
-                    } as UserType)
-                } else {
-                    console.log('Successfully fetched profile from "users":', data);
-                    // Merge auth metadata with table data to ensure all fields are present
-                    const mergedUser = {
-                        ...session.user.user_metadata,
-                        ...data,
-                        id: session.user.id,
-                        email: session.user.email,
-                        name: data.name || session.user.user_metadata.full_name || session.user.user_metadata.name,
-                    } as UserType;
-                    console.log('Merged User State:', mergedUser);
-                    setUser(mergedUser);
+                if (data.user) {
+                    setUser(data.user)
                 }
-            } catch (error: any) {
-                console.error('Catch block in fetchProfile:', error);
-                if (error.name === 'AbortError') {
-                    console.log('Fetch aborted')
-                } else {
-                    console.error('Unexpected error fetching profile:', error)
-                }
+            } catch (error) {
+                console.error('Error fetching profile via API:', error)
             } finally {
                 if (mounted && fetchId === currentFetchId) setIsLoading(false)
             }
         }
 
-        // Handle initial session
-        supabase.auth.getSession().then(({ data: { session }, error }) => {
-            if (!mounted) return
-            if (error) {
-                console.error('Error getting session:', error)
-                setIsLoading(false)
-                return
+        // Handle initial session via API route for SSR consistency
+        const initAuth = async () => {
+            try {
+                const response = await fetch('/api/auth/me')
+                const data = await response.json()
+                if (mounted) {
+                    setSession(data.session)
+                    setUser(data.user)
+                }
+            } catch (error) {
+                console.error('Error in initAuth:', error)
+            } finally {
+                if (mounted) setIsLoading(false)
             }
-            setSession(session)
-            if (session) {
-                fetchProfile(session)
-            } else {
-                setIsLoading(false)
-            }
-        }).catch(err => {
-            if (mounted) setIsLoading(false)
-        })
+        }
+
+        initAuth()
 
         // Listen for changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+        const { data: subscription } = supabase.auth.onAuthStateChange(async (event, session) => {
             if (!mounted) return
             setSession(session)
             if (session) {
@@ -123,9 +89,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
         return () => {
             mounted = false
-            subscription.unsubscribe()
+            subscription.subscription.unsubscribe()
         }
-    }, [router])
+    }, [router, supabase])
 
     const signOut = async () => {
         await supabase.auth.signOut()
@@ -134,33 +100,37 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     const signIn = async ({ email, password }: any) => {
-        const result = await supabase.auth.signInWithPassword({
-            email,
-            password,
+        const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
         })
+        const result = await response.json()
+
+        // If successful, we need to refresh the session on the client
+        if (response.ok) {
+            await supabase.auth.getSession()
+            router.refresh()
+        }
+
         return result
     }
 
-    const signUp = async ({ email, password, name, phone }: any) => {
-        const result = await supabase.auth.signUp({
-            email,
-            password,
-            options: {
-                data: {
-                    full_name: name,
-                    phone: phone,
-                },
-                emailRedirectTo: `${window.location.origin}/auth/callback`,
-            },
+    const signUp = async ({ email, password, name, phone, city, activity, next = '/' }: any) => {
+        const response = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password, name, phone, city, activity, next }),
         })
+        const result = await response.json()
         return result
     }
 
-    const signInWithGoogle = async () => {
+    const signInWithGoogle = async (next: string = '/') => {
         await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
-                redirectTo: `${window.location.origin}/auth/callback`,
+                redirectTo: `${window.location.origin}/api/auth/callback?next=${encodeURIComponent(next)}`,
             },
         })
     }

@@ -1,13 +1,10 @@
 "use client";
 
-
 import { AnimatePresence, motion } from "framer-motion";
 import {
-    Lock, CheckCircle2, ArrowRight, X, Check,
-    Phone, AlertTriangle, Sparkles, Clock, Users, ShieldCheck,
+    Lock, CheckCircle2, ArrowRight, AlertTriangle, Sparkles, Clock, Users, ShieldCheck,
     MountainSnow,
     Percent,
-    UserStar,
     CalendarRange,
     HeartHandshake,
     CircleX,
@@ -20,9 +17,10 @@ import Image from "next/image";
 import { Input } from "../ui/input";
 import Select from "../ui/select";
 import Label from "../ui/label";
-import { useSupabaseClient } from "@/utils/supabase/client";
 import toast from "react-hot-toast";
-import { useMemo } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import PhoneInput from "../ui/inputPhone";
+import { useRouter } from "next/navigation";
 
 
 interface BecomeGuideContentProps {
@@ -32,6 +30,7 @@ interface BecomeGuideContentProps {
 interface FormData {
     name: string;
     email: string;
+    password: string;
     phone: string;
     city: string;
     activity: string;
@@ -40,6 +39,7 @@ interface FormData {
 interface FormErrors {
     name?: string;
     email?: string;
+    password?: string;
     phone?: string;
     city?: string;
     activity?: string;
@@ -49,15 +49,17 @@ const backgroundImages = ["/capa1.jpg", "/capa2.jpg", "/capa3.jpg"];
 
 const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
     const t = useTranslations();
+    const { signUp } = useAuth()
+    const router = useRouter();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isFirstRender, setIsFirstRender] = useState(true);
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [phone, setPhone] = useState('')
     const [city, setCity] = useState('')
     const [activity, setActivity] = useState('')
     const [loading, setLoading] = useState(false);
-    const supabase = useSupabaseClient();
 
 
     // ── Data structures using translations ──────────────────────────────────
@@ -121,17 +123,6 @@ const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
         t.become_guide.comp_aventurei_4,
     ];
 
-    // ── Comparison ─────────────────────────────────────────────────────────────
-    const comparisons = [
-        { feature: t.become_guide.comparison_feature_1, aventurei: true, masivas: false },
-        { feature: t.become_guide.comparison_feature_2, aventurei: true, masivas: false },
-        { feature: t.become_guide.comparison_feature_3, aventurei: true, masivas: false },
-        { feature: t.become_guide.comparison_feature_4, aventurei: true, masivas: false },
-        { feature: t.become_guide.comparison_feature_5, aventurei: true, masivas: false },
-        { feature: t.become_guide.comparison_feature_6, aventurei: true, masivas: false },
-        { feature: t.become_guide.comparison_feature_7, aventurei: true, masivas: false },
-    ];
-
     useEffect(() => {
         setIsFirstRender(false);
         const interval = setInterval(() => {
@@ -146,22 +137,17 @@ const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
         setLoading(true);
 
         try {
-            const { error } = await supabase.from("leads_users").insert([
-                {
-                    name,
-                    email,
-                    phone,
-                    city,
-                    activity,
-                },
-            ]);
+            const { error } = await signUp({ email, name, phone, password, city, activity, next: `/${lang}/dashboard` })
 
             if (error) throw error;
 
             toast.success(t.signup_success || "Solicitação enviada com sucesso!");
+            router.push(`/${lang}/dashboard`);
+
             // Reset form
             setName('');
             setEmail('');
+            setPassword('');
             setPhone('');
             setCity('');
             setActivity('');
@@ -547,13 +533,24 @@ const BecomeGuideContent = ({ lang }: BecomeGuideContentProps) => {
                                 <motion.div
                                     initial={{ opacity: 0, y: 10 }}
                                     whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.45 }}
+                                    className="space-y-2"
+                                >
+                                    <Label>
+                                        {t.password}
+                                    </Label>
+                                    <Input type="text" placeholder={t.password} value={password} onChange={(e) => setPassword(e.target.value)} />
+                                </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.5 }}
                                     className="space-y-2"
                                 >
                                     <Label>
                                         {t.become_guide.form_phone}
                                     </Label>
-                                    <Input placeholder={t.become_guide.form_phone} value={phone} onChange={(e) => setPhone(e.target.value)} />
+                                    <PhoneInput placeholder={t.become_guide.form_phone} value={phone} onChange={(e) => setPhone(e)} />
                                 </motion.div>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

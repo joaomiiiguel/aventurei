@@ -9,5 +9,6 @@ export const getStorageUrl = (bucket: 'users' | 'places', path: string | undefin
   // Ensure no double slashes if path starts with /
   const cleanPath = path.startsWith('/') ? path.substring(1) : path;
 
-  return `${supabaseUrl}/storage/v1/object/public/${bucket}/${cleanPath}`;
+  // Use our internal proxy route instead of direct Supabase link
+  return `/api/storage/${bucket}/${cleanPath}`;
 };

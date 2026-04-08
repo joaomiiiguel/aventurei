@@ -27,6 +27,7 @@ import Modal from '@/components/Modal'
 import AdventureEditView from '@/components/Views/AdventureEditView'
 
 import { OnboardingFlow } from '@/components/Views/OnboardingFlow'
+import { getStorageUrl } from '@/utils/supabase/storage'
 
 const Card = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
     <div className={`bg-white rounded-2xl shadow-sm ${className}`}>
@@ -133,7 +134,7 @@ export default function DashboardPage() {
                     {/* Background Banner Image */}
                     <div className="absolute inset-0 z-0">
                         <Image
-                            src={user.banner || "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2070"}
+                            src={getStorageUrl('users', user.banner) || "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2070"}
                             alt={t.dashboard_banner_alt}
                             fill
                             className="object-cover opacity-20 grayscale-[20%]"
@@ -233,7 +234,7 @@ export default function DashboardPage() {
                                             <div className="relative aspect-square h-48 w-full sm:w-48 shrink-0 overflow-hidden">
                                                 {adv.cover_img ? (
                                                     <Image
-                                                        src={adv.cover_img}
+                                                        src={getStorageUrl('places', adv.cover_img) || ""}
                                                         alt={adv.title}
                                                         fill
                                                         className="object-cover"
@@ -251,7 +252,7 @@ export default function DashboardPage() {
                                                     </div>
                                                     <p className="mb-2 flex items-center gap-1 text-sm text-muted-foreground">
                                                         <MapPin className="h-3.5 w-3.5" />
-                                                        {adv.city}, {adv.UF}
+                                                        {adv.city}, {adv.uf}
                                                     </p>
                                                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                                                         <span className="flex items-center gap-1">

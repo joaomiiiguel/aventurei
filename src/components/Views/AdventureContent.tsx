@@ -104,21 +104,25 @@ export default function AdventureDetail({ adventure, guide, lang }: AdventureCon
               </h1>
               <div className="flex items-center gap-1">
                 <MapPin className="h-4 w-4" />
-                <span>{adventure.city}, {adventure.UF || (adventure as any).uf}</span>
+                <span>{adventure.city}, {adventure.uf}</span>
               </div>
             </div>
 
             {/* Quick Info Cards */}
             <div className="mb-8 grid grid-cols-3 gap-4">
               <div className="rounded-xl bg-white/50 p-4 text-center flex flex-col items-center justify-center">
-                <ModalityTag modality={adventure.modalities || 'trilha'} />
+                {adventure.modalities && <ModalityTag modality={adventure.modalities} />}
                 <p className="text-xs text-gray-400">{t.modality || "Modalidade"}</p>
               </div>
               <div className="rounded-xl bg-white/50 p-4 text-center flex flex-col items-center justify-center">
+                <p className="flex flex-row items-center py-1 text-sm gap-1.5">
+                  <Users className="h-4 w-4" />
+                  {adventure.min_age} {t.years || "anos"}
+                </p>
                 <p className="text-xs text-gray-400">{t.target_audience || "Público"}</p>
               </div>
               <div className="rounded-xl bg-white/50 p-4 text-center flex flex-col items-center justify-center">
-                <DifficultyBadge difficulty={adventure.difficulty || 'fácil'} />
+                {adventure.difficulty && <DifficultyBadge difficulty={adventure.difficulty} />}
                 <p className="text-xs text-gray-400">{t.difficulty || "Dificuldade"}</p>
               </div>
             </div>
