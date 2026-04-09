@@ -100,7 +100,7 @@ const GuidePage = async ({ params }: PageProps) => {
         "@context": "https://schema.org",
         "@type": "Person",
         name: guide.name,
-        image: getStorageUrl('users', guide.avatar),
+        image: getStorageUrl('users', guide.avatar) || "https://www.aventurei.es/og-image.png",
         description: guide.short_description || guide.description,
         jobTitle: "Guia de Aventura",
         address: {

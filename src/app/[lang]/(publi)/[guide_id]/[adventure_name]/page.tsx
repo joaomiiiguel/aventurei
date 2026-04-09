@@ -38,7 +38,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { adventure_name, lang } = await params;
   const supabase = createStaticClient();
-  
+
   const { data: adventure } = await supabase
     .from('adventures')
     .select('*')
@@ -113,7 +113,7 @@ const AdventurePage = async ({ params }: PageProps) => {
     "@context": "https://schema.org",
     "@type": "Product",
     name: adventure.title,
-    image: getStorageUrl('places', adventure.cover_img) || "",
+    image: getStorageUrl('places', adventure.cover_img) || "https://www.aventurei.es/og-image.png",
     description: adventure.description,
     offers: {
       "@type": "Offer",

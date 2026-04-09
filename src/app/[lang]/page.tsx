@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: LangPageProps): Promise<Metad
       type: 'website',
       images: [
         {
-          url: '/og-image.jpg',
+          url: 'https://www.aventurei.es/og-image.jpg',
           width: 1200,
           height: 630,
           alt: 'Aventurei',
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: LangPageProps): Promise<Metad
       card: 'summary_large_image',
       title: dict.metadata_title,
       description: dict.metadata_description,
-      images: ['/og-image.jpg'],
+      images: ['https://www.aventurei.es/og-image.jpg'],
     },
   };
 }
@@ -115,9 +115,9 @@ export default async function LangPage({ params }: LangPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <HomeContent 
-        initialAdventures={initialAdventures || []} 
-        initialGuides={initialGuides || []} 
+      <HomeContent
+        initialAdventures={initialAdventures || []}
+        initialGuides={initialGuides || []}
       />
     </Layout>
   );

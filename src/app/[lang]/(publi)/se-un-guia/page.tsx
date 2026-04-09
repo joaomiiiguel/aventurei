@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: SeUnGuiaPageProps) {
       type: 'website',
       images: [
         {
-          url: '/og-image.jpg',
+          url: 'https://www.aventurei.es/og-image.png',
           width: 1200,
           height: 630,
           alt: dict.be_a_guide,
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: SeUnGuiaPageProps) {
       card: 'summary_large_image',
       title: `${dict.be_a_guide} | Aventurei`,
       description: dict.become_guide?.hero_description || dict.be_a_guide,
-      images: ['/og-image.jpg'],
+      images: ['https://www.aventurei.es/og-image.png'],
     },
   }
 }
