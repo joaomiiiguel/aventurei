@@ -5,6 +5,7 @@ import { Product, BreadcrumbList, WithContext } from "schema-dts";
 import { locales } from "@/lib/i18n-config";
 import { createClient } from "@/utils/supabase/server";
 import { createClient as createStaticClient } from "@/utils/supabase/static";
+import { getStorageUrl } from "@/utils/supabase/storage";
 
 export const revalidate = 43200; // 12 hours ISR
 
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: adventure.title,
       description: adventure.description,
-      images: [adventure.cover_img || ""],
+      images: [getStorageUrl('places', adventure.cover_img) || "/og-image.png"],
       type: "website",
     },
     alternates: {
@@ -99,7 +100,7 @@ const AdventurePage = async ({ params }: PageProps) => {
     "@context": "https://schema.org",
     "@type": "Product",
     name: adventure.title,
-    image: adventure.cover_img || "",
+    image: getStorageUrl('places', adventure.cover_img) || "",
     description: adventure.description,
     offers: {
       "@type": "Offer",

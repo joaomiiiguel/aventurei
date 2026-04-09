@@ -57,7 +57,7 @@ export function FilterBar({
     searchQuery.length > 0 || selectedModalities.length > 0;
 
   return (
-    <div className="w-full mx-auto max-w-5xl z-10 rounded-xl bg-card p-6 shadow-card bg-white/50 border border-green-50/60 text-green-50 backdrop-blur-md mt-10 shadow-lg">
+    <div className="w-full mx-auto max-w-5xl z-10 rounded-xl bg-card p-3 md:p-5 shadow-card bg-white/50 border border-green-50/60 text-green-50 backdrop-blur-md mt-10 shadow-lg">
       {/* Search and Toggle */}
       <div className="flex flex-col items-start">
         <p className="mb-2 text-md font-bold text-primary">
@@ -78,7 +78,7 @@ export function FilterBar({
       </div>
 
       <div className="mt-4 text-left">
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1 md:gap-2">
           {allModalities.map((modality) => {
             const isSelected = selectedModalities.includes(modality);
             return (

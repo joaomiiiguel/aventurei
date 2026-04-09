@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         openGraph: {
             title: `${guide.name} - Guia Profissional`,
             description: guide.short_description || guide.description,
-            images: [getStorageUrl('users', guide.avatar) || "/og-image.jpg"],
+            images: [getStorageUrl('users', guide.avatar) || "/og-image.png"],
             type: "profile",
         },
         alternates: {

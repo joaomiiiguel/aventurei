@@ -246,7 +246,23 @@
     "step3_title": "Book with Ease",
     "step3_description": "Contact the guide to ask questions and make your booking safely.",
     "step4_title": "Live the Experience",
-    "step4_description": "Meet your guide at the agreed location and enjoy an authentic, safe, and nature-connected experience."
+    "step4_description": "Meet your guide at the agreed location and enjoy an authentic, safe, and nature-connected experience.",
+    "benefits_title": "Your safety is our priority",
+    "benefit1_title": "Certified Guides",
+    "benefit1_desc": "We only work with professionals who have a proven track record and current certifications.",
+    "benefit2_title": "Personalized Service",
+    "benefit2_desc": "Get all your questions answered directly by those who know every detail of the route.",
+    "benefit3_title": "No Hidden Fees",
+    "benefit3_desc": "We believe in transparency. The price you agree with the guide is what you pay.",
+    "cta_ready": "Ready to start?",
+    "cta_subtitle": "Choose your destination and connect with the perfect guide today.",
+    "why_choose_us": "Why choose Aventurei?",
+    "trust_safety_title": "Trust and Safety",
+    "trust_safety_desc": "Our platform prioritizes guides with official certifications and current insurance, ensuring you focus only on the experience.",
+    "sustainable_title": "Sustainable Tourism",
+    "sustainable_desc": "We promote respect for nature and the development of local communities through conscious, low-impact tourism.",
+    "community_title": "Expert Community",
+    "community_desc": "We are not just a booking site; we are a network of passionate professionals who live and breathe the mountains."
   },
   "onboarding_title": "Welcome to Aventurei!",
   "onboarding_subtitle": "Let's set up your profile so you can start offering your adventures.",
@@ -282,5 +298,75 @@
     "analytics_storage": "Analytics",
     "ad_user_data": "User Data",
     "ad_personalization": "Personalization"
+  },
+  "faq_section": {
+    "title": "Frequent Questions",
+    "description": "Find answers to your questions about how Aventurei works and start your next journey.",
+    "questions": [
+      {
+        "question": "What is Aventurei?",
+        "answer": "Aventurei is a platform that connects outdoor enthusiasts with the best specialized guides in ecotourism and adventure tourism in Spain."
+      },
+      {
+        "question": "How do I book an adventure?",
+        "answer": "When you find an adventure you like, you can contact the guide directly via the WhatsApp button available on the experience page. There are no intermediaries."
+      },
+      {
+        "question": "Are the guides certified?",
+        "answer": "Yes, we partner with guides who hold certifications and have extensive local experience to ensure your adventure is safe and enriching."
+      },
+      {
+        "question": "How is payment made?",
+        "answer": "Payment is made directly to the guide, according to the payment methods they accept. Aventurei does not charge booking fees to users."
+      },
+      {
+        "question": "What if weather conditions are bad?",
+        "answer": "Safety comes first. In case of bad weather, the guide will contact you to reschedule or cancel the activity according to the safety policy of each modality."
+      },
+      {
+        "question": "Do I need to bring my own equipment?",
+        "answer": "This varies by adventure. Generally, technical equipment (ropes, helmets, paddles) is included, but personal items like footwear and backpacks are the adventurer's responsibility. Always check the included items in the description."
+      },
+      {
+        "question": "Does Aventurei offer health insurance?",
+        "answer": "At this stage, Aventurei acts as a connecting bridge. However, it is a requirement that our partner guides hold their own Civil Liability and Accident insurance for all activities offered."
+      },
+      {
+        "question": "Can I participate if I have no previous experience?",
+        "answer": "Absolutely! We have adventures classified as 'Easy' that are ideal for beginners and families. The difficulty level is clearly indicated for each experience."
+      },
+      {
+        "question": "How do I become a guide on Aventurei?",
+        "answer": "If you are a certified guide and want to join our network, go to the 'Become a Guide' page and fill out the interest form. Our team will contact you for the verification process."
+      }
+    ],
+    "faq_cta_title": "Still have questions?",
+    "faq_cta_desc": "We are here to help you plan your next adventure in the best possible way.",
+    "view_all_questions": "View all questions"
+  },
+  "home_seo_section": {
+    "title": "Your Next Great Adventure Starts Here",
+    "intro": "Aventurei was born with a clear purpose: to democratize access to ecotourism and adventure tourism in an authentic and safe way. At Aventurei, we put human connection first, being the bridge that unites nature enthusiasts with professionals who dedicate their lives to exploring the unexplored.",
+    "destinations_title": "Destinations that Inspire",
+    "destinations_text": "Currently focused on the wonders of Spain, Aventurei invites you to discover unique territories. Each destination on our platform is selected for its natural beauty and adventure potential, ensuring you see much more than the traditional tourist spots.",
+    "activities_title": "Experiences for All Challenges",
+    "activities_text": "Our platform offers a diverse curation of modalities for all physical fitness levels:",
+    "activities_list": [
+      "Trekking and Trails for deep immersion in local fauna and flora.",
+      "Rock Climbing and Rappelling for height lovers.",
+      "Canoeing, Rafting, and Canyoning for water enthusiasts.",
+      "Mountain Biking (MTB) on exclusive and challenging routes.",
+      "Multi-day expeditions with camping under the stars."
+    ],
+    "differentiators_title": "The Aventurei Difference",
+    "differentiators_text": "Why are we the preferred choice for thousands of adventurers?",
+    "differentiators_list": [
+      "Direct Connection: Talk to the guide via WhatsApp before booking.",
+      "No Abusive Fees: The amount paid goes entirely to the professional service.",
+      "Certified Guides: Rigorous curation of qualified professionals.",
+      "Fair Price: Strengthened local economy and total transparency."
+    ],
+    "safety_title": "Safety and Sustainability",
+    "safety_text": "Safety and sustainability are the pillars that support our community. We require all partner guides to hold the necessary certifications to operate legally and actively promote responsible tourism basing our activities on 'Leave No Trace' principles."
   }
 }

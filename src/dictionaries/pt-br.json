@@ -246,7 +246,23 @@
     "step3_title": "Reserve com Facilidade",
     "step3_description": "Entre em contato com o guia para tirar dúvidas e realizar sua reserva de forma prática e segura.",
     "step4_title": "Viva a Experiência",
-    "step4_description": "Encontre seu guia no local combinado e aproveite uma experiência autêntica, segura e conectada com a natureza."
+    "step4_description": "Encontre seu guia no local combinado e aproveite uma experiência autêntica, segura e conectada com a natureza.",
+    "benefits_title": "Sua segurança é nossa prioridade",
+    "benefit1_title": "Guias Certificados",
+    "benefit1_desc": "Trabalhamos apenas com profissionais que possuem histórico comprovado e certificações vigentes.",
+    "benefit2_title": "Atendimento Personalizado",
+    "benefit2_desc": "Tire todas as suas dúvidas diretamente com quem conhece cada detalhe do percurso.",
+    "benefit3_title": "Sem Taxas Ocultas",
+    "benefit3_desc": "Acreditamos na transparência. O valor que você combina com o guia é o que você paga.",
+    "cta_ready": "Pronto para começar?",
+    "cta_subtitle": "Escolha seu destino e conecte-se com o guia perfeito hoje mesmo.",
+    "why_choose_us": "Por que escolher o Aventurei?",
+    "trust_safety_title": "Confiança e Segurança",
+    "trust_safety_desc": "Nossa plataforma prioriza guias com certificações oficiais e seguros vigentes, garantindo que você foque apenas na experiência.",
+    "sustainable_title": "Turismo Sustentável",
+    "sustainable_desc": "Promovemos o respeito à natureza e o desenvolvimento das comunidades locais através de um turismo consciente e de baixo impacto.",
+    "community_title": "Comunidade de Especialistas",
+    "community_desc": "Não somos apenas um site de reservas; somos uma rede de profissionais apaixonados que vivem e respiram a montanha."
   },
   "onboarding_title": "Bem-vindo ao Aventurei!",
   "onboarding_subtitle": "Vamos configurar seu perfil para que você possa começar a oferecer suas aventuras.",
@@ -282,5 +298,75 @@
     "analytics_storage": "Análise",
     "ad_user_data": "Dados do usuário",
     "ad_personalization": "Personalização"
+  },
+  "faq_section": {
+    "title": "Perguntas Frequentes",
+    "description": "Tire suas dúvidas sobre como funciona o Aventurei e comece sua próxima jornada.",
+    "questions": [
+      {
+        "question": "O que é o Aventurei?",
+        "answer": "O Aventurei é uma plataforma que conecta entusiastas de atividades ao ar livre com os melhores guias especializados em ecoturismo e turismo de aventura na Espanha."
+      },
+      {
+        "question": "Como faço para reservar uma aventura?",
+        "answer": "Ao encontrar uma aventura, você pode entrar em contato diretamente com o guia através do botão de WhatsApp disponível na página da experiência. Não há intermediários."
+      },
+      {
+        "question": "Os guias são certificados?",
+        "answer": "Sim, buscamos parcerias com guias que possuem certificações e vasta experiência local para garantir que sua aventura seja segura e enriquecedora."
+      },
+      {
+        "question": "Como é feito o pagamento?",
+        "answer": "O pagamento é realizado diretamente ao guia, de acordo com as formas de pagamento que ele aceita. O Aventurei não cobra taxas de reserva dos usuários."
+      },
+      {
+        "question": "E se as condições climáticas não estiverem boas?",
+        "answer": "A segurança vem em primeiro lugar. Em caso de mau tempo, o guia entrará em contato para reagendar ou cancelar a atividade conforme a política de segurança de cada modalidade."
+      },
+      {
+        "question": "Preciso levar meu próprio equipamento?",
+        "answer": "Isso varia de acordo com cada aventura. Geralmente, o equipamento técnico (cordas, capacetes, remos) está incluso, mas itens pessoais como calçados e mochilas são de responsabilidade do aventureiro. Verifique sempre os itens inclusos na descrição."
+      },
+      {
+        "question": "O Aventurei oferece seguro saúde?",
+        "answer": "Nesta fase, o Aventurei atua como ponte de conexão. No entanto, é requisito que nossos guias parceiros possuam seus próprios seguros de Responsabilidade Civil e Acidentes para todas as atividades oferecidas."
+      },
+      {
+        "question": "Posso participar se não tiver experiência prévia?",
+        "answer": "Com certeza! Temos aventuras classificadas como 'Fácil' que são ideais para iniciantes e famílias. O nível de dificuldade está claramente indicado em cada experiência."
+      },
+      {
+        "question": "Como faço para me tornar um guia no Aventurei?",
+        "answer": "Se você é um guia certificado e deseja fazer parte da nossa rede, acesse a página 'Seja um Guia' e preencha o formulário de interesse. Nossa equipe entrará em contato para o processo de verificação."
+      }
+    ],
+    "faq_cta_title": "Ainda tem dúvidas?",
+    "faq_cta_desc": "Estamos aqui para ajudar você a planejar sua próxima aventura da melhor forma possível.",
+    "view_all_questions": "Ver todas as dúvidas"
+  },
+  "home_seo_section": {
+    "title": "Sua Próxima Grande Aventura Começa Aqui",
+    "intro": "O Aventurei nasceu com um propósito claro: democratizar o acesso ao ecoturismo e ao turismo de aventura de forma autêntica e segura. No Aventurei, colocamos a conexão humana em primeiro lugar, sendo a ponte que une entusiastas da natureza a profissionais que dedicam suas vidas a explorar o inexplorado.",
+    "destinations_title": "Destinos que Inspiram",
+    "destinations_text": "Atualmente focado nas maravilhas da Espanha, o Aventurei convida você a descobrir territórios únicos. Cada destino em nossa plataforma é selecionado por sua beleza natural e potencial de aventura, garantindo que você veja muito mais do que os pontos turísticos tradicionais.",
+    "activities_title": "Experiências para Todos os Desafios",
+    "activities_text": "Nossa plataforma oferece uma curadoria diversificada de modalidades para todos os níveis de condicionamento físico:",
+    "activities_list": [
+      "Trekking e Trilhas de imersão profunda na fauna e flora local.",
+      "Escalada em Rocha e Rapel para os amantes de altura.",
+      "Canoagem, Rafting e Canyoning para os entusiastas da água.",
+      "Mountain Bike (MTB) em rotas exclusivas e desafiadoras.",
+      "Expedições de vários dias com acampamento sob as estrelas."
+    ],
+    "differentiators_title": "O Diferencial Aventurei",
+    "differentiators_text": "Por que somos a escolha preferida de milhares de aventureiros?",
+    "differentiators_list": [
+      "Conexão Direta: Converse com o guia via WhatsApp antes de reservar.",
+      "Sem Taxas Abusivas: O valor pago vai integralmente para o serviço profissional.",
+      "Guias Certificados: Curadoria rigorosa de profissionais qualificados.",
+      "Preço Justo: Economia local fortalecida e transparência total."
+    ],
+    "safety_title": "Segurança e Sustentabilidade",
+    "safety_text": "Segurança e sustentabilidade são os pilares que sustentam nossa comunidade. Exigimos que todos os guias parceiros possuam as certificações necessárias para operar legalmente e promovemos ativamente o turismo responsável baseando nossas atividades nos princípios de 'Leave No Trace' (Não Deixe Rastro)."
   }
 }

@@ -38,10 +38,10 @@ export function Footer() {
           <div>
             <h4 className="mb-4 text-sm font-semibold text-white">{t.support || "Suporte"}</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href={`/${lang}`} className="text-green-100/70 transition-colors hover:text-white">{t.how_it_works || "Como funciona"}</Link></li>
-              <li><Link href={`/${lang}`} className="text-green-100/70 transition-colors hover:text-white">{t.be_a_guide || "Seja um Guia"}</Link></li>
-              <li><Link href={`/${lang}`} className="text-green-100/70 transition-colors hover:text-white">{t.contato || "Contato"}</Link></li>
-              <li><Link href={`/${lang}`} className="text-green-100/70 transition-colors hover:text-white">{t.faq || "FAQ"}</Link></li>
+              <li><Link href={`/${lang}/como-funciona`} className="text-green-100/70 transition-colors hover:text-white">{t.how_it_works || "Como funciona"}</Link></li>
+              <li><Link href={`/${lang}/se-un-guia`} className="text-green-100/70 transition-colors hover:text-white">{t.be_a_guide || "Seja um Guia"}</Link></li>
+              <li><Link href={`/${lang}/sobre`} className="text-green-100/70 transition-colors hover:text-white">{t.sobre || "Sobre"}</Link></li>
+              <li><Link href={`/${lang}/faq`} className="text-green-100/70 transition-colors hover:text-white">{t.faq || "FAQ"}</Link></li>
             </ul>
           </div>
 

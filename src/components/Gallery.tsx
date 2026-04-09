@@ -73,7 +73,7 @@ export default function Gallery({ listImg }: GalleryProps) {
     <>
       <div className="flex flex-col gap-4 w-full">
         {/* Main Image Container */}
-        <div className="relative w-full aspect-square md:aspect-video overflow-hidden rounded-2xl bg-black/5 touch-none group">
+        <div className="relative w-full aspect-square md:aspect-video overflow-hidden rounded-xl bg-black/5 touch-none group">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={page}

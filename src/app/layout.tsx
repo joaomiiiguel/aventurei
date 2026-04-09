@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description: 'Conéctate con los mejores guías locales y explora destinos increíbles en España con seguridad y exclusividad.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Aventurei - Turismo de Aventura en España',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Aventurei - Descubre tu próxima aventura',
     description: 'Conéctate con los mejores guías locales y explora destinos increíbles en España con seguridad y exclusividad.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
