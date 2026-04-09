@@ -43,8 +43,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     if (!guide) {
         return {
-            title: "Guia não encontrado",
-            description: "O guia que você procura não foi encontrado."
+            title: "Guia no encontrado",
+            description: "El guia que buscas no fue encontrado."
         };
     }
 
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: `${guide.name || guide.nickname} - Guia de Aventura | Aventurei`,
         description: (guide.short_description || guide.description || "").substring(0, 160),
         openGraph: {
-            title: `${guide.name} - Guia Profissional`,
+            title: `${guide.name} - Guia Profesional`,
             description: guide.short_description || guide.description,
             images: [
                 {
@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         },
         twitter: {
             card: 'summary_large_image',
-            title: `${guide.name} - Guia Profissional`,
+            title: `${guide.name} - Guia Profesional`,
             description: (guide.short_description || guide.description || "").substring(0, 160),
             images: [getStorageUrl('users', guide.avatar) || "/og-image.png"],
         },

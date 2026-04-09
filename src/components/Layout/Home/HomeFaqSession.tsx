@@ -22,30 +22,29 @@ const HomeFaqSession = () => {
     return (
         <section className="w-full py-20 bg-white">
             <div className="mx-auto px-[5%] 2xl:px-[10%] max-w-6xl">
-                <div className="flex flex-col md:flex-row gap-12 items-start">
-                    <div className="w-full md:w-1/3">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                <div className="w-full flex flex-col items-center justify-center text-center mb-4">
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-3xl md:text-5xl font-black text-primary mb-6 leading-tight">
+                            {faq.title}
+                        </h2>
+                        <p className="text-lg text-muted-foreground mb-4">
+                            {faq.description}
+                        </p>
+                        <Link
+                            href={`/${lang}/faq`}
+                            className="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all"
                         >
-                            <h2 className="text-3xl md:text-5xl font-black text-primary mb-6 leading-tight">
-                                {faq.title}
-                            </h2>
-                            <p className="text-lg text-muted-foreground mb-8">
-                                {faq.description}
-                            </p>
-                            <Link
-                                href={`/${lang}/faq`}
-                                className="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all"
-                            >
-                                <HelpCircle className="w-5 h-5 text-gold" />
-                                {faq.view_all_questions || "Ver todas as dúvidas"}
-                            </Link>
-                        </motion.div>
-                    </div>
-
-                    <div className="w-full md:w-2/3 space-y-4">
+                            <HelpCircle className="w-5 h-5 text-gold" />
+                            {faq.view_all_questions || "Ver todas as dúvidas"}
+                        </Link>
+                    </motion.div>
+                </div>
+                <div className="flex flex-col md:flex-row gap-12 items-start">
+                    <div className="w-full space-y-4">
                         {displayQuestions.map((item: any, index: number) => (
                             <motion.div
                                 key={index}

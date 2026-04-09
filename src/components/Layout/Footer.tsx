@@ -26,16 +26,6 @@ export function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-white">{t.explore || "Explorar"}</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href={`/${lang}`} className="text-green-100/70 transition-colors hover:text-white">{t.passeios || "Aventuras"}</Link></li>
-              <li><Link href={`/${lang}`} className="text-green-100/70 transition-colors hover:text-white">{t.guias || "Guias"}</Link></li>
-              <li><Link href={`/${lang}`} className="text-green-100/70 transition-colors hover:text-white">{t.destinations || "Destinos"}</Link></li>
-              <li><Link href={`/${lang}`} className="text-green-100/70 transition-colors hover:text-white">{t.modalities || "Modalidades"}</Link></li>
-            </ul>
-          </div>
-
-          <div>
             <h4 className="mb-4 text-sm font-semibold text-white">{t.support || "Suporte"}</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href={`/${lang}/como-funciona`} className="text-green-100/70 transition-colors hover:text-white">{t.how_it_works || "Como funciona"}</Link></li>

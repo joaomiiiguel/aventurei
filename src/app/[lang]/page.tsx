@@ -70,7 +70,7 @@ export default async function LangPage({ params }: LangPageProps) {
         "name": "Aventurei",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://aventurei.es/LogoBranco.png"
+          "url": "https://www.aventurei.es/LogoBranco.png"
         }
       }
     },
@@ -78,7 +78,7 @@ export default async function LangPage({ params }: LangPageProps) {
       "@context": "https://schema.org",
       "@type": "TravelAgency",
       "name": "Aventurei",
-      "image": "https://aventurei.es/LogoBranco.png",
+      "image": "https://www.aventurei.es/LogoBranco.png",
       "url": `https://aventurei.es/${lang}`,
       "description": dict.metadata_description,
       "address": {

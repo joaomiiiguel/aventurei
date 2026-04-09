@@ -47,8 +47,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!adventure) {
     return {
-      title: "Passeio não encontrado",
-      description: "O passeio que você procura não foi encontrado."
+      title: "Paseo no encontrado",
+      description: "El paseo que buscas no fue encontrado."
     };
   }
 
