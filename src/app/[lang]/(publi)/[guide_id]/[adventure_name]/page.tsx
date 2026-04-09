@@ -57,8 +57,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: (adventure.description || "").substring(0, 160),
     openGraph: {
       title: adventure.title,
-      description: adventure.description,
-      images: [getStorageUrl('places', adventure.cover_img) || "/og-image.png"],
+      description: (adventure.description || "").substring(0, 160),
+      images: [
+        {
+          url: getStorageUrl('places', adventure.cover_img) || "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: adventure.title,
+        }
+      ],
       type: "website",
     },
     alternates: {

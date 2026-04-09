@@ -1,4 +1,4 @@
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/static";
 import { NextResponse } from "next/server";
 
 export async function GET(
@@ -6,7 +6,7 @@ export async function GET(
   { params }: { params: Promise<{ bucket: string; path: string[] }> }
 ) {
   const { bucket, path } = await params;
-  const supabase = await createClient();
+  const supabase = createClient();
 
   const filePath = path.join("/");
 

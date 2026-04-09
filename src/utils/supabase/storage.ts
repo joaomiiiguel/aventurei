@@ -10,5 +10,6 @@ export const getStorageUrl = (bucket: 'users' | 'places', path: string | undefin
   const cleanPath = path.startsWith('/') ? path.substring(1) : path;
 
   // Use our internal proxy route instead of direct Supabase link
-  return `/api/storage/${bucket}/${cleanPath}`;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://aventurei.es';
+  return `${siteUrl}/api/storage/${bucket}/${cleanPath}`;
 };
