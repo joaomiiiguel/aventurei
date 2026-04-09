@@ -68,6 +68,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ],
       type: "website",
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: adventure.title,
+      description: (adventure.description || "").substring(0, 160),
+      images: [getStorageUrl('places', adventure.cover_img) || "/og-image.png"],
+    },
     alternates: {
       canonical: `/${lang}/${adventure.nickname}/${adventure.slug}`,
       languages: {

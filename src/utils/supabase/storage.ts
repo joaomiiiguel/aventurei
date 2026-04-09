@@ -9,7 +9,6 @@ export const getStorageUrl = (bucket: 'users' | 'places', path: string | undefin
   // Ensure no double slashes if path starts with /
   const cleanPath = path.startsWith('/') ? path.substring(1) : path;
 
-  // Use our internal proxy route instead of direct Supabase link
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://aventurei.es';
-  return `${siteUrl}/api/storage/${bucket}/${cleanPath}`;
+  // Use direct Supabase public storage URL for better CDN performance and OG reliability
+  return `${supabaseUrl}/storage/v1/object/public/${bucket}/${cleanPath}`;
 };

@@ -64,6 +64,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             ],
             type: "profile",
         },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${guide.name} - Guia Profissional`,
+            description: (guide.short_description || guide.description || "").substring(0, 160),
+            images: [getStorageUrl('users', guide.avatar) || "/og-image.png"],
+        },
         alternates: {
             canonical: `/${lang}/${guide.nickname}`,
             languages: {
