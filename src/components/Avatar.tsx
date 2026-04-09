@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { User } from "lucide-react";
 import { getStorageUrl } from "@/utils/supabase/storage";
 
@@ -5,12 +6,13 @@ const Avatar = ({ src, name }: { src: string | undefined; name: string | undefin
     const imageUrl = getStorageUrl('users', src);
 
     return (
-        <div className="rounded-full overflow-hidden">
+        <div className="rounded-full overflow-hidden relative h-16 w-16">
             {imageUrl ?
-                <img
+                <Image
                     src={imageUrl}
-                    alt={name}
-                    className="h-16 w-16 object-cover"
+                    alt={name || "Avatar"}
+                    fill
+                    className="object-cover"
                 />
                 : <div className="h-16 w-16 bg-primary flex items-center justify-center">
                     <span className="text-white text-xl font-bold">{name ? name?.charAt(0).toUpperCase() : <User className="h-8 w-8" />}</span>

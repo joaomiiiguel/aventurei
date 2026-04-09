@@ -58,21 +58,35 @@ export default async function LangPage({ params }: LangPageProps) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Aventurei",
-    "url": `https://aventurei.es/${lang}`,
-    "description": dict.metadata_description,
-    "publisher": {
-      "@type": "Organization",
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
       "name": "Aventurei",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://aventurei.es/logo.png"
+      "url": `https://aventurei.es/${lang}`,
+      "description": dict.metadata_description,
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aventurei",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aventurei.es/logo.png"
+        }
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Aventurei",
+      "image": "https://aventurei.es/logo.png",
+      "url": `https://aventurei.es/${lang}`,
+      "description": dict.metadata_description,
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ES"
       }
     }
-  };
+  ];
 
   const supabase = createStaticClient();
 

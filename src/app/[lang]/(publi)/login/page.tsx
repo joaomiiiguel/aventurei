@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 import { useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslations } from '@/contexts/LocaleContext'
@@ -54,10 +56,12 @@ export default function LoginPage() {
             <div className="flex min-h-screen">
                 {/* Left — Hero visual */}
                 <div className="relative hidden w-[60%] lg:block">
-                    <img
+                    <Image
                         src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=1600&fit=crop"
                         alt="Montanha"
-                        className="absolute inset-0 h-full w-full object-cover"
+                        fill
+                        className="object-cover"
+                        priority
                     />
                     <div className="absolute inset-0 bg-[#00382F]/40" />
                     <div className="absolute bottom-12 left-12 right-12 text-white">

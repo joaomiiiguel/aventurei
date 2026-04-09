@@ -87,6 +87,14 @@ export default function RootLayout({
           {children}
           <ToastProvider />
         </StoreProvider>
+        
+        {/* Mocking Chat Script (Tawk.to / Crisp) loaded lazily */}
+        <Script id="chat-widget" strategy="lazyOnload">
+          {`
+            // Em breve: Inserir ID real do Tawk.to ou Crisp aqui 
+            console.log('Chat plugin load initialized by lazyOnload');
+          `}
+        </Script>
       </body>
     </html>
   );

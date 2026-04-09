@@ -41,8 +41,34 @@ export default function AdventureDetail({ adventure, guide, lang }: AdventureCon
   );
   const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=${whatsappMessage}`;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": adventure.title,
+    "image": adventure.gallery?.map(photo => getStorageUrl('places', photo)),
+    "description": adventure.description,
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "EUR",
+      "price": "0.00",
+      "availability": "https://schema.org/InStock"
+    },
+    "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://aventurei.es/${lang}` },
+            { "@type": "ListItem", "position": 2, "name": "Guia", "item": `https://aventurei.es/${lang}/${guide?.nickname || ""}` },
+            { "@type": "ListItem", "position": 3, "name": adventure.title }
+        ]
+    }
+  };
+
   return (
     <>
+      <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Back Button */}
       <div className="container py-4 px-[5%]">
         <Link

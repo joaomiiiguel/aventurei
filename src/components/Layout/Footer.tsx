@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useTranslations } from "@/contexts/LocaleContext";
 import { useParams } from "next/navigation";
 import LogoAventurei from "../Logo";
+import NewsletterForm from "../Marketing/NewsletterForm";
 
 export function Footer() {
   const t = useTranslations();
@@ -42,6 +43,10 @@ export function Footer() {
               <li><Link href={`/${lang}`} className="text-green-100/70 transition-colors hover:text-white">{t.contato || "Contato"}</Link></li>
               <li><Link href={`/${lang}`} className="text-green-100/70 transition-colors hover:text-white">{t.faq || "FAQ"}</Link></li>
             </ul>
+          </div>
+
+          <div className="md:col-span-4 lg:col-span-1 mt-4 lg:mt-0">
+            <NewsletterForm />
           </div>
 
         </div>

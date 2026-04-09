@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ModalityTag } from "@/components/ModalityTag";
 import { MapPin, Award, ArrowLeft, MessageCircle } from "lucide-react";
 import Link from "next/link";
@@ -32,15 +33,39 @@ export default async function GuideContent({ guide, lang }: GuideContentProps) {
     );
     const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=${whatsappMessage}`;
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": ["ProfilePage", "TravelAgency"],
+        "mainEntity": {
+            "@type": "Person",
+            "name": guide.name || guide.nickname,
+            "image": getStorageUrl('users', guide.avatar) || "https://aventurei.es/logo.png",
+            "description": guide.description || guide.short_description
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://aventurei.es/${lang}` },
+                { "@type": "ListItem", "position": 2, "name": guide.name || guide.nickname, "item": `https://aventurei.es/${lang}/${guide.nickname}` }
+            ]
+        }
+    };
+
     return (
         <Layout>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             {/* Hero Banner */}
             <section className="relative bg-primary text-white pt-24 md:pt-32 pb-10 px-[5%] 2xl:px-[10%] mt-[-8vh]">
                 <div className="absolute inset-0 opacity-20">
-                    <img
+                    <Image
                         src={getStorageUrl('users', guide.banner) || "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&h=600&fit=crop"}
                         alt="Banner do guia"
-                        className="h-full w-full object-cover"
+                        fill
+                        className="object-cover"
+                        priority
                     />
                 </div>
                 <div className="relative">
@@ -53,11 +78,14 @@ export default async function GuideContent({ guide, lang }: GuideContentProps) {
                     </Link>
 
                     <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6 md:flex-row md:items-end">
-                        <img
-                            src={getStorageUrl('users', guide.avatar) || "/default-avatar.png"}
-                            alt={guide.name || "Guia"}
-                            className="h-32 w-32 rounded-2xl object-cover ring-4 ring-primary-foreground/20 md:h-40 md:w-40 bg-white"
-                        />
+                        <div className="relative h-32 w-32 md:h-40 md:w-40 shrink-0">
+                            <Image
+                                src={getStorageUrl('users', guide.avatar) || "/default-avatar.png"}
+                                alt={guide.name || "Guia"}
+                                fill
+                                className="rounded-2xl object-cover ring-4 ring-primary-foreground/20 bg-white"
+                            />
+                        </div>
                         <div className="flex-1 text-center md:text-left">
                             <h1 className="mb-2 text-3xl font-extrabold md:text-4xl text-white">
                                 {guide.name || guide.nickname}
