@@ -20,7 +20,7 @@ export default function AdventureCard({ adventure }: AdventureCardProps) {
   return (
     <div className="adventure-card group bg-white text-primary">
       {/* Image */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden h-60">
         <Image
           src={getStorageUrl('places', adventure.cover_img) || ""}
           alt={adventure.title}

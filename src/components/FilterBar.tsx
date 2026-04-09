@@ -75,11 +75,6 @@ export function FilterBar({
             className="pl-10 placeholder:text-primary/70 bg-white/50 w-full"
           />
         </div>
-        {hasActiveFilters && (
-          <Button onClick={clearFilters}>
-            <X className="h-4 w-4" />
-          </Button>
-        )}
       </div>
 
       <div className="mt-4 text-left">
@@ -90,9 +85,9 @@ export function FilterBar({
               <button
                 key={modality}
                 onClick={() => toggleModality(modality)}
-                className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-medium transition-all ${isSelected
-                  ? "bg-green-900/20 text-primary border border-primary"
-                  : "bg-primary text-white hover:bg-primary/80 hover:cursor-pointer border border-primary"
+                className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-medium transition-all hover:cursor-pointer ${isSelected
+                  ? "bg-green-900/20 text-primary border border-primary "
+                  : "bg-primary text-white hover:bg-primary/80 border border-primary"
                   }`}
               >
                 <ModalityIcon modality={modality} className="h-4 w-4" />
