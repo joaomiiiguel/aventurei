@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: LangPageProps): Promise<Metad
   const dict = await getDictionary(lang);
 
   return constructMetadata({
-    title: dict.metadata_title || "Aventurei - Descubre tu próxima aventura",
-    description: dict.metadata_description || 'Descubre aventuras únicas en España con guías locales expertos. Senderismo, rápel, rafting, escalada y más. Reserva tu próxima experiencia en la naturaleza con seguridad.',
+    title: dict.metadata_title || "Aventurei | Turismo de Aventura en España - Guías Locales y Ecoturismo",
+    description: dict.metadata_description || "Conecta con guías certificados en España. Haz senderismo, escalada o rafting con seguridad y precio justo. Sin tasas abusivas. ¡Reserva tu aventura hoy!",
     lang,
     slug: "/",
   });

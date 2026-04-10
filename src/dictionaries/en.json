@@ -372,7 +372,6 @@
   },
   "home_seo_rich_text": {
     "destinations_title": "Adventure Destinations in Spain",
-    "destinations_paragraph": "Spain is a paradise for active tourism and nature experiences. From the craggy peaks of the Pyrenees to the river routes of the Valencian Community, the geographical diversity allows for an unparalleled adventure Spain. If you seek adrenaline, canyoning in the canyons of Montanejos or rafting in the white waters of the Cabriel River in Venta del Moro are essential options. For those who prefer direct contact with the rock, climbing in Chulilla is internationally recognized for its vertical limestone walls. Hiking (senderismo) is another jewel, with routes across the Sierra de Albarracín or the trails of Serra and Almedíjar, where ecoturismo comes alive. Mountain biking (MTB) finds challenging terrains with spectacular views in these regions. Practicing canoeing or kayaking in crystalline reservoirs completes an offer that positions the country as a leader in adventure tourism. Every corner offers a unique opportunity to connect with the environment, always with respect for the environment as a fundamental pillar of each expedition.",
     "guides_title": "Why choose local guides?",
     "guides_paragraph": "Exploring these spots with local guides is the best guarantee of safety and exclusivity. A guide who knows the terrain not only masters mountain techniques but also shares stories, secrets, and little-known routes that transform an excursion into an unforgettable experience. Safety is paramount when performing activities like climbing, canyoning, or hiking in complex terrains; having a certified professional minimizes risks and maximizes enjoyment. Furthermore, choosing local guides fosters the development of rural economies and guarantees personalized service, adapting each route to your experience level. Enjoy authentic nature experiences (experiencias naturaleza), knowing you are in the hands of passionate experts who love their land and are committed to excellence.",
     "destinations_list": [
@@ -382,6 +381,37 @@
       "Serra",
       "Almedíjar",
       "Venta del Moro"
+    ],
+    "destinations_intro": "Spain is a paradise for active tourism and nature experiences. The geographical diversity allows for an unparalleled adventure.",
+    "destinations_outro": "Every corner offers a unique opportunity to connect with the environment, always with respect for nature as a fundamental pillar.",
+    "destinations_topics": [
+      {
+        "title": "Adrenaline in the Water",
+        "description": "If you seek aquatic adventure, canyoning in the Montanejos canyons or rafting in the white waters of the Cabriel river are essential options.",
+        "highlights": [
+          "Whitewater Rafting",
+          "Canyoning in stunning gorges",
+          "Canoeing in crystalline waters"
+        ]
+      },
+      {
+        "title": "Conquer the Heights",
+        "description": "For those who prefer contact with the rock, climbing in Chulilla is recognized for its vertical walls. Hiking is another jewel for explorers.",
+        "highlights": [
+          "World-class sport climbing",
+          "Hiking trails for all levels",
+          "Breathtaking panoramic views"
+        ]
+      },
+      {
+        "title": "On Wheels and Trails",
+        "description": "Mountain biking (MTB) finds challenging terrains with spectacular views in these regions, ideal for adventurous cyclists.",
+        "highlights": [
+          "Mountain Bike (MTB) routes",
+          "Technical and flowy trails",
+          "Tailor-made guided excursions"
+        ]
+      }
     ]
   },
   "blog_page": {

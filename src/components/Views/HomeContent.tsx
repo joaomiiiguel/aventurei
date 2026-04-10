@@ -151,7 +151,7 @@ const HomeContent = ({ initialAdventures, initialGuides }: HomeContentProps) => 
       </section>
 
       {/* New SEO Rich Text Section (Keyword Rich) */}
-      <section className="py-24 px-[5%] bg-primary/5 border-t border-primary/10">
+      <section id="destinations" className="py-24 px-[5%] bg-primary/5 border-t border-primary/10">
         <div className="container mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

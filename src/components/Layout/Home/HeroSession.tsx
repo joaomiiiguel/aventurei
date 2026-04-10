@@ -47,18 +47,19 @@ const HeroSession = () => {
         </AnimatePresence>
       </div>
 
-
-      <div className="relative z-10 max-w-4xl px-6 flex flex-col items-center gap-6 mt-20">
+      <div className="relative z-10 max-w-4xl px-6 flex flex-col items-center gap-6 mt-20" >
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           className="text-3xl md:text-4xl lg:text-5xl tracking-tight text-white drop-shadow-lg"
         >
-          {t.discover_next_adventure?.split(' ').slice(0, 3).join(' ') || 'Descubra sua próxima'} <br />
-          <span className="font-bold">
-            {t.discover_next_adventure?.split(' ').slice(3).join(' ') || 'grande aventura'}
-          </span>
+          <h1>
+            {t.discover_next_adventure?.split(' ').slice(0, 3).join(' ') || 'Descubra sua próxima'} <br />
+            <span className="font-bold">
+              {t.discover_next_adventure?.split(' ').slice(3).join(' ') || 'grande aventura'}
+            </span>
+          </h1>
         </motion.h1>
 
         <motion.p

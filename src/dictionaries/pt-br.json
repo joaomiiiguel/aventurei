@@ -372,7 +372,6 @@
   },
   "home_seo_rich_text": {
     "destinations_title": "Destinos de Aventura na Espanha",
-    "destinations_paragraph": "A Espanha é um paraíso para o turismo ativo e as experiências na natureza. Das picos escarpados dos Pirineus até as rotas fluviais da Comunidade Valenciana, a diversidade geográfica permite desfrutar de uma aventura España sem igual. Se você busca adrenalina, o barranquismo nos cânions de Montanejos ou o rafting nas águas bravas do rio Cabriel em Venta del Moro são opções imprescindíveis. Para quem prefere o contato direto com a rocha, a escalada em Chulilla é reconhecida internacionalmente por suas paredes verticais de calcário. O senderismo é outra das joias, com rotas que atravessam a Sierra de Albarracín ou as trilhas de Serra e Almedíjar, onde o ecoturismo ganha vida. A mountain bike (MTB) encontra nessas regiões terrenos desafiadores com vistas espetaculares. Praticar canoagem ou caiaque em represas cristalinas completa uma oferta que posiciona o país como líder em turismo de aventura. Cada canto oferece uma oportunidade única de conexão com o entorno, sempre com o respeito ao meio ambiente como pilar fundamental de cada expedição.",
     "guides_title": "Por que escolher guias locais?",
     "guides_paragraph": "Explorar esses locais com guias locais é a melhor garantia de segurança e exclusividade. Um guia conhecedor do terreno não apenas domina as técnicas de montanha, mas também compartilha histórias, segredos e rotas pouco conhecidas que transformam uma excursão em uma experiência inesquecível. A segurança é primordial ao realizar atividades como escalada, barranquismo ou trilhas por terrenos complexos; contar com um profissional certificado minimiza riscos e maximiza o aproveitamento. Além disso, escolher guias locais fomenta o desenvolvimento das economias rurais e garante um atendimento personalizado, adaptando cada rota ao seu nível de experiência. Desfrute de experiencias naturaleza autênticas, sabendo que você está em mãos de especialistas apaixonados por sua terra e comprometidos com a excelência.",
     "destinations_list": [
@@ -382,6 +381,37 @@
       "Serra",
       "Almedíjar",
       "Venta del Moro"
+    ],
+    "destinations_intro": "A Espanha é um paraíso para o turismo ativo e as experiências na natureza. A diversidade geográfica permite desfrutar de uma aventura sem igual.",
+    "destinations_outro": "Cada canto oferece uma oportunidade única de conexão com o entorno, sempre com o respeito ao meio ambiente como pilar fundamental.",
+    "destinations_topics": [
+      {
+        "title": "Adrenalina na Água",
+        "description": "Se você busca aventura aquática, o barranquismo nos cânions de Montanejos ou o rafting nas águas bravas do rio Cabriel são opções imprescindíveis.",
+        "highlights": [
+          "Rafting nas corredeiras",
+          "Barranquismo (Canyoning)",
+          "Canoagem em águas cristalinas"
+        ]
+      },
+      {
+        "title": "Conquiste as Alturas",
+        "description": "Para quem prefere o contato com a rocha, a escalada em Chulilla é reconhecida por suas paredes verticais. O senderismo é outra joia para os exploradores.",
+        "highlights": [
+          "Escalada esportiva internacional",
+          "Senderismo (Hiking) de nível variado",
+          "Vistas de tirar o fôlego"
+        ]
+      },
+      {
+        "title": "Sobre Rodas e Trilhas",
+        "description": "A mountain bike (MTB) encontra nestas regiões terrenos desafiadores com vistas espetaculares, ideal para ciclistas e cicloturismo de aventura.",
+        "highlights": [
+          "Rotas de Mountain Bike (MTB)",
+          "Trilhas técnicas e fluídas",
+          "Excursões guiadas sob medida"
+        ]
+      }
     ]
   },
   "blog_page": {

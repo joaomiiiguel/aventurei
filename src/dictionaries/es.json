@@ -44,8 +44,8 @@
   "filter": "Filtrar",
   "search_adventures_guides": "Buscar aventuras o guías...",
   "connect_with_best_guides": "Conéctate con los mejores guías y explora destinos increíbles con seguridad y exclusividad.",
-  "metadata_title": "Aventurei - Descubre tu próxima aventura",
-  "metadata_description": "Descubre aventuras únicas en España con guías locales expertos. Senderismo, rápel, rafting, escalada y más. Reserva tu próxima experiencia en la naturaleza con seguridad.",
+  "metadata_title": "Aventurei | Turismo de Aventura en España - Guías Locales y Ecoturismo",
+  "metadata_description": "Conecta con guías certificados en España. Haz senderismo, escalada o rafting con seguridad y precio justo. Sin tasas abusivas. ¡Reserva tu aventura hoy!",
   "modality_trekking": "Senderismo",
   "modality_climbing": "Escalada",
   "modality_rafting": "Rafting",
@@ -371,7 +371,6 @@
   },
   "home_seo_rich_text": {
     "destinations_title": "Destinos de Aventura en España",
-    "destinations_paragraph": "España es un paraíso para el turismo activo y las experiencias en la naturaleza. Desde los picos escarpados de los Pirineos hasta las rutas fluviales de la Comunidad Valenciana, la diversidad geográfica permite disfrutar de una aventura España sin igual. Si buscas adrenalina, el barranquismo en los cañones de Montanejos o el rafting en las aguas bravas del río Cabriel en Venta del Moro son opciones imprescindibles. Para quienes prefieren el contacto directo con la roca, la escalada en Chulilla es reconocida internacionalmente por sus paredes verticales de caliza. El senderismo es otra de las joyas, con rutas que atraviesan la Sierra de Albarracín o los senderos de Serra y Almedíjar, donde el ecoturismo cobra vida. La mountain bike (MTB) encuentra en estas regiones terrenos desafiantes con vistas espectaculares. Practicar piragüismo o kayak en embalses cristalinos completa una oferta que posiciona al país como líder en turismo de aventura. Cada rincón ofrece una oportunidad única para conectar con el entorno, siempre con el respeto al medio ambiente como pilar fundamental de cada expedición.",
     "guides_title": "¿Por qué elegir guías locales?",
     "guides_paragraph": "Explorar estos parajes con guías locales es la mejor garantía de seguridad y exclusividad. Un guía conocedor del terreno no solo domina las técnicas de montaña, sino que comparte historias, secretos y rutas poco conocidas que transforman una excursión en una experiencia inolvidable. La seguridad es primordial al realizar actividades como escalada, barranquismo o senderismo por terrenos complejos; contar con un profesional certificado minimiza riesgos y maximiza el disfrute. Además, elegir guías locales fomenta el desarrollo de las economías rurales y garantiza un trato personalizado, adaptando cada ruta a tu nivel de experiencia. Disfruta de experiencias naturaleza auténticas, sabiendo que estás en manos de expertos apasionados por su tierra y comprometidos con la excelencia.",
     "destinations_list": [
@@ -381,6 +380,37 @@
       "Serra",
       "Almedíjar",
       "Venta del Moro"
+    ],
+    "destinations_intro": "España es un paraíso para el turismo activo y las experiencias en la naturaleza. La diversidad geográfica permite disfrutar de una aventura sin igual.",
+    "destinations_outro": "Cada rincón ofrece una oportunidad única para conectar con el entorno, siempre con el respeto al medio ambiente como pilar fundamental.",
+    "destinations_topics": [
+      {
+        "title": "Adrenalina en el Agua",
+        "description": "Si buscas aventura acuática, el barranquismo en los cañones de Montanejos o el rafting en las aguas bravas del río Cabriel son opciones imprescindibles.",
+        "highlights": [
+          "Rafting en los rápidos",
+          "Barranquismo (Canyoning)",
+          "Piragüismo en aguas cristalinas"
+        ]
+      },
+      {
+        "title": "Conquista las Alturas",
+        "description": "Para quienes prefieren el contacto con la roca, la escalada en Chulilla es reconocida por sus paredes verticales. El senderismo es otra de las joyas.",
+        "highlights": [
+          "Escalada deportiva internacional",
+          "Senderismo (Hiking) de niveles variados",
+          "Vistas impresionantes"
+        ]
+      },
+      {
+        "title": "Sobre Ruedas y Senderos",
+        "description": "La mountain bike (MTB) encuentra en estas regiones terrenos desafiantes con vistas espectaculares, ideal para ciclistas aventureros.",
+        "highlights": [
+          "Rutas de Mountain Bike (MTB)",
+          "Senderos técnicos y fluidos",
+          "Excursiones guiadas a medida"
+        ]
+      }
     ]
   },
   "blog_page": {
