@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     default: "Aventurei - Descubre tu próxima aventura",
     template: "%s | Aventurei"
   },
-  description: "Conéctate con los melhores guías locales y explora destinos increíbles en España con segurança e exclusividade.",
+  description: "Descubre aventuras únicas en España con guías locales expertos. Senderismo, rápel, rafting, escalada y más. Reserva tu próxima experiencia en la naturaleza con seguridad.",
   metadataBase: new URL('https://aventurei.es'),
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "google-site-verification-id",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     url: 'https://aventurei.es',
     siteName: 'Aventurei',
     title: 'Aventurei - Descubre tu próxima aventura',
-    description: 'Conéctate con los mejores guías locales y explora destinos increíbles en España con seguridad y exclusividad.',
+    description: 'Descubre aventuras únicas en España con guías locales expertos. Senderismo, rápel, rafting, escalada y más. Reserva tu próxima experiencia en la naturaleza con seguridad.',
     images: [
       {
         url: '/og-image.png',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Aventurei - Descubre tu próxima aventura',
-    description: 'Conéctate con los mejores guías locales y explora destinos increíbles en España con seguridad y exclusividad.',
+    description: 'Descubre aventuras únicas en España con guías locales expertos. Senderismo, rápel, rafting, escalada y más. Reserva tu próxima experiencia en la naturaleza con seguridad.',
     images: ['/og-image.png'],
   },
   robots: {

@@ -60,7 +60,7 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
         aria-label="Selecionar idioma"
       >
         <Globe className="h-5 w-5" />
-        <span className="text-sm font-medium hidden sm:inline">
+        <span className="text-xs font-medium hidden sm:inline">
           {localeNames[currentLocale as Locale]}
         </span>
       </button>
@@ -71,7 +71,7 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
             <button
               key={locale}
               onClick={() => switchLocale(locale)}
-              className={`w-full text-left px-4 py-2 text-sm hover:bg-white/20 transition-colors ${locale === currentLocale
+              className={`w-full text-left px-4 py-2 text-xs hover:bg-white/20 transition-colors ${locale === currentLocale
                 ? 'bg-white/10 font-semibold'
                 : ''
                 }`}

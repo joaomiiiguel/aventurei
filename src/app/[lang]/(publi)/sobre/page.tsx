@@ -1,6 +1,7 @@
 import AboutView from "@/components/Views/AboutView";
 import { Metadata } from "next";
 import { getDictionary } from "@/lib/dictionary";
+import { constructMetadata } from "@/lib/seo";
 
 interface PageProps {
     params: Promise<{ lang: string }>;
@@ -11,41 +12,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const dict = await getDictionary(lang);
     const about = dict.about_page;
 
-    return {
+    return constructMetadata({
         title: about?.sobre_title || "Sobre o Aventurei Espanha",
         description: about?.sobre_p1?.substring(0, 160) || "Conectando pessoas apaixonadas por natureza, cultura e aventura.",
-        alternates: {
-            canonical: `/${lang}/sobre`,
-            languages: {
-                'pt-br': '/pt-br/sobre',
-                'es': '/es/sobre',
-                'en': '/en/sobre',
-                'x-default': '/es/sobre',
-            },
-        },
-        openGraph: {
-            title: about?.sobre_title,
-            description: about?.sobre_p1?.substring(0, 160),
-            url: `https://aventurei.es/${lang}/sobre`,
-            siteName: 'Aventurei',
-            locale: lang === 'pt-br' ? 'pt_BR' : lang === 'en' ? 'en_US' : 'es_ES',
-            type: 'website',
-            images: [
-                {
-                    url: '/og-image.jpg',
-                    width: 1200,
-                    height: 630,
-                    alt: 'Sobre Aventurei',
-                },
-            ],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: about?.sobre_title,
-            description: about?.sobre_p1?.substring(0, 160),
-            images: ['/og-image.jpg'],
-        },
-    };
+        lang,
+        slug: "/sobre",
+    });
 }
 
 export default function SobrePage() {

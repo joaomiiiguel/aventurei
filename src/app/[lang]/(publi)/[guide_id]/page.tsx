@@ -1,5 +1,6 @@
 import GuideContent from "@/components/Views/GuideContent"
 import { Metadata } from "next";
+import { constructMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { Person, WithContext } from "schema-dts";
 import { locales } from "@/lib/i18n-config";
@@ -41,45 +42,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         .eq('nickname', guide_id)
         .single();
 
-    if (!guide) {
-        return {
-            title: "Guia no encontrado",
-            description: "El guia que buscas no fue encontrado."
-        };
-    }
-
-    return {
+    return constructMetadata({
         title: `${guide.name || guide.nickname} - Guia de Aventura | Aventurei`,
         description: (guide.short_description || guide.description || "").substring(0, 160),
-        openGraph: {
-            title: `${guide.name} - Guia Profesional`,
-            description: guide.short_description || guide.description,
-            images: [
-                {
-                    url: getStorageUrl('users', guide.avatar) || "/og-image.png",
-                    width: 1200,
-                    height: 630,
-                    alt: guide.name,
-                }
-            ],
-            type: "profile",
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: `${guide.name} - Guia Profesional`,
-            description: (guide.short_description || guide.description || "").substring(0, 160),
-            images: [getStorageUrl('users', guide.avatar) || "/og-image.png"],
-        },
-        alternates: {
-            canonical: `/${lang}/${guide.nickname}`,
-            languages: {
-                'pt-br': `/pt-br/${guide.nickname}`,
-                'es': `/es/${guide.nickname}`,
-                'en': `/en/${guide.nickname}`,
-                'x-default': `/es/${guide.nickname}`,
-            },
-        }
-    };
+        image: getStorageUrl('users', guide.avatar) || undefined,
+        lang,
+        slug: `/${guide.nickname}`,
+    });
 }
 
 const GuidePage = async ({ params }: PageProps) => {

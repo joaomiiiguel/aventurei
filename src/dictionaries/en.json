@@ -4,6 +4,7 @@
   "guias": "Guides",
   "passeios": "Adventures",
   "sobre": "About",
+  "blog": "Blog",
   "contato": "Contact",
   "hero_title": "Discover the Unexplored",
   "hero_subtitle": "The best guides and adventures at your fingertips.",
@@ -43,7 +44,7 @@
   "search_adventures_guides": "Search adventures or guides...",
   "connect_with_best_guides": "Connect with the best guides and explore incredible destinations with safety and exclusivity.",
   "metadata_title": "Aventurei - Discover your next adventure",
-  "metadata_description": "Connect with the best guides and explore incredible destinations with safety and exclusivity.",
+  "metadata_description": "Discover unique adventures in Spain with expert local guides. Hiking, rappelling, rafting, climbing and more. Book your next nature experience safely.",
   "modality_trekking": "Trekking",
   "modality_climbing": "Climbing",
   "modality_rafting": "Rafting",
@@ -368,5 +369,33 @@
     ],
     "safety_title": "Safety and Sustainability",
     "safety_text": "Safety and sustainability are the pillars that support our community. We require all partner guides to hold the necessary certifications to operate legally and actively promote responsible tourism basing our activities on 'Leave No Trace' principles."
+  },
+  "home_seo_rich_text": {
+    "destinations_title": "Adventure Destinations in Spain",
+    "destinations_paragraph": "Spain is a paradise for active tourism and nature experiences. From the craggy peaks of the Pyrenees to the river routes of the Valencian Community, the geographical diversity allows for an unparalleled adventure Spain. If you seek adrenaline, canyoning in the canyons of Montanejos or rafting in the white waters of the Cabriel River in Venta del Moro are essential options. For those who prefer direct contact with the rock, climbing in Chulilla is internationally recognized for its vertical limestone walls. Hiking (senderismo) is another jewel, with routes across the Sierra de Albarracín or the trails of Serra and Almedíjar, where ecoturismo comes alive. Mountain biking (MTB) finds challenging terrains with spectacular views in these regions. Practicing canoeing or kayaking in crystalline reservoirs completes an offer that positions the country as a leader in adventure tourism. Every corner offers a unique opportunity to connect with the environment, always with respect for the environment as a fundamental pillar of each expedition.",
+    "guides_title": "Why choose local guides?",
+    "guides_paragraph": "Exploring these spots with local guides is the best guarantee of safety and exclusivity. A guide who knows the terrain not only masters mountain techniques but also shares stories, secrets, and little-known routes that transform an excursion into an unforgettable experience. Safety is paramount when performing activities like climbing, canyoning, or hiking in complex terrains; having a certified professional minimizes risks and maximizes enjoyment. Furthermore, choosing local guides fosters the development of rural economies and guarantees personalized service, adapting each route to your experience level. Enjoy authentic nature experiences (experiencias naturaleza), knowing you are in the hands of passionate experts who love their land and are committed to excellence.",
+    "destinations_list": [
+      "Valencia",
+      "Montanejos",
+      "Chulilla",
+      "Serra",
+      "Almedíjar",
+      "Venta del Moro"
+    ]
+  },
+  "blog_page": {
+    "intro_p1": "Welcome to the <strong>Aventurei</strong> blog, a space dedicated to lovers of ecotourism, nature, and outdoor adventure, with a conscious and sustainable approach.",
+    "intro_p2": "Here you will find expedition stories, tips for your adventures, destination guides in Spain, and content that will help you prepare your routes with greater safety and confidence.",
+    "intro_p3": "Our proposal is simple: to inspire your next great adventure and connect you with nature. Use the search to find a specific destination or activity and explore the posts at your own pace.",
+    "search_placeholder": "Search articles...",
+    "showing_results": "Showing results for:",
+    "latest_news": "Latest news",
+    "no_articles": "No articles found.",
+    "read_more": "Read more",
+    "end_of_news": "You have reached the end of the news!",
+    "back": "Back",
+    "article_not_found": "Article not found",
+    "published_on": "Published on:"
   }
 }

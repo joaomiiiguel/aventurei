@@ -12,6 +12,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useSupabaseClient } from "@/utils/supabase/client";
 import { getStorageUrl } from "@/utils/supabase/storage";
 import { DifficultyType } from "@/types/Difficulty";
+import Image from "next/image";
 
 interface AdventureEditViewProps {
   onClose: () => void
@@ -75,7 +76,14 @@ const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps
         ...adventureForm,
         gallery: finalGallery,
         cover_img: finalGallery[0] || "",
-        slug,
+        slug: (slug + "-en-" + adventureForm.city + "-" + adventureForm.uf).toString()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .trim()
+          .replace(/\s+/g, "-")
+          .replace(/[^\w\-]+/g, "")
+          .replace(/\-\-+/g, "-"),
         nickname: user.id,
         user_id: user.id
       }
@@ -221,7 +229,12 @@ const AdventureEditView = ({ onClose, editingAdventure }: AdventureEditViewProps
           <div className="grid grid-cols-3 gap-3">
             {adventureForm?.gallery?.map((photo, index) => (
               <div key={index} className="group relative aspect-square overflow-hidden rounded-lg border border-border bg-muted">
-                <img src={getStorageUrl('places', photo)} alt={`Foto ${index + 1}`} className="h-full w-full object-cover" />
+                <Image
+                  src={getStorageUrl('places', photo) || ""} alt={`Foto ${index + 1}`}
+                  width={500}
+                  height={500}
+                  className="h-full w-full object-cover"
+                />
                 <button
                   type="button"
                   onClick={() => {

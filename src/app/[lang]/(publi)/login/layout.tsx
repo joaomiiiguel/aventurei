@@ -1,5 +1,6 @@
 import { getDictionary } from "@/lib/dictionary";
 import { Metadata } from "next";
+import { constructMetadata } from "@/lib/seo";
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -10,19 +11,12 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     const { lang } = await params;
     const dict = await getDictionary(lang);
 
-    return {
-        title: `${dict.login} | Aventurei`,
+    return constructMetadata({
+        title: dict.login,
         description: dict.login_subtitle,
-        alternates: {
-            canonical: `/${lang}/login`,
-            languages: {
-                'pt-br': '/pt-br/login',
-                'es': '/es/login',
-                'en': '/en/login',
-                'x-default': '/es/login',
-            },
-        }
-    };
+        lang,
+        slug: "/login",
+    });
 }
 
 export default function LoginLayout({ children }: { children: React.ReactNode }) {

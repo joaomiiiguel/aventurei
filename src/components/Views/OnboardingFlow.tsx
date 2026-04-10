@@ -125,7 +125,14 @@ export function OnboardingFlow() {
                     ...adventureForm,
                     gallery: uploadedUrls,
                     cover_img: uploadedUrls[0] || "",
-                    slug
+                    slug: (slug + "-en-" + adventureForm.city + "-" + adventureForm.uf).toString()
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .toLowerCase()
+                        .trim()
+                        .replace(/\s+/g, "-")
+                        .replace(/[^\w\-]+/g, "")
+                        .replace(/\-\-+/g, "-"),
                 })
             })
 
@@ -450,7 +457,13 @@ export function OnboardingFlow() {
                                     <div className="grid grid-cols-3 gap-3">
                                         {adventureForm?.gallery?.map((photo, index) => (
                                             <div key={index} className="group relative aspect-square overflow-hidden rounded-lg border border-border bg-muted">
-                                                <img src={getStorageUrl('places', photo)} alt={`Foto ${index + 1}`} className="h-full w-full object-cover" />
+                                                <Image
+                                                    src={getStorageUrl('places', photo) || ""}
+                                                    alt={`Foto ${index + 1}`}
+                                                    width={500}
+                                                    height={500}
+                                                    className="h-full w-full object-cover"
+                                                />
                                                 <button
                                                     type="button"
                                                     onClick={() => {

@@ -4,6 +4,7 @@
   "guias": "Guias",
   "passeios": "Passeios",
   "sobre": "Sobre",
+  "blog": "Blog",
   "contato": "Contato",
   "hero_title": "Descubra o Inexplorado",
   "hero_subtitle": "Os melhores guias e aventuras ao seu alcance.",
@@ -43,7 +44,7 @@
   "search_adventures_guides": "Buscar aventuras ou guias...",
   "connect_with_best_guides": "Conecte-se com os melhores guias e explore destinos incríveis com segurança e exclusividade.",
   "metadata_title": "Aventurei - Descubra sua próxima aventura",
-  "metadata_description": "Conecte-se com os melhores guias e explore destinos incríveis com segurança e exclusividade.",
+  "metadata_description": "Descubra aventuras únicas na Espanha com guias locais experientes. Trilhas, rapel, rafting, escalada e mais. Reserve sua próxima experiência na natureza com segurança.",
   "modality_trekking": "Trilha",
   "modality_climbing": "Escalada",
   "modality_rafting": "Rafting",
@@ -368,5 +369,33 @@
     ],
     "safety_title": "Segurança e Sustentabilidade",
     "safety_text": "Segurança e sustentabilidade são os pilares que sustentam nossa comunidade. Exigimos que todos os guias parceiros possuam as certificações necessárias para operar legalmente e promovemos ativamente o turismo responsável baseando nossas atividades nos princípios de 'Leave No Trace' (Não Deixe Rastro)."
+  },
+  "home_seo_rich_text": {
+    "destinations_title": "Destinos de Aventura na Espanha",
+    "destinations_paragraph": "A Espanha é um paraíso para o turismo ativo e as experiências na natureza. Das picos escarpados dos Pirineus até as rotas fluviais da Comunidade Valenciana, a diversidade geográfica permite desfrutar de uma aventura España sem igual. Se você busca adrenalina, o barranquismo nos cânions de Montanejos ou o rafting nas águas bravas do rio Cabriel em Venta del Moro são opções imprescindíveis. Para quem prefere o contato direto com a rocha, a escalada em Chulilla é reconhecida internacionalmente por suas paredes verticais de calcário. O senderismo é outra das joias, com rotas que atravessam a Sierra de Albarracín ou as trilhas de Serra e Almedíjar, onde o ecoturismo ganha vida. A mountain bike (MTB) encontra nessas regiões terrenos desafiadores com vistas espetaculares. Praticar canoagem ou caiaque em represas cristalinas completa uma oferta que posiciona o país como líder em turismo de aventura. Cada canto oferece uma oportunidade única de conexão com o entorno, sempre com o respeito ao meio ambiente como pilar fundamental de cada expedição.",
+    "guides_title": "Por que escolher guias locais?",
+    "guides_paragraph": "Explorar esses locais com guias locais é a melhor garantia de segurança e exclusividade. Um guia conhecedor do terreno não apenas domina as técnicas de montanha, mas também compartilha histórias, segredos e rotas pouco conhecidas que transformam uma excursão em uma experiência inesquecível. A segurança é primordial ao realizar atividades como escalada, barranquismo ou trilhas por terrenos complexos; contar com um profissional certificado minimiza riscos e maximiza o aproveitamento. Além disso, escolher guias locais fomenta o desenvolvimento das economias rurais e garante um atendimento personalizado, adaptando cada rota ao seu nível de experiência. Desfrute de experiencias naturaleza autênticas, sabendo que você está em mãos de especialistas apaixonados por sua terra e comprometidos com a excelência.",
+    "destinations_list": [
+      "Valencia",
+      "Montanejos",
+      "Chulilla",
+      "Serra",
+      "Almedíjar",
+      "Venta del Moro"
+    ]
+  },
+  "blog_page": {
+    "intro_p1": "Bem-vindas e bem-vindos ao blog do <strong>Aventurei</strong>, um espaço dedicado aos amantes do ecoturismo, da natureza e da aventura ao ar livre, com um foco consciente e sustentável.",
+    "intro_p2": "Aqui você encontrará relatos de expedições, dicas para suas aventuras, guias de destinos na Espanha e conteúdos que ajudarão a preparar suas rotas com maior segurança e confiança.",
+    "intro_p3": "Nossa proposta é simples: inspirar sua próxima grande aventura e conectar você com a natureza. Utilize a busca para encontrar um destino ou atividade específica e explore as publicações no seu próprio ritmo.",
+    "search_placeholder": "Buscar artigos...",
+    "showing_results": "Mostrando resultados para:",
+    "latest_news": "Últimas novidades",
+    "no_articles": "Nenhum artigo encontrado.",
+    "read_more": "Leia mais",
+    "end_of_news": "Você chegou ao final das novidades!",
+    "back": "Voltar",
+    "article_not_found": "Artigo não encontrado",
+    "published_on": "Publicado em:"
   }
 }

@@ -1,5 +1,6 @@
 import AdventureContent from "@/components/Views/AdventureContent";
 import { Metadata } from "next";
+import { constructMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { Product, BreadcrumbList, WithContext } from "schema-dts";
 import { locales } from "@/lib/i18n-config";
@@ -45,45 +46,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     .eq('slug', adventure_name)
     .single();
 
-  if (!adventure) {
-    return {
-      title: "Paseo no encontrado",
-      description: "El paseo que buscas no fue encontrado."
-    };
-  }
-
-  return {
+  return constructMetadata({
     title: `${adventure.title} | Aventurei`,
     description: (adventure.description || "").substring(0, 160),
-    openGraph: {
-      title: adventure.title,
-      description: (adventure.description || "").substring(0, 160),
-      images: [
-        {
-          url: getStorageUrl('places', adventure.cover_img) || "/og-image.png",
-          width: 1200,
-          height: 630,
-          alt: adventure.title,
-        }
-      ],
-      type: "website",
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: adventure.title,
-      description: (adventure.description || "").substring(0, 160),
-      images: [getStorageUrl('places', adventure.cover_img) || "/og-image.png"],
-    },
-    alternates: {
-      canonical: `/${lang}/${adventure.nickname}/${adventure.slug}`,
-      languages: {
-        'pt-br': `/pt-br/${adventure.nickname}/${adventure.slug}`,
-        'es': `/es/${adventure.nickname}/${adventure.slug}`,
-        'en': `/en/${adventure.nickname}/${adventure.slug}`,
-        'x-default': `/es/${adventure.nickname}/${adventure.slug}`,
-      },
-    }
-  };
+    image: getStorageUrl('places', adventure.cover_img) || undefined,
+    lang,
+    slug: `/${adventure.nickname}/${adventure.slug}`,
+  });
 }
 
 const AdventurePage = async ({ params }: PageProps) => {

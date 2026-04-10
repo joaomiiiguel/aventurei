@@ -4,6 +4,7 @@
   "guias": "Guías",
   "passeios": "Paseos",
   "sobre": "Sobre",
+  "blog": "Blog",
   "contato": "Contacto",
   "hero_title": "Descubre lo Inexplorado",
   "hero_subtitle": "Los mejores guías y aventuras a tu alcance.",
@@ -43,8 +44,8 @@
   "filter": "Filtrar",
   "search_adventures_guides": "Buscar aventuras o guías...",
   "connect_with_best_guides": "Conéctate con los mejores guías y explora destinos increíbles con seguridad y exclusividad.",
-  "metadata_title": "Aventurei - Descubre tu próxima aventura en España",
-  "metadata_description": "Conéctate con los mejores guías y explora destinos increíbles con seguridad y exclusividad.",
+  "metadata_title": "Aventurei - Descubre tu próxima aventura",
+  "metadata_description": "Descubre aventuras únicas en España con guías locales expertos. Senderismo, rápel, rafting, escalada y más. Reserva tu próxima experiencia en la naturaleza con seguridad.",
   "modality_trekking": "Senderismo",
   "modality_climbing": "Escalada",
   "modality_rafting": "Rafting",
@@ -367,5 +368,33 @@
     ],
     "safety_title": "Seguridad y Sostenibilidad",
     "safety_text": "Seguridad y sostenibilidad son los pilares que sustentan nuestra comunidad. Exigimos que todos los guías colaboradores posean las certificaciones necesarias para operar legalmente y promovemos activamente el turismo responsable basando nuestras actividades en los principios de 'Leave No Trace' (No Deje Rastro)."
+  },
+  "home_seo_rich_text": {
+    "destinations_title": "Destinos de Aventura en España",
+    "destinations_paragraph": "España es un paraíso para el turismo activo y las experiencias en la naturaleza. Desde los picos escarpados de los Pirineos hasta las rutas fluviales de la Comunidad Valenciana, la diversidad geográfica permite disfrutar de una aventura España sin igual. Si buscas adrenalina, el barranquismo en los cañones de Montanejos o el rafting en las aguas bravas del río Cabriel en Venta del Moro son opciones imprescindibles. Para quienes prefieren el contacto directo con la roca, la escalada en Chulilla es reconocida internacionalmente por sus paredes verticales de caliza. El senderismo es otra de las joyas, con rutas que atraviesan la Sierra de Albarracín o los senderos de Serra y Almedíjar, donde el ecoturismo cobra vida. La mountain bike (MTB) encuentra en estas regiones terrenos desafiantes con vistas espectaculares. Practicar piragüismo o kayak en embalses cristalinos completa una oferta que posiciona al país como líder en turismo de aventura. Cada rincón ofrece una oportunidad única para conectar con el entorno, siempre con el respeto al medio ambiente como pilar fundamental de cada expedición.",
+    "guides_title": "¿Por qué elegir guías locales?",
+    "guides_paragraph": "Explorar estos parajes con guías locales es la mejor garantía de seguridad y exclusividad. Un guía conocedor del terreno no solo domina las técnicas de montaña, sino que comparte historias, secretos y rutas poco conocidas que transforman una excursión en una experiencia inolvidable. La seguridad es primordial al realizar actividades como escalada, barranquismo o senderismo por terrenos complejos; contar con un profesional certificado minimiza riesgos y maximiza el disfrute. Además, elegir guías locales fomenta el desarrollo de las economías rurales y garantiza un trato personalizado, adaptando cada ruta a tu nivel de experiencia. Disfruta de experiencias naturaleza auténticas, sabiendo que estás en manos de expertos apasionados por su tierra y comprometidos con la excelencia.",
+    "destinations_list": [
+      "Valencia",
+      "Montanejos",
+      "Chulilla",
+      "Serra",
+      "Almedíjar",
+      "Venta del Moro"
+    ]
+  },
+  "blog_page": {
+    "intro_p1": "Bienvenidas y bienvenidos al blog de <strong>Aventurei</strong>, un espacio dedicado a los amantes del ecoturismo, la naturaleza y la aventura al aire libre, con un enfoque consciente y sostenible.",
+    "intro_p2": "Aquí encontraréis relatos de expediciones, consejos para vuestras aventuras, guías de destinos en España y contenidos que os ayudarán a preparar vuestras rutas con mayor seguridad y confianza.",
+    "intro_p3": "Nuestra propuesta es simple: inspirar tu próxima gran aventura y conectarte con la naturaleza. Utiliza la búsqueda para encontrar un destino o actividad específica y explora las publicaciones a tu propio ritmo.",
+    "search_placeholder": "Buscar artículos...",
+    "showing_results": "Mostrando resultados para:",
+    "latest_news": "Últimas novedades",
+    "no_articles": "No se ha encontrado ningún artículo.",
+    "read_more": "Leer más",
+    "end_of_news": "¡Has llegado al final de las novedades!",
+    "back": "Volver",
+    "article_not_found": "Artículo no encontrado",
+    "published_on": "Publicado el:"
   }
 }

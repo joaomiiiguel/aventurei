@@ -3,7 +3,6 @@ import { Menu, X, User as UserIcon, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { Button } from "../ui/button";
 import LogoAventurei from "../Logo";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useTranslations } from "@/contexts/LocaleContext";
@@ -42,13 +41,19 @@ export function Header() {
         <nav className="hidden items-center gap-2 md:flex">
           <Link
             href={`/${lang}/sobre`}
-            className="text-sm text-center font-medium hover:bg-white/20 px-4 py-2 rounded-full transition-all"
+            className="text-xs text-center font-medium hover:bg-white/20 px-4 py-2 rounded-full transition-all"
           >
             {t.sobre || 'Sobre'}
           </Link>
           <Link
+            href={`/${lang}/blog`}
+            className="text-xs text-center font-medium hover:bg-white/20 px-4 py-2 rounded-full transition-all"
+          >
+            {t.blog || 'Blog'}
+          </Link>
+          <Link
             href={`/${lang}/se-un-guia`}
-            className="text-sm text-center font-medium hover:bg-white/20 px-4 py-2 rounded-full transition-all"
+            className="text-xs text-center font-medium hover:bg-white/20 px-4 py-2 rounded-full transition-all"
           >
             {t.be_a_guide || 'Seja um Guia'}
           </Link>
@@ -59,12 +64,12 @@ export function Header() {
               className="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-all border border-white/10"
             >
               <UserIcon className="w-4 h-4" />
-              <span className="text-sm font-medium">{t.dashboard}</span>
+              <span className="text-xs font-medium">{t.dashboard}</span>
             </Link>
           ) : (
             <Link
               href={`/${lang}/login`}
-              className="bg-white text-primary hover:bg-white/90 px-6 py-2 rounded-full text-sm font-bold transition-all shadow-lg shadow-white/10"
+              className="bg-white text-primary hover:bg-white/90 px-6 py-2 rounded-full text-xs font-bold transition-all shadow-lg shadow-white/10"
             >
               {t.login}
             </Link>
