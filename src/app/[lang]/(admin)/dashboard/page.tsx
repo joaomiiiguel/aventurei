@@ -80,25 +80,12 @@ export default function DashboardPage() {
         }
     }, [supabase, user?.id, user?.nickname, isLoading])
 
-    if (isLoading || isLoadingPlaces) {
+    if (isLoading || isLoadingPlaces || !user) {
         return (
             <div className="flex min-h-screen items-center justify-center bg-background">
                 <div className="flex flex-col items-center gap-4">
                     <Loader2 className="h-10 w-10 animate-spin text-primary" />
                     <p className="text-muted-foreground animate-pulse">{t.loading}</p>
-                </div>
-            </div>
-        )
-    }
-
-    if (!user) {
-        return (
-            <div className="flex min-h-screen items-center justify-center bg-background">
-                <div className="text-center">
-                    <h1 className="text-xl font-bold mb-4">{t.unauthorized_access}</h1>
-                    <Link href={`/${lang}/login`} className="text-primary hover:underline">
-                        {t.go_to_login}
-                    </Link>
                 </div>
             </div>
         )

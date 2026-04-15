@@ -47,11 +47,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     .single();
 
   return constructMetadata({
-    title: `${adventure.title} | Aventurei`,
-    description: (adventure.description || "").substring(0, 160),
-    image: getStorageUrl('places', adventure.cover_img) || undefined,
+    title: `${adventure?.title} | Aventurei`,
+    description: (adventure?.description || "").substring(0, 160),
+    image: getStorageUrl('places', adventure?.cover_img) || undefined,
     lang,
-    slug: `/${adventure.nickname}/${adventure.slug}`,
+    slug: `/${adventure?.nickname}/${adventure?.slug}`,
   });
 }
 
